@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1678664174510505379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1678664174510505391}
+  - component: {fileID: 1678664174510505388}
+  - component: {fileID: 1678664174510505389}
+  - component: {fileID: 1678664174510505378}
+  m_Layer: 0
+  m_Name: Board
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1678664174510505391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678664174510505379}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!33 &1678664174510505388
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678664174510505379}
+  m_Mesh: {fileID: -6473239400097505017, guid: 333d9e0c2d0c22bb5ad021bc40a7a257, type: 3}
+--- !u!23 &1678664174510505389
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678664174510505379}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: bb057c3a42842a256b514b26d169642f, type: 2}
+  - {fileID: 2100000, guid: 03b98158e5b327203a85f880a94cb6bb, type: 2}
+  - {fileID: 2100000, guid: e2ee4b36073781f32ae9623e7677490a, type: 2}
+  - {fileID: 2100000, guid: 041e65f833c0ec5d7992bf0ba1c86d1a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1678664174510505378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678664174510505379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe24327c21337942a5a32c036930a1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_WhitePawnModel: {fileID: 281392361589511847, guid: c7512ebbdeeba2944a3c7520c857fb0f, type: 3}
+  m_WhiteKingModel: {fileID: 8245986993707966825, guid: 9a2dd32604436314ca88e890fd741be6, type: 3}
+  m_WhiteQueenModel: {fileID: 6997497256814400121, guid: 52371f6b52b92af46948d2f3860c0c90, type: 3}
+  m_WhiteBishopModel: {fileID: 2891574205556526976, guid: f03138a98785c0a489a56b24d6bd1bf9, type: 3}
+  m_WhiteKnightModel: {fileID: 5745503142858798425, guid: cf870a1cc92e12341b3e99266b48208b, type: 3}
+  m_WhiteRookModel: {fileID: 6255857477250378859, guid: 66cb2797ca4dc0c4fa820eb9623bff0b, type: 3}
+  m_BlackPawnModel: {fileID: 4170159654633104206, guid: 3c2198c111118714d9f111db2664e8b7, type: 3}
+  m_BlackKingModel: {fileID: 6182977424883307346, guid: 81e39ef208f22f84ca27388070f06ddf, type: 3}
+  m_BlackQueenModel: {fileID: 1536861845002137844, guid: df1d415d3c27d504cbb982bd1cae10d8, type: 3}
+  m_BlackBishopModel: {fileID: 8924049133876975529, guid: 9158759c354e58b46afe61bfbad6ed4f, type: 3}
+  m_BlackKnightModel: {fileID: 5668607290011460990, guid: 8bae9563fc207084a91d9a845b4a41e1, type: 3}
+  m_BlackRookModel: {fileID: 3724113779848000877, guid: ef98a1e462f906447988637fa2ca1035, type: 3}
