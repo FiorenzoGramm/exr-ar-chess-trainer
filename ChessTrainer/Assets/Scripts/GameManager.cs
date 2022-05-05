@@ -42,8 +42,6 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log(m_Game.ToString(m_CurrentMove));
         }
-
-        m_Board.GetComponent<Transform>().Rotate(new Vector3(0.0f, 0.00f, 0.025f));
     }
 
     private int[] GetField(string field)

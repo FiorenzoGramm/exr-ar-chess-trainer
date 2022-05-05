@@ -4,5 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
-  m_configObjects: {}
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/BasicARChessScene.unity
+    guid: 0db4ec7fb6ad5854b81ffc422d589414
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 62d38147a159f0e42a84edf90553e075, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 44a097cfa7a744f40b84adfe9e12c943, type: 2}
