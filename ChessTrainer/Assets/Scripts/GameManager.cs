@@ -4,25 +4,15 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public Board    m_Board;
-    public Game     m_Game;
+    public Library  m_Library;
+    public Game     m_CurrentGame;
+    private int     m_CurrentGameIndex;
     public int      m_CurrentMove;
-
     void Start()
     {
-        // Test - Start
-        List<Move> game = new List<Move>();
-        game.Add(new Move("e2", "e4"));
-        game.Add(new Move("c7", "c6"));
-        game.Add(new Move("d2", "d4"));
-        game.Add(new Move("d7", "d5"));
-        game.Add(new Move("e4", "e5"));
-        game.Add(new Move("B", "c8", "f5"));
-        game.Add(new Move("B", "f1", "d3"));
-        game.Add(new Move("B", "f5", "B", "d3"));
-        this.m_Game = new Game(game);
-        // Test - End
 
-        m_Board.Reset();
+        Library.InitialiseLibrary();
+        changeGame(0);
 
         // For a better start position (for demo only)
         m_Board.transform.Translate(new Vector3(0.0f, -0.25f, 1.5f), Space.World);
@@ -31,22 +21,40 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
-        int tmp = m_CurrentMove;
         if (Input.GetKeyUp("left"))
         {
             UndoMove();
+            Debug.Log(m_CurrentGame.ToString(m_CurrentMove));
         }
         if (Input.GetKeyUp("right"))
         {
             DoNextMove();
+            Debug.Log(m_CurrentGame.ToString(m_CurrentMove));
         }
-
-        if (m_CurrentMove != tmp)
+        if (Input.GetKeyUp("up"))
         {
-            Debug.Log(m_Game.ToString(m_CurrentMove));
+            changeGame(m_CurrentGameIndex + 1);
+        }
+        if (Input.GetKeyUp("down"))
+        {
+            changeGame(m_CurrentGameIndex - 1);
         }
     }
+    
+    public void changeGame(int index)
+    {
+        if(index < 0 || index > Library.m_Games.Count - 1)
+        {
+            Debug.Log("Could not load game with index " + index);
+            return;
+        }
 
+        m_Board.Reset();
+        m_CurrentGame       = Library.m_Games[index];
+        m_CurrentGameIndex  = index;
+        m_CurrentMove       = 0;
+        Debug.Log("Changed game to " + m_CurrentGame.m_Name);
+    }
     private int[] GetField(string field)
     {
         int[] res = new int[2];
@@ -57,12 +65,12 @@ public class GameManager : MonoBehaviour
 
     public void DoNextMove()
     {
-        if(m_CurrentMove >= m_Game.GetMoveCount())
+        if(m_CurrentMove >= m_CurrentGame.GetMoveCount())
         {
             Debug.Log("No moves left.");
         }
 
-        Move nextMove = m_Game.GetMove(m_CurrentMove);
+        Move nextMove = m_CurrentGame.GetMove(m_CurrentMove);
         if (nextMove != null)
         {
             int[] from      = nextMove.GetFromFieldCoordinates();
@@ -110,10 +118,9 @@ public class GameManager : MonoBehaviour
             return;
         }
         
-        Move previousMove   = m_Game.GetMove(m_CurrentMove - 1);
+        Move previousMove   = m_CurrentGame.GetMove(m_CurrentMove - 1);
         int[] from          = GetField(previousMove.m_FromField);
         int[] to            = GetField(previousMove.m_ToField);
-        Piece fromPiece     = m_Board.GetPiece(to[0], to[1]);
         Piece toPiece       = null;
         bool res;
 
@@ -191,7 +198,10 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.Log("Failed to place captured piece.");
-            Destroy(toPiece.gameObject);
+            if(toPiece != null)
+            {
+                Destroy(toPiece.gameObject);
+            }
             m_Board.Move(from[0], from[1], to[0], to[1]);
         }
         

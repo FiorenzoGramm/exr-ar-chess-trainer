@@ -2,11 +2,17 @@ using System.Collections.Generic;
 
 public class Game
 {
+    public string       m_Name;
     public List<Move>   m_Moves;
 
-    public Game(List<Move> game)
+    public Game() : this(new List<Move>()) {}
+    public Game(List<Move> moves) : this("Untitled opening", moves) {}
+    public Game(string name) : this(name, new List<Move>()) {}
+
+    public Game(string name, List<Move> moves)
     {
-        this.m_Moves = game;
+        this.m_Name     = name;
+        this.m_Moves    = moves;
     }
 
     public static Game CreateGame(string pgn)

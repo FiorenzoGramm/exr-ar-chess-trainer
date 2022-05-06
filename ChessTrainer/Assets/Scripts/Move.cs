@@ -112,7 +112,7 @@ public class Move
         {
             result += m_FromField;
         }
-        if (m_ToPiece != "")
+        if (m_ToPiece != "" || m_ToPiece == "P")
         {
             result += "x";
         }

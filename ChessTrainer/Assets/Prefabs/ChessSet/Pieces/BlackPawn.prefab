@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Type: Pawn
-  m_Symbol: 
+  m_Symbol: P
   m_IsWhite: 0
 --- !u!1 &6327483139870140767
 GameObject:

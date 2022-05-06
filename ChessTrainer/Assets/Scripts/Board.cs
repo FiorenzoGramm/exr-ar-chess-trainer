@@ -28,6 +28,10 @@ public class Board : MonoBehaviour
         {
             for(int file = 0; file < 8; ++file)
             {
+                if(m_Pieces[rank, file] != null)
+                {
+                    Destroy(m_Pieces[rank, file].gameObject);
+                }
                 m_Pieces[rank, file] = null;
             }
         }
