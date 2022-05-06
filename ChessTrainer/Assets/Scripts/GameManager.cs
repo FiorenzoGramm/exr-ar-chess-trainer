@@ -25,9 +25,8 @@ public class GameManager : MonoBehaviour
         m_Board.Reset();
 
         // For a better start position (for demo only)
-        // Decomment after model update
-        //m_Board.transform.Translate(new Vector3(0.0f, -0.25f, 1.5f), Space.World);
-        //m_Board.transform.Rotate(new Vector3(0.0f, 90f, 0.0f), Space.World);
+        m_Board.transform.Translate(new Vector3(0.0f, -0.25f, 1.5f), Space.World);
+        m_Board.transform.Rotate(new Vector3(0.0f, 90f, 0.0f), Space.World);
     }
 
     public void Update()

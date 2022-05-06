@@ -20,12 +20,6 @@ public class Board : MonoBehaviour
     public Piece   [,] m_Pieces         = new Piece[8,8];
 
     private const float FIELD_SIZE      = 0.06f / 100f;
-    public Vector3      ORIGNAL_ROTATION;
-
-    public void Start()
-    {
-        ORIGNAL_ROTATION = transform.rotation.eulerAngles;
-    }
 
     public void Reset()
     {
@@ -33,8 +27,8 @@ public class Board : MonoBehaviour
         Vector3     oldPosition     = this.transform.position;
         Quaternion  oldRotation     = this.transform.rotation;
         Vector3     oldScale        = this.transform.localScale;
-        this.transform.position     = new Vector3(0, 0, 0);
-        this.transform.rotation     = Quaternion.Euler(-90, 0, 0);
+        this.transform.position     = Vector3.zero;
+        this.transform.rotation     = Quaternion.Euler(Vector3.zero);
         this.transform.localScale   = new Vector3(100, 100, 100);
 
         // Clear current field
@@ -94,8 +88,8 @@ public class Board : MonoBehaviour
             Piece blackPawn = Instantiate(m_BlackPawnModel, this.transform);
 
             float positionX      = (i * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.x;
-            float positionZWhite = (1 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.y;
-            float positionZBlack = (6 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.y;
+            float positionZWhite = (1 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.z;
+            float positionZBlack = (6 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.z;
             Vector3 positionWhite = new Vector3(positionX, 0, positionZWhite);
             Vector3 positionBlack = new Vector3(positionX, 0, positionZBlack);
             whitePawn.transform.position += positionWhite;
@@ -283,8 +277,6 @@ public class Board : MonoBehaviour
     }
     private void TranslatePiece(Piece piece, Vector3 direction)
     {
-        direction = Quaternion.Euler(-ORIGNAL_ROTATION) * direction;
-
         piece.GetComponent<Transform>().Translate(direction, Space.Self);
     }
 
