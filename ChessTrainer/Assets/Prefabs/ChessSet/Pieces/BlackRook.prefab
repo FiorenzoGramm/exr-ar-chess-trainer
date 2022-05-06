@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4421885158931922307
+--- !u!1 &1034293442720447963
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7180639177468806198}
-  - component: {fileID: 3693947281268553053}
-  - component: {fileID: 2444207355639371816}
+  - component: {fileID: 6729548501935425509}
+  - component: {fileID: 6761996141525269791}
+  - component: {fileID: 3234192664233576273}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -18,36 +18,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7180639177468806198
+--- !u!4 &6729548501935425509
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4421885158931922307}
+  m_GameObject: {fileID: 1034293442720447963}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2295056427228561912}
+  m_Father: {fileID: 1534930789877968298}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!33 &3693947281268553053
+--- !u!33 &6761996141525269791
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4421885158931922307}
-  m_Mesh: {fileID: 6939469775061525414, guid: 5e2ff5b98688e384eb495006f7527d76, type: 3}
---- !u!23 &2444207355639371816
+  m_GameObject: {fileID: 1034293442720447963}
+  m_Mesh: {fileID: -3930697341933034560, guid: 5e2ff5b98688e384eb495006f7527d76, type: 3}
+--- !u!23 &3234192664233576273
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4421885158931922307}
+  m_GameObject: {fileID: 1034293442720447963}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &5410426452852078863
+--- !u!1 &7179904942918424080
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,43 +92,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2295056427228561912}
-  - component: {fileID: 5372014246589687201}
+  - component: {fileID: 1534930789877968298}
+  - component: {fileID: 519832235416620937}
   m_Layer: 0
-  m_Name: BlackKingAlt
+  m_Name: BlackRook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2295056427228561912
+--- !u!4 &1534930789877968298
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5410426452852078863}
+  m_GameObject: {fileID: 7179904942918424080}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7180639177468806198}
+  - {fileID: 6729548501935425509}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5372014246589687201
+--- !u!114 &519832235416620937
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5410426452852078863}
+  m_GameObject: {fileID: 7179904942918424080}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a111399e6f06bf48b9c0c903a6921b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Type: King
-  m_Symbol: K
+  m_Type: Rook
+  m_Symbol: R
   m_IsWhite: 0

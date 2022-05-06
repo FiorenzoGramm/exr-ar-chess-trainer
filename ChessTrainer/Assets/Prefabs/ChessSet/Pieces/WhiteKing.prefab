@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4089894104180352534
+--- !u!1 &369879932876409435
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3921257603996546723}
-  - component: {fileID: 5813672599232008036}
-  - component: {fileID: 6241897989321048867}
+  - component: {fileID: 1722990451491359771}
+  - component: {fileID: 6304005580722269816}
+  - component: {fileID: 8600652441158791265}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -18,36 +18,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3921257603996546723
+--- !u!4 &1722990451491359771
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4089894104180352534}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_GameObject: {fileID: 369879932876409435}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1735797652569214927}
+  m_Father: {fileID: 5745803175389311348}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!33 &5813672599232008036
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
+--- !u!33 &6304005580722269816
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4089894104180352534}
-  m_Mesh: {fileID: -3590486366359828239, guid: 5e2ff5b98688e384eb495006f7527d76, type: 3}
---- !u!23 &6241897989321048867
+  m_GameObject: {fileID: 369879932876409435}
+  m_Mesh: {fileID: 734077344996761655, guid: 5e2ff5b98688e384eb495006f7527d76, type: 3}
+--- !u!23 &8600652441158791265
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4089894104180352534}
+  m_GameObject: {fileID: 369879932876409435}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -61,8 +61,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1769583860427952448, guid: 5e2ff5b98688e384eb495006f7527d76, type: 3}
   - {fileID: -6121818782608439399, guid: 5e2ff5b98688e384eb495006f7527d76, type: 3}
+  - {fileID: 1769583860427952448, guid: 5e2ff5b98688e384eb495006f7527d76, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &7129193572808116095
+--- !u!1 &2167855048553706682
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,43 +92,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1735797652569214927}
-  - component: {fileID: 3383562143293172553}
+  - component: {fileID: 5745803175389311348}
+  - component: {fileID: 1325361359813994160}
   m_Layer: 0
-  m_Name: WhitePawnAlt
+  m_Name: WhiteKing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1735797652569214927
+--- !u!4 &5745803175389311348
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7129193572808116095}
+  m_GameObject: {fileID: 2167855048553706682}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3921257603996546723}
+  - {fileID: 1722990451491359771}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3383562143293172553
+--- !u!114 &1325361359813994160
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7129193572808116095}
+  m_GameObject: {fileID: 2167855048553706682}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a111399e6f06bf48b9c0c903a6921b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Type: Pawn
-  m_Symbol: 
+  m_Type: King
+  m_Symbol: K
   m_IsWhite: 1

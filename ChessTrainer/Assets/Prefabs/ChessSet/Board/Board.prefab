@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 954604884923323795}
   - component: {fileID: 460735179685087151}
   m_Layer: 0
-  m_Name: BoardAlt
+  m_Name: Board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   rotateLerpTime: 0.001
   scaleLerpTime: 0.001
   enableConstraints: 1
-  constraintsManager: {fileID: 0}
+  constraintsManager: {fileID: 2723951346493035566}
   elasticsManager: {fileID: 0}
   onManipulationStarted:
     m_PersistentCalls:
