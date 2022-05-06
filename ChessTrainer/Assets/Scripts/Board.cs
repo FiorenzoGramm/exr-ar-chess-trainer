@@ -222,24 +222,26 @@ public class Board : MonoBehaviour
     {
         Piece fromPiece = m_Pieces[fromRank, fromFile];
         Piece toPiece   = m_Pieces[toRank, toFile];
-        
-        if(toPiece == null)
-        {
-            m_Pieces[toRank, toFile] = fromPiece;
-            m_Pieces[fromRank, fromFile] = null;
 
-            int movementX = toRank - fromRank;
-            int movementZ = toFile - fromFile;
-
-            TranslatePiece(fromPiece, new Vector3(FIELD_SIZE * this.transform.localScale.x * movementX, 0.0f, FIELD_SIZE * this.transform.localScale.y * movementZ));
-            return true;
-        }
-        else
+        if(fromPiece == null)
         {
-            Debug.Log(FieldToString(fromRank, fromFile) + " -> " + FieldToString(toRank, toFile)+ " is a invalid move, field is occupied.");
+            Debug.Log("There is no piece on " + FieldToString(fromRank, fromFile) + " to move to " + FieldToString(toRank, toFile));
             return false;
         }
-        
+
+        if(toPiece != null)
+        {
+            Debug.Log("There is a piece on " + FieldToString(fromRank, fromFile) + "(" + toPiece.ToString() + ")");
+            return false;
+        }
+
+        int movementX = toRank - fromRank;
+        int movementZ = toFile - fromFile;
+
+        TranslatePiece(fromPiece, new Vector3(FIELD_SIZE * this.transform.localScale.x * movementX, 0.0f, FIELD_SIZE * this.transform.localScale.y * movementZ));
+        m_Pieces[toRank, toFile] = fromPiece;
+        m_Pieces[fromRank, fromFile] = null;
+        return true;
     }
 
     public Piece GetPiece(int rank, int file)
@@ -263,7 +265,7 @@ public class Board : MonoBehaviour
         }
         if (!IsValidField(rank, file))
         {
-            Debug.Log(FieldToString(rank, file) + " is an invalid field for placing a piece");
+            Debug.Log(FieldToString(rank, file) + "(" + rank + "," + file + ") is an invalid field for placing a piece");
             return false;
         }
         if(m_Pieces[rank, file] != null)
@@ -271,27 +273,59 @@ public class Board : MonoBehaviour
             Debug.Log("Cannot place " + piece.ToString() + " on " + FieldToString(rank, file) + " because the field is occupied by a " + m_Pieces[rank, file].ToString());
             return false;
         }
+
         // TODO: Create coorect movement, even with switched coordinates
         m_Pieces[rank, file] = piece;
         float positionX = this.GetComponent<Transform>().localScale.x * FIELD_SIZE * (0.5f + (rank - 4.0f));
         float positionZ = this.GetComponent<Transform>().localScale.z * FIELD_SIZE * (0.5f + (file - 4.0f));
         TranslatePiece(piece, new Vector3(positionX, 0.0f, positionZ));
-        Debug.Log("Placed " + piece.ToString() + " on " + FieldToString(rank, file));
         return true;
     }
-
     private void TranslatePiece(Piece piece, Vector3 direction)
     {
-        direction  = Quaternion.Euler(-ORIGNAL_ROTATION) * direction;
+        direction = Quaternion.Euler(-ORIGNAL_ROTATION) * direction;
 
         piece.GetComponent<Transform>().Translate(direction, Space.Self);
     }
 
+    public bool ClearField(int rank, int file)
+    {
+        if(!IsValidField(rank, file))
+        {
+            Debug.Log("Failed to clear field because [" + rank + ", " + file + "] is an invalid field.");
+            return false;
+        }
+
+        Piece piece = GetPiece(rank, file);
+        if(piece == null)
+        {
+            Debug.Log("Failed to clear " + FieldToString(rank, file) + " is alreade empty.");
+            return false;
+        }
+
+        m_Pieces[rank, file] = null;
+        return true;
+    }
+
+    // TODO: Move to Move (class)?
+    public static bool IsValidField(int[] position)
+    {
+        if(position.Length == 2)
+        {
+            return IsValidField(position[0], position[1]);
+        }
+        else
+        {
+            return false;
+        }
+       
+    }
     public static bool IsValidField(int rank, int file)
     {
         return (rank >= 0 && rank <= 7 && file >= 0 && file <= 7);
     }
 
+    // TODO: Move to Move (class)?
     public static string FieldToString(int rank, int file)
     {
         string res = "";

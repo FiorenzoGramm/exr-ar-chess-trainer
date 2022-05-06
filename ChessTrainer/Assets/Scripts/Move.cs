@@ -86,6 +86,20 @@ public class Move
         return null;
     }
 
+    private int[] FieldAsStringToIntArray(string field)
+    {
+        int[] coordinates = { (char)field[0] - 97, (char)field[1] - 48 - 1};
+        return coordinates;
+    }
+    public int[] GetFromFieldCoordinates()
+    {
+        return FieldAsStringToIntArray(m_FromField);
+    }
+    public int[] GetToFieldCoordinates()
+    {
+        return FieldAsStringToIntArray(m_ToField);
+    }
+
     override public string ToString()
     {
         string result = "";
