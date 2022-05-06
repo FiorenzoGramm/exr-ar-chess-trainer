@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,6 +23,10 @@ public class GameManager : MonoBehaviour
         // Test - End
 
         m_Board.Reset();
+
+        // For a better start position (for demo only)
+        m_Board.transform.Translate(new Vector3(0.0f, -0.25f, 1.5f), Space.World);
+        m_Board.transform.Rotate(new Vector3(0.0f, 90f, 0.0f), Space.World);
     }
 
     public void Update()
@@ -52,7 +55,7 @@ public class GameManager : MonoBehaviour
         return res;
     }
 
-    private void DoNextMove()
+    public void DoNextMove()
     {
         if(m_CurrentMove < m_Game.GetMoveCount())
         {
@@ -102,7 +105,7 @@ public class GameManager : MonoBehaviour
 ;       }
     }
 
-    private void UndoMove()
+    public void UndoMove()
     {
         if(m_CurrentMove > 0)
         {

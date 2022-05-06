@@ -115,6 +115,7 @@ MonoBehaviour:
   m_BlackBishopModel: {fileID: 8924049133876975529, guid: 9158759c354e58b46afe61bfbad6ed4f, type: 3}
   m_BlackKnightModel: {fileID: 5668607290011460990, guid: 8bae9563fc207084a91d9a845b4a41e1, type: 3}
   m_BlackRookModel: {fileID: 3724113779848000877, guid: ef98a1e462f906447988637fa2ca1035, type: 3}
+  ORIGNAL_ROTATION: {x: 0, y: -90, z: 0}
 --- !u!65 &-8702564160465927075
 BoxCollider:
   m_ObjectHideFlags: 0
