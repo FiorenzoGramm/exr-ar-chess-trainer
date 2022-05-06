@@ -566,7 +566,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4813872286304665884, guid: 49170fb3ec252be459ee9c636465fedc, type: 3}
       propertyPath: m_Name
-      value: BoardAlt
+      value: Board
       objectReference: {fileID: 0}
     - target: {fileID: 5518734442731877124, guid: 49170fb3ec252be459ee9c636465fedc, type: 3}
       propertyPath: ButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target

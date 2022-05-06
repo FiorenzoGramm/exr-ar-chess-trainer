@@ -3,7 +3,7 @@ public class Move
     public string   m_FromField;
     public string   m_ToField;
     public string   m_FromPiece;
-    public string   m_ToPiece;      // replace with bool m_IsCapture -> GameManger looks for the piece
+    public string   m_ToPiece;
     public string   m_Promotion;
     public bool     m_IsCheck;
     public bool     m_IsMate;
@@ -86,7 +86,7 @@ public class Move
         return null;
     }
 
-    private int[] FieldAsStringToIntArray(string field)
+    private static int[] FieldAsStringToIntArray(string field)
     {
         int[] coordinates = { (char)field[0] - 97, (char)field[1] - 48 - 1};
         return coordinates;

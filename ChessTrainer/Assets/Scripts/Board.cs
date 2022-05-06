@@ -19,18 +19,10 @@ public class Board : MonoBehaviour
 
     public Piece   [,] m_Pieces         = new Piece[8,8];
 
-    private const float FIELD_SIZE      = 0.06f / 100f;
+    private const float FIELD_SIZE      = 0.06f / 100f; // For correct movment of the pieces
 
     public void Reset()
     {
-        // Sets the transform to a standard value for placing the pieces independendly from the current tranform
-        Vector3     oldPosition     = this.transform.position;
-        Quaternion  oldRotation     = this.transform.rotation;
-        Vector3     oldScale        = this.transform.localScale;
-        this.transform.position     = Vector3.zero;
-        this.transform.rotation     = Quaternion.Euler(Vector3.zero);
-        this.transform.localScale   = new Vector3(100, 100, 100);
-
         // Clear current field
         for(int rank = 0; rank < 8; ++rank)
         {
@@ -47,11 +39,6 @@ public class Board : MonoBehaviour
         SpawnBishops();
         SpawnKnights();
         SpawnRooks();
-
-        // Reset transform
-        this.transform.position     = oldPosition;
-        this.transform.rotation     = oldRotation;
-        this.transform.localScale   = oldScale;
     }
 
     public void PrintField()
@@ -87,16 +74,8 @@ public class Board : MonoBehaviour
             Piece whitePawn = Instantiate(m_WhitePawnModel, this.transform);
             Piece blackPawn = Instantiate(m_BlackPawnModel, this.transform);
 
-            float positionX      = (i * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.x;
-            float positionZWhite = (1 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.z;
-            float positionZBlack = (6 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.z;
-            Vector3 positionWhite = new Vector3(positionX, 0, positionZWhite);
-            Vector3 positionBlack = new Vector3(positionX, 0, positionZBlack);
-            whitePawn.transform.position += positionWhite;
-            blackPawn.transform.position += positionBlack;
-
-            m_Pieces[i, 1] = whitePawn;
-            m_Pieces[i, 6] = blackPawn;
+            PlacePieceOnField(whitePawn, i, 1);
+            PlacePieceOnField(blackPawn, i, 6);
         }
     }
 
@@ -105,16 +84,8 @@ public class Board : MonoBehaviour
         Piece whiteKing = Instantiate(m_WhiteKingModel, this.transform);
         Piece blackKing = Instantiate(m_BlackKingModel, this.transform);
 
-        float positionX         = (4 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.x;
-        float positionZWhite    = (0 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.y;
-        float positionZBlack    = (7 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.y;
-        Vector3 positionWhite = new Vector3(positionX, 0, positionZWhite);
-        Vector3 positionBlack = new Vector3(positionX, 0, positionZBlack);
-        whiteKing.transform.position += positionWhite;
-        blackKing.transform.position += positionBlack;
-
-        m_Pieces[4, 0] = whiteKing;
-        m_Pieces[4, 7] = blackKing;
+        PlacePieceOnField(whiteKing, 4 ,0);
+        PlacePieceOnField(blackKing, 4 ,7);
     }
 
     private void SpawnQueens()
@@ -122,16 +93,8 @@ public class Board : MonoBehaviour
         Piece whiteQueen = Instantiate(m_WhiteQueenModel, this.transform);
         Piece blackQueen = Instantiate(m_BlackQueenModel, this.transform);
 
-        float positionX      = (3 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.x;
-        float positionZWhite = (0 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.y;
-        float positionZBlack = (7 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.y;
-        Vector3 positionWhite = new Vector3(positionX, 0, positionZWhite);
-        Vector3 positionBlack = new Vector3(positionX, 0, positionZBlack);
-        whiteQueen.transform.position += positionWhite;
-        blackQueen.transform.position += positionBlack;
-
-        m_Pieces[3, 0] = whiteQueen;
-        m_Pieces[3, 7] = blackQueen;
+        PlacePieceOnField(whiteQueen, 3, 0);
+        PlacePieceOnField(blackQueen, 3, 7);
     }
 
     private void SpawnBishops()
@@ -141,23 +104,10 @@ public class Board : MonoBehaviour
         Piece blackLeftBishop   = Instantiate(m_BlackBishopModel, this.transform);
         Piece blackRightBishop  = Instantiate(m_BlackBishopModel, this.transform);
 
-        float positionXLeft     = (2 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.x;
-        float positionXRight    = (5 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.x;
-        float positionZWhite    = (0 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.y;
-        float positionZBlack    = (7 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.y;
-        Vector3 positionWhiteLeft   = new Vector3(positionXLeft,  0, positionZWhite);
-        Vector3 positionWhiteRight  = new Vector3(positionXRight, 0, positionZWhite);
-        Vector3 positionBlackLeft   = new Vector3(positionXLeft,  0, positionZBlack);
-        Vector3 positionBlackRight  = new Vector3(positionXRight, 0, positionZBlack);
-        whiteLeftBishop.transform.position  += positionWhiteLeft;
-        whiteRightBishop.transform.position += positionWhiteRight;
-        blackLeftBishop.transform.position  += positionBlackLeft;
-        blackRightBishop.transform.position += positionBlackRight;
-
-        m_Pieces[2, 0] = whiteLeftBishop;
-        m_Pieces[5, 0] = whiteRightBishop;
-        m_Pieces[2, 7] = blackLeftBishop;
-        m_Pieces[5, 7] = blackRightBishop;
+        PlacePieceOnField(whiteLeftBishop,  2, 0);
+        PlacePieceOnField(whiteRightBishop, 5, 0);
+        PlacePieceOnField(blackLeftBishop,  2, 7);
+        PlacePieceOnField(blackRightBishop, 5, 7);
     }
 
     private void SpawnKnights()
@@ -167,23 +117,10 @@ public class Board : MonoBehaviour
         Piece blackLeftKnight   = Instantiate(m_BlackKnightModel, this.transform);
         Piece blackRightKnight  = Instantiate(m_BlackKnightModel, this.transform);
 
-        float positionXLeft     = (1 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.x;
-        float positionXRight    = (6 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.x;
-        float positionZWhite    = (0 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.y;
-        float positionZBlack    = (7 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.y;
-        Vector3 positionWhiteLeft   = new Vector3(positionXLeft,  0, positionZWhite);
-        Vector3 positionWhiteRight  = new Vector3(positionXRight, 0, positionZWhite);
-        Vector3 positionBlackLeft   = new Vector3(positionXLeft,  0, positionZBlack);
-        Vector3 positionBlackRight  = new Vector3(positionXRight, 0, positionZBlack);
-        whiteLeftKnight.transform.position  += positionWhiteLeft;
-        whiteRightKnight.transform.position += positionWhiteRight;
-        blackLeftKnight.transform.position  += positionBlackLeft;
-        blackRightKnight.transform.position += positionBlackRight;
-
-        m_Pieces[1, 0] = whiteLeftKnight;
-        m_Pieces[6, 0] = whiteRightKnight;
-        m_Pieces[1, 7] = blackLeftKnight;
-        m_Pieces[6, 7] = blackRightKnight;
+        PlacePieceOnField(whiteLeftKnight,  1, 0);
+        PlacePieceOnField(whiteRightKnight, 6, 0);
+        PlacePieceOnField(blackLeftKnight,  1, 7);
+        PlacePieceOnField(blackRightKnight, 6, 7);
     }
 
     private void SpawnRooks()
@@ -193,23 +130,10 @@ public class Board : MonoBehaviour
         Piece blackLeftRook     = Instantiate(m_BlackRookModel, this.transform);
         Piece blackRightRook    = Instantiate(m_BlackRookModel, this.transform);
 
-        float positionXLeft  = (0 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.x;
-        float positionXRight = (7 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.x;
-        float positionZWhite = (0 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.y;
-        float positionZBlack = (7 * FIELD_SIZE + 0.5f * FIELD_SIZE - 4 * FIELD_SIZE) * this.transform.localScale.y;
-        Vector3 positionWhiteLeft   = new Vector3(positionXLeft,  0, positionZWhite);
-        Vector3 positionWhiteRight  = new Vector3(positionXRight, 0, positionZWhite);
-        Vector3 positionBlackLeft   = new Vector3(positionXLeft,  0, positionZBlack);
-        Vector3 positionBlackRight  = new Vector3(positionXRight, 0, positionZBlack);
-        whiteLeftRook.transform.position    += positionWhiteLeft;
-        whiteRightRook.transform.position   += positionWhiteRight;
-        blackLeftRook.transform.position    += positionBlackLeft;
-        blackRightRook.transform.position   += positionBlackRight;
-
-        m_Pieces[0, 0] = whiteLeftRook;
-        m_Pieces[7, 0] = whiteRightRook;
-        m_Pieces[0, 7] = blackLeftRook;
-        m_Pieces[7, 7] = blackRightRook;
+        PlacePieceOnField(whiteLeftRook,    0, 0);
+        PlacePieceOnField(whiteRightRook,   7, 0);
+        PlacePieceOnField(blackLeftRook,    0, 7);
+        PlacePieceOnField(blackRightRook,   7, 7);
     }
 
     public bool Move(int fromRank, int fromFile, int toRank, int toFile)
@@ -229,25 +153,23 @@ public class Board : MonoBehaviour
             return false;
         }
 
-        int movementX = toRank - fromRank;
-        int movementZ = toFile - fromFile;
+        bool piecePlacedSuccessfully = PlacePieceOnField(fromPiece, toRank, toFile);
 
-        TranslatePiece(fromPiece, new Vector3(FIELD_SIZE * this.transform.localScale.x * movementX, 0.0f, FIELD_SIZE * this.transform.localScale.y * movementZ));
-        m_Pieces[toRank, toFile] = fromPiece;
-        m_Pieces[fromRank, fromFile] = null;
-        return true;
+        if (piecePlacedSuccessfully)
+        {
+            m_Pieces[fromRank, fromFile] = null;
+        }
+
+        return piecePlacedSuccessfully;
     }
 
     public Piece GetPiece(int rank, int file)
     {
-        if(rank >= 0 && rank <= 7 && file >= 0 && file <= 7)
-        {
-            return m_Pieces[rank, file];
-        }
-        else
+        if (!IsValidField(rank, file))
         {
             return null;
         }
+        return m_Pieces[rank, file];
     }
 
     public bool PlacePieceOnField(Piece piece, int rank, int file)
@@ -268,18 +190,17 @@ public class Board : MonoBehaviour
             return false;
         }
 
-        // TODO: Create coorect movement, even with switched coordinates
-        m_Pieces[rank, file] = piece;
-        float positionX = this.GetComponent<Transform>().localScale.x * FIELD_SIZE * (0.5f + (rank - 4.0f));
-        float positionZ = this.GetComponent<Transform>().localScale.z * FIELD_SIZE * (0.5f + (file - 4.0f));
-        TranslatePiece(piece, new Vector3(positionX, 0.0f, positionZ));
+        // Calculate the position of the piece if the board is at origin with no rotation
+        float positionX             = transform.localScale.x * FIELD_SIZE * (0.5f + (rank - 4.0f));
+        float positionZ             = transform.localScale.z * FIELD_SIZE * (0.5f + (file - 4.0f));
+        Vector3 newPosition         = new Vector3(positionX, 0.0f, positionZ);
+        // Apply parent transformatin so that the piece could be placed with world coordinates
+        newPosition                 = transform.rotation *  newPosition;
+        newPosition                 = transform.position +  newPosition;
+        piece.transform.position    = newPosition;
+        m_Pieces[rank, file]        = piece;
         return true;
     }
-    private void TranslatePiece(Piece piece, Vector3 direction)
-    {
-        piece.GetComponent<Transform>().Translate(direction, Space.Self);
-    }
-
     public bool ClearField(int rank, int file)
     {
         if(!IsValidField(rank, file))
@@ -299,7 +220,6 @@ public class Board : MonoBehaviour
         return true;
     }
 
-    // TODO: Move to Move (class)?
     public static bool IsValidField(int[] position)
     {
         if(position.Length == 2)
@@ -312,12 +232,12 @@ public class Board : MonoBehaviour
         }
        
     }
+
     public static bool IsValidField(int rank, int file)
     {
         return (rank >= 0 && rank <= 7 && file >= 0 && file <= 7);
     }
 
-    // TODO: Move to Move (class)?
     public static string FieldToString(int rank, int file)
     {
         string res = "";
