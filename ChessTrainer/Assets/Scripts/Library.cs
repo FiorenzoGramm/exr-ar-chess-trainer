@@ -7,6 +7,12 @@ public class Library
     {
         Game newGame;
 
+        // Sicilian defense: e4, c5
+        newGame = (new Game("Sicilian Defense"));
+        newGame.m_Moves.Add(new Move("e2", "e4"));
+        newGame.m_Moves.Add(new Move("c7", "c5"));
+        m_Games.Add(newGame);
+
         // Queens gambit accepted: d4, d5, c4, cxc4
         newGame = (new Game("Queens Gambit Accepted"));
         newGame.m_Moves.Add(new Move("d2", "d4"));
