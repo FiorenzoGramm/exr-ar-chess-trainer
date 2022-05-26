@@ -1,10 +1,32 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    void Update()
+    public GameManager  m_GameManager;
+    public GameSelector m_GameSelector;
+
+    public void InitialiseUI(ICollection<Game> games)
     {
-        transform.parent.transform.LookAt(new Vector3(Camera.main.transform.position.x, transform.position.y, Camera.main.transform.position.z), Vector3.up);
-        transform.parent.transform.Rotate(Vector3.up, 180);
+        if(!FindAndSetGamemanager())
+        {
+            throw new UnityException("There is no GameManager found.");
+        }
+        m_GameSelector.LoadGames(games);    
+    }
+
+    private bool FindAndSetGamemanager()
+    {
+        if(m_GameManager is not null)
+        {
+            return true;
+        }
+        m_GameManager = FindObjectOfType<GameManager>();
+        return m_GameManager is not null;
+    }
+
+    public void ChangeCurrentGame(Game gameToSwitch)
+    {
+        m_GameManager.ChangeGame(gameToSwitch);
     }
 }

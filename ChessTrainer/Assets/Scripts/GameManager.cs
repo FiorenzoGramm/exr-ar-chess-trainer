@@ -3,15 +3,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public Board    m_Board;
-    public Library  m_Library;
-    public Game     m_CurrentGame;
-    private int     m_CurrentGameIndex;
-    public int      m_CurrentMove;
+    public Board     m_Board;
+    public Library   m_Library;
+    public Game      m_CurrentGame;
+    public UIManager m_UIManager;
+    private int      m_CurrentGameIndex;
+    public int       m_CurrentMove;
     void Start()
     {
 
         Library.InitialiseLibrary();
+        m_UIManager.InitialiseUI(Library.m_Games);
         changeGame(0);
 
         // For a better start position (for demo only)
@@ -55,6 +57,20 @@ public class GameManager : MonoBehaviour
         m_CurrentMove       = 0;
         Debug.Log("Changed game to " + m_CurrentGame.m_Name);
     }
+
+    public void ChangeGame(Game game)
+    {
+        if (game is null)
+        {
+            throw new MissingReferenceException("Cannot load game from null pointer");
+        }
+
+        m_Board.Reset();
+        m_CurrentGame = game;
+        m_CurrentGameIndex = 0;
+        m_CurrentMove = 0;
+        Debug.Log("Changed game to " + m_CurrentGame.m_Name);
+    }
     private int[] GetField(string field)
     {
         int[] res = new int[2];
@@ -68,6 +84,7 @@ public class GameManager : MonoBehaviour
         if(m_CurrentMove >= m_CurrentGame.GetMoveCount())
         {
             Debug.Log("No moves left.");
+            return;
         }
 
         Move nextMove = m_CurrentGame.GetMove(m_CurrentMove);
@@ -98,6 +115,7 @@ public class GameManager : MonoBehaviour
                 {
                     Destroy(toPiece.gameObject);
                 }
+                Debug.Log(m_CurrentGame.ToString(m_CurrentMove));
             }
             else
             {
@@ -194,6 +212,7 @@ public class GameManager : MonoBehaviour
         if (res)
         {
             --m_CurrentMove;
+            Debug.Log(m_CurrentGame.ToString(m_CurrentMove));
         }
         else
         {

@@ -28,7 +28,7 @@ public class Library
         m_Games.Add(newGame);
 
         // King's Pawn Game: Wayward Queen Attack (Scholars MAte): e4, e5, Qh4, Nc6, Bc4, Nf6, Qxf7#
-        newGame = new Game("King's Pawn Game: Wayward Queen Attack (Scholars MAte)");
+        newGame = new Game("King's Pawn Game: Wayward Queen Attack (Scholars Mate)");
         newGame.m_Moves.Add(new Move("e2", "e4"));
         newGame.m_Moves.Add(new Move("e7", "e5"));
         newGame.m_Moves.Add(new Move("Q", "d1", "", "h5"));
