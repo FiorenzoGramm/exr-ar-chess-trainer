@@ -83,11 +83,6 @@ public class Board : MonoBehaviour
         }
     }
 
-    internal static bool IsValidField(string fromField)
-    {
-        throw new NotImplementedException();
-    }
-
     private void SpawnKings()
     {
         Piece whiteKing = Instantiate(WhiteKingPrefab, this.transform);
@@ -147,111 +142,122 @@ public class Board : MonoBehaviour
 
     public void Move(int fromRank, int fromFile, int toRank, int toFile)
     {
-        if(!IsValidField(fromRank, fromFile) || !IsValidField(toRank, toFile))
+        int[] from = { fromRank, fromFile };
+        int[] to = { toRank, toFile };
+        Move(from, to);
+    }
+
+    public void Move(int[] from, int[] to)
+    {
+        if(!IsValidField(from))
         {
-            throw new InvalidFieldException($"Cannot do move due invalid fields: from ({fromRank} ,{fromFile}) or to ({toRank} ,{toFile})");
+            throw new InvalidFieldException(from, $"({from[0]}, {from[1]}) is not a valid (from) field.");
+        }
+        if (!IsValidField(to))
+        {
+            throw new InvalidFieldException(to, $"({to[0]}, {to[1]}) is not a valid (to) field.");
         }
 
-        Piece fromPiece = Pieces[fromRank, fromFile];
-        Piece toPiece   = Pieces[toRank, toFile];
+        Piece fromPiece = Pieces[from[0], from[1]];
+        Piece toPiece   = Pieces[to[0], to[1]];
 
         if(fromPiece == null)
         {
-            throw new InvalidMoveException($"There is no piece on {FieldToString(fromRank, fromFile)} to move to {FieldToString(toRank, toFile)}");
+            throw new ThereIsNoPieceException(from, $"There is no piece on {FieldToString(from[0], from[1])}.");
         }
 
         if(toPiece != null)
         {
-            throw new FieldAlreadyOccupiedException($"There is a piece on {FieldToString(toRank, toFile)} ({toPiece.ToString()})");
+            throw new FieldAlreadyOccupiedException(fromPiece, to, $"There is a piece on {FieldToString(to[0], to[1])} ({toPiece.ToString()})");
         }
 
-        try
-        {
-            PlacePieceOnField(fromPiece, toRank, toFile);
-            Pieces[fromRank, fromFile] = null;
-        } catch (UnityException exception)
-        {
-            Debug.LogError(exception);
-        }
+        PlacePieceOnField(fromPiece, to);
+        Pieces[from[0], from[1]] = null;
     }
 
-    public Piece GetPiece(int rank, int file)
+    public Piece GetPiece(int[] field)
     {
-        if (!IsValidField(rank, file))
+        if (!IsValidField(field))
         {
             return null;
         }
-        return Pieces[rank, file];
+        return Pieces[field[0], field[1]];
     }
 
-    public void PlacePieceOnField(Piece piece, int rank, int file)
+    private void PlacePieceOnField(Piece piece, int rank, int file)
+    {
+        int[] field = { rank, file };
+        PlacePieceOnField(piece, field);
+    }
+
+    public void PlacePieceOnField(Piece piece, int[] field)
     {
         if (piece == null)
         {
             return;
         }
-        if (!IsValidField(rank, file))
+        if (!IsValidField(field))
         {
-            throw new InvalidFieldException($"{FieldToString(rank, file)} ({rank} ,{file}) is an invalid field for placing a piece");
+            throw new InvalidFieldException(field, $"Failed to place piece due invalid field.");
         }
-        if(Pieces[rank, file] != null)
+        if(Pieces[field[0], field[1]] != null)
         {
-            throw new FieldAlreadyOccupiedException($"Cannot place {piece.ToString()} on {FieldToString(rank, file)} because the field is occupied by a {Pieces[rank, file].ToString()}");
+            throw new FieldAlreadyOccupiedException(piece, field, $"Cannot place {piece.ToString()} on {FieldToString(field)} because the field is occupied by a {Pieces[field[0], field[1]].ToString()}");
         }
 
         // Calculate the position of the piece if the board is at origin with no rotation
-        float positionX             = transform.localScale.x * FIELD_SIZE * (0.5f + (rank - 4.0f));
-        float positionZ             = transform.localScale.z * FIELD_SIZE * (0.5f + (file - 4.0f));
+        float positionX             = transform.localScale.x * FIELD_SIZE * (0.5f + (field[0] - 4.0f));
+        float positionZ             = transform.localScale.z * FIELD_SIZE * (0.5f + (field[1] - 4.0f));
         Vector3 newPosition         = new Vector3(positionX, 0.0f, positionZ);
         // Apply parent transformation so that the piece could be placed with world coordinates
         newPosition                 = transform.rotation *  newPosition;
         newPosition                 = transform.position +  newPosition;
         piece.transform.position    = newPosition;
-        Pieces[rank, file]        = piece;
+        Pieces[field[0], field[1]]  = piece;
     }
-    public void ClearFieldWithoutDestroying(int rank, int file)
+
+    public void ClearFieldWithoutDestroying(int[] field)
     {
-        if(!IsValidField(rank, file))
+        if (!IsValidField(field))
         {
-            throw new InvalidFieldException($"Failed to clear field because [{rank}, {file}] is an invalid field.");
+            throw new InvalidFieldException(field, $"Failed to clear field because {field.ToString()} is an invalid field.");
         }
 
-        Pieces[rank, file] = null;
+        Pieces[field[0], field[1]] = null;
     }
 
     public static bool IsValidField(int rank, int file)
     {
-        return rank >= 0 && rank <= 7 && file >= 0 && file <= 7;
+        int[] field = { rank, file};
+        return IsValidField(field);
+    }
+
+    private static bool IsValidField(int[] field)
+    {
+        if(field.Length != 2)
+        {
+            return false;
+        }
+        return field[0] >= 0 && field[0] <= 7 && field[1] >= 0 && field[1] <= 7;
     }
 
     public static string FieldToString(int rank, int file)
     {
-        StringBuilder fieldString = new StringBuilder();
-        if (!IsValidField(rank, file))
-        {
-            throw new InvalidFieldException($"({rank}, {file}) is not a valid field.");
-        }
-        fieldString.Append((char)(65 + rank));
-        fieldString.Append((char)(48 + file + 1));
-        return fieldString.ToString();
+        int[] field = { rank, file };
+        return FieldToString(field);
     }
 
-    public static int[] StringToField(string fieldString)
+    private static string FieldToString(int[] field)
     {
-        if(fieldString.Length < 2)
+        StringBuilder fieldString = new StringBuilder();
+
+        if (!IsValidField(field))
         {
-            throw new InvalidFieldException($"Cannot get a field from string: {fieldString}");
+            throw new InvalidFieldException(field, $"({field[0]}, {field[1]}) is not a valid field.");
         }
 
-        int[] field = new int[2];
-        field[0] = (char)fieldString[0] - 97;
-        field[1] = (char)fieldString[1] - 49;
-
-        if(!IsValidField(field[0], field[1]))
-        {
-            throw new InvalidFieldException($"{fieldString} is not a valid field.");
-        }
-
-        return field;
+        fieldString.Append((char)(65 + field[0]));
+        fieldString.Append((char)(48 + field[1] + 1));
+        return fieldString.ToString();
     }
 }

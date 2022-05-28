@@ -170,9 +170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d711e682240cbcc4bbb2d44e5336fa20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TileText: {fileID: 2863828593464893372}
-  m_Image: {fileID: 0}
-  m_RectangularTransform: {fileID: 0}
+  tileText: {fileID: 2863828593464893372}
+  image: {fileID: 2863828593373411208}
+  rectangularTransform: {fileID: 2863828592877423461}
+  directoryOfOpenings: Openings
 --- !u!1 &2863828593373411210
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +240,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 385e343aa0d7ae44fb1a82861fabd0de, type: 3}
+  m_Texture: {fileID: 2800000, guid: 7fd8070241f739445a0a90fbc5b24b04, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0

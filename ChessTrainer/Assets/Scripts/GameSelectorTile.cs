@@ -1,22 +1,19 @@
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public class GameSelectorTile : MonoBehaviour
 {
     public Text tileText;
-    public Image image;
+    public RawImage image;
     public RectTransform rectangularTransform;
-    private Game game;
+    public string directoryOfOpenings;
+
     private int gameIndex;
     private GameSelector gameSelector;
 
-    public void InitialiseTile(GameSelector gameSelector, Game game, int index)
+    public void InitialiseTile(GameSelector gameSelector, string gameName, int index)
     {
-        tileText = GetComponentInChildren<Text>();
-        image = GetComponent<Image>();
-        rectangularTransform = GetComponent<RectTransform>();
-
         if (tileText is null)
         {
             throw new MissingComponentException("GameSelectorTile could not be created, because there is a missing component (Test)");
@@ -27,15 +24,21 @@ public class GameSelectorTile : MonoBehaviour
             throw new MissingComponentException("GameSelectorTile could not be created, because there is a missing component (Image)");
         }
 
+        string fileName = gameName.Replace(":", "");
+        Texture2D newImage = Resources.Load($"{directoryOfOpenings}/{fileName}") as Texture2D;
+        if(newImage != null)
+        {
+            image.texture = newImage;
+        }
+
         if (rectangularTransform is null)
         {
             throw new MissingComponentException("GameSelectorTile could not be created, because there is a missing component (RectTransform)");
         }
 
         this.gameSelector = gameSelector;
-        this.game = game;
         gameIndex = index;
-        tileText.text = this.game.name;
+        tileText.text = gameName;
     }
     public void ChangeGame()
     {

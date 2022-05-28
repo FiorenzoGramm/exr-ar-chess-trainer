@@ -10,13 +10,13 @@ public class GameSelector : MonoBehaviour
     public Board board;
     public Vector3 spawnOnEnableOffset;
 
-    public void LoadGames(List<Game> gamesToSelect)
+    public void LoadGames(List<string> nameOfGames)
     {
         DeleteGamesFromSelectionGrid();
-        for (int i = 0; i < gamesToSelect.Count; ++i)
+        for (int i = 0; i < nameOfGames.Count; ++i)
         {
             GameSelectorTile currentGameSelectorTile = Instantiate(selectorPrefab, contentObject.transform);
-            currentGameSelectorTile.InitialiseTile(this, gamesToSelect[i], i);
+            currentGameSelectorTile.InitialiseTile(this, nameOfGames[i], i);
         }
     }
 

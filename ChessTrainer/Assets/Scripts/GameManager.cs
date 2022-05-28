@@ -1,10 +1,11 @@
 using System;
+using System.Linq;
+using System.Text;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public Board     board;
-    public Library   library;
     public Game      currentGame;
     public UIManager uiManager;
 
@@ -23,14 +24,14 @@ public class GameManager : MonoBehaviour
         {
             ChangeGame(0);
         }
-        catch (Exception exception)
+        catch (IndexOutOfRangeException exception)
         {
-            Debug.LogError(exception);
+            Debug.LogError($"Failed to load game: {exception}");
             board.Reset();
         }
         finally
         {
-            uiManager.InitialiseUI(Library.games);
+            uiManager.InitialiseUI(Library.GetGamesAsList().Select(game => game.name).ToList());
             PlaceBoardAndUI(); // Prevents the spawning of the board and UI inside the player
         } 
     }
@@ -69,18 +70,13 @@ public class GameManager : MonoBehaviour
 
     public void ChangeGame(int index)
     {
-        if(!IsValidGameIndex(index))
-        {
-            throw new InvalidGameException($"Could not load game with index {index}");
-        }
-
         board.Reset();
         currentMoveIndex = 0;
 
         currentGameIndex = index;
-        currentGame = Library.games[currentGameIndex];
+        currentGame = Library.GetGameByIndex(currentGameIndex);
         
-        uiManager.GamesHasChanged(currentGame);
+        uiManager.GamesHasChanged(currentGame.name);
         Debug.Log($"Changed game to {currentGame.name}");
     }
 
@@ -101,10 +97,9 @@ public class GameManager : MonoBehaviour
             uiManager.MoveDone(currentMoveIndex - 1, nextMove.ToString());
             Debug.Log(currentGame.ToString(currentMoveIndex));
         }
-        catch (Exception exception)
+        catch (MoveExecutionFailureException exception)
         {
-            Debug.LogError($"Failed to execute move: {exception}");
-            Debug.LogError(exception.StackTrace);
+            Debug.LogError($"Failed to execute move {nextMove}: {GetMoveExcecutionFailureToConsoleMessage(exception)}");
         }
     }
 
@@ -112,37 +107,65 @@ public class GameManager : MonoBehaviour
     {
         int[] from = move.GetFromField();
         int[] to = move.GetToField();
-        Piece toPiece = board.GetPiece(to[0], to[1]);
+        Piece toPiece = board.GetPiece(to);
 
         try
         {
-            board.ClearFieldWithoutDestroying(to[0], to[1]);
-            try
+            TryToClearField(to);
+            TryToMovePiece(from, to);
+            TryMoveRookForCastle(move);
+
+            if (toPiece != null)
             {
-                board.Move(from[0], from[1], to[0], to[1]);
-                try
-                {
-                    TryMoveRookForCastle(move);
-                    if (toPiece != null)
-                    {
-                        Destroy(toPiece.gameObject);
-                    }
-                }
-                catch (Exception exception)
-                {
-                    board.Move(to[0], to[1], from[0], from[1]);
-                    throw exception;
-                }
-            }
-            catch (Exception exception)
-            {
-                board.PlacePieceOnField(toPiece, to[0], to[1]);
-                throw new Exception($"Cannot move piece from ({from[0]}, {from[1]}) on field ({to[0]}, {to[1]}): {exception.Message}");
+                Destroy(toPiece.gameObject);
             }
         }
-        catch (Exception exception)
+        catch (FailedToClearFieldException exception)
         {
-            throw new Exception($"Cannot not execute move:{exception.Message}");
+            throw new MoveExecutionFailureException(move, $"Failed to execute move due to failure in clearing a field.", exception);
+        }
+        catch (FailedToMovePieceException exception)
+        {
+            board.PlacePieceOnField(toPiece, to);
+            throw new MoveExecutionFailureException(move, $"Failed to execute move due to failure in moving the piece.", exception);
+        }
+        catch (FailedToMoveRookForCastleException exception)
+        {
+            board.Move(to, from);
+            board.PlacePieceOnField(toPiece, to);
+            throw new MoveExecutionFailureException(move, $"Failed to execute move due to failure moving the rook for castle.", exception);
+        }
+    }
+
+    private void TryToMovePiece(int[] from, int[] to)
+    {
+        try
+        {
+            board.Move(from, to);
+        }
+        catch(InvalidFieldException exception)
+        {
+            throw new FailedToMovePieceException(from, to, $"Failed to move a piece due to invalid fields in arguments.", exception);
+        }
+        catch(ThereIsNoPieceException exception)
+        {
+            throw new FailedToMovePieceException(from, to, $"Failed to move a piece due missing piece on the field.", exception);
+        }
+        catch(FieldAlreadyOccupiedException exception)
+        {
+            throw new FailedToMovePieceException(from, to, $"Failed to move a piece due an exisiting piece on the field.", exception);
+        }
+    }
+
+    private void TryToClearField(int[] to)
+    {
+        try
+        {
+            board.ClearFieldWithoutDestroying(to);
+        }
+        catch (InvalidFieldException exception)
+        {
+            throw new FailedToClearFieldException(to, $"Failed to execute move due to failure in moving the piece.", exception);
         }
     }
 
@@ -153,28 +176,44 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        int[] from = new int[2];
+        int[] to = new int[2];
+
+        if (IsWhiteMove() && move.IsShortCastle())
+        {
+            from[0] = 7;
+            from[1] = 0;
+            to[0]   = 3;
+            to[1]   = 0;
+        }
+        else if (IsWhiteMove() && move.IsLongCastle())
+        {
+            from[0] = 0;
+            from[1] = 0;
+            to[0]   = 3;
+            to[1]   = 0;
+        }
+        else if (!IsWhiteMove() && move.IsShortCastle())
+        {
+            from[0] = 7;
+            from[1] = 7;
+            to[0]   = 5;
+            to[1]   = 7;
+        }
+        else if (!IsWhiteMove() && move.IsLongCastle())
+        {
+            from[0] = 7;
+            from[1] = 7;
+            to[0]   = 4;
+            to[1]   = 7;
+        }
         try
         {
-            if (IsWhiteMove() && move.IsShortCastle())
-            {
-                board.Move(7, 0, 3, 0);
-            }
-            else if (IsWhiteMove() && move.IsLongCastle())
-            {
-                board.Move(0, 0, 3, 0);
-            }
-            else if (!IsWhiteMove() && move.IsShortCastle())
-            {
-                board.Move(7, 7, 5, 7);
-            }
-            else if (!IsWhiteMove() && move.IsLongCastle())
-            {
-                board.Move(7, 7, 5, 7);
-            }
+            TryToMovePiece(from, to);
         }
-        catch (Exception exception)
+        catch (FailedToMovePieceException exception)
         {
-            throw new Exception($"Cannot move rooks to castle: {exception.Message}");
+            throw new FailedToMoveRookForCastleException(from, to,$"Cannot move rooks to castle: {exception.Message}");
         }
     }
 
@@ -194,12 +233,22 @@ public class GameManager : MonoBehaviour
             --currentMoveIndex;
             uiManager.MoveUnDone();
         }
-        catch (Exception exception)
+        catch (MoveExecutionFailureException exception)
         {
-            Debug.LogError($"Failed to undo move: {exception}");
-            Debug.LogError(exception.StackTrace);
+            Debug.LogError($"Failed to undo move {previousMove}: {GetMoveExcecutionFailureToConsoleMessage(exception)}");
         }
+    }
 
+    private string GetMoveExcecutionFailureToConsoleMessage(MoveExecutionFailureException exception)
+    {
+        StringBuilder message = new StringBuilder();
+        message.Append($"Caught error: {exception.Message}:");
+        Exception innerException = exception.InnerException;
+        if (innerException != null)
+        {
+            message.Append(innerException);
+        }
+        return message.ToString();
     }
 
     private void ReverseMove(Move move)
@@ -210,25 +259,51 @@ public class GameManager : MonoBehaviour
 
         try
         {
-            board.Move(to[0], to[1], from[0], from[1]);
-            try
-            {
-                TryMoveRookForCastleBack(move);
-                board.PlacePieceOnField(toPiece, to[0], to[1]);
-            }
-            catch (Exception exception)
-            {
-                board.Move(from[0], from[1], to[0], to[1]);
-                if (toPiece != null)
-                {
-                    Destroy(toPiece.gameObject);
-                }
-                throw exception;
-            }
+            TryToMovePiece(to, from);
+            TryToPlacePiece(toPiece, to);
+            TryMoveRookForCastleBack(move);
         }
-        catch (Exception exception)
+        catch(FailedToMovePieceException exception)
         {
-            throw new Exception($"Failed to move pieces back: {exception}");
+            if (toPiece != null)
+            {
+                Destroy(toPiece.gameObject);
+            }
+            throw new FailedToUndoMoveException(move, $"Failed undo a move due a failure in moving the piece.", exception);
+        }
+        catch (FailedToPlacePieceException exception)
+        {
+            if (toPiece != null)
+            {
+                Destroy(toPiece.gameObject);
+            }
+            board.Move(from, to);
+            throw new FailedToUndoMoveException(move, $"Failed undo a move due a failure in placing the captured piece back.", exception);
+        }
+        catch (FailedToMoveRookForCastleException exception)
+        {
+            if (toPiece != null)
+            {
+                Destroy(toPiece.gameObject);
+            }
+            board.Move(from, to);
+            throw new FailedToUndoMoveException(move, $"Failed undo a move due a failure in the rook for reversing the castle.", exception);
+        }
+    }
+
+    private void TryToPlacePiece(Piece toPiece, int[] to)
+    {
+        try
+        {
+            board.PlacePieceOnField(toPiece, to);
+        }
+        catch(InvalidFieldException exception)
+        {
+            throw new FailedToPlacePieceException(toPiece, to, $"Failed to place the piece due an invalid field.", exception);
+        }
+        catch(FieldAlreadyOccupiedException exception)
+        {
+            throw new FailedToPlacePieceException(toPiece, to, $"Failed to place the piece due an already existing piece on the field.", exception);
         }
     }
 
@@ -239,31 +314,47 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        try
+        int[] from = new int[2];
+        int[] to   = new int[2];
+
+        // The IsWhiteMove must be negated, because it returns the current moves color
+        if (!IsWhiteMove() && move.IsShortCastle())
         {
-            // The IsWhiteMove must be negated, because it returns the current moves color!
-            if (!IsWhiteMove() && move.IsShortCastle())
-            {
-                board.Move(3, 0, 7, 0);
-            }
-            else if (!IsWhiteMove() && move.IsLongCastle())
-            {
-                board.Move(3, 0, 0, 0);
-            }
-            else if (IsWhiteMove() && move.IsShortCastle())
-            {
-                board.Move(5, 7, 7, 7);
-            }
-            else if (IsWhiteMove() && move.IsLongCastle())
-            {
-                board.Move(5, 7, 7, 7);
-            }
+            from[0] = 3;
+            from[1] = 0;
+            to[0]   = 7;
+            to[1]   = 0;
         }
-        catch (Exception exception)
+        else if (!IsWhiteMove() && move.IsLongCastle())
         {
-            throw new Exception($"Failed to move the rook back: {exception.Message}");
+            from[0] = 3;
+            from[1] = 0;
+            to[0]   = 0;
+            to[1]   = 0;
+        }
+        else if (IsWhiteMove() && move.IsShortCastle())
+        {
+            from[0] = 5;
+            from[1] = 7;
+            to[0]   = 7;
+            to[1]   = 7;
+        }
+        else if (IsWhiteMove() && move.IsLongCastle())
+        {
+            from[0] = 5;
+            from[1] = 7;
+            to[0]   = 7;
+            to[1]   = 7;
         }
 
+        try
+        {
+            TryToMovePiece(from, to);
+        }
+        catch (FailedToMovePieceException exception)
+        {
+            throw new FailedToMoveRookForCastleException(from, to, $"Cannot move rooks to reverse castle.", exception);
+        }
     }
 
     private Piece CreateCapturedPieceFromMove(Move move)
@@ -302,11 +393,6 @@ public class GameManager : MonoBehaviour
             #endregion
         }
         return capturedPiece;
-    }
-
-    private bool IsValidGameIndex(int index)
-    {
-        return index >= 0 && index < Library.games.Count;
     }
 
     private bool IsWhiteMove()

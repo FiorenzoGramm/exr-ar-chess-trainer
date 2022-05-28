@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-public class Library
+public static class Library
 {
-    public static List<Game> games = new List<Game>();
+    private static List<Game> games = new List<Game>();
     public static void InitialiseLibrary()
     {
         Game newGame;
@@ -88,5 +88,20 @@ public class Library
         newGame.moves.Add(Move.CreateFullQualifiedMove('K', "e1", ' ', "c1", ' ', false, false, "O-O-O"));
         games.Add(newGame);
         #endregion
+    }
+
+    public static Game GetGameByIndex(int index)
+    {
+        return games[index];
+    }
+
+    public static List<Game> GetGamesAsList()
+    {
+        return games;
+    }
+
+    public static int GamesCount()
+    {
+        return games.Count;
     }
 }

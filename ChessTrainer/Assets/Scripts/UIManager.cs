@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     public TextMeshPro gameInfoName;
     public GameHistoryController gameHistoryController;
 
-    public void InitialiseUI(List<Game> games)
+    public void InitialiseUI(List<string> games)
     {
         gameSelectionMenu.LoadGames(games);
         gameInfoName.text = gameMangager.currentGame.name;
@@ -20,9 +20,9 @@ public class UIManager : MonoBehaviour
         gameMangager.ChangeGame(index);
     }
 
-    public void GamesHasChanged(Game game)
+    public void GamesHasChanged(string nameOfTheGame)
     {
-        gameInfoName.text = game.name;
+        gameInfoName.text = nameOfTheGame;
         gameHistoryController.Reset();
     }
 
