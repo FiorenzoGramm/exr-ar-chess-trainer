@@ -129,6 +129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a111399e6f06bf48b9c0c903a6921b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Type: Queen
-  m_Symbol: Q
-  m_IsWhite: 0
+  type: Queen
+  symbol: Q
+  isWhite: 0

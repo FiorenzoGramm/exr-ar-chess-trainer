@@ -1,209 +1,316 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public Board    m_Board;
-    public Library  m_Library;
-    public Game     m_CurrentGame;
-    private int     m_CurrentGameIndex;
-    public int      m_CurrentMove;
+    public Board     board;
+    public Library   library;
+    public Game      currentGame;
+    public UIManager uiManager;
+
+    public Vector3 startPositionBoard;
+    public Vector3 startRotationBoard;
+    public Vector3 startPositionControllpanel;
+    public Vector3 startRotationControllpanel;
+
+    private int currentGameIndex;
+    private int currentMoveIndex;
+
     void Start()
     {
-
         Library.InitialiseLibrary();
-        changeGame(0);
-
-        // For a better start position (for demo only)
-        m_Board.transform.Translate(new Vector3(0.0f, -0.25f, 1.5f), Space.World);
-        m_Board.transform.Rotate(new Vector3(0.0f, 90f, 0.0f), Space.World);
+        try
+        {
+            ChangeGame(0);
+        }
+        catch (Exception exception)
+        {
+            Debug.LogError(exception);
+            board.Reset();
+        }
+        finally
+        {
+            uiManager.InitialiseUI(Library.games);
+            PlaceBoardAndUI(); // Prevents the spawning of the board and UI inside the player
+        } 
     }
 
     public void Update()
     {
-        if (Input.GetKeyUp("left"))
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
             UndoMove();
-            Debug.Log(m_CurrentGame.ToString(m_CurrentMove));
         }
-        if (Input.GetKeyUp("right"))
+        if (Input.GetKeyUp(KeyCode.RightArrow))
         {
             DoNextMove();
-            Debug.Log(m_CurrentGame.ToString(m_CurrentMove));
         }
-        if (Input.GetKeyUp("up"))
+        if (Input.GetKeyUp(KeyCode.UpArrow))
         {
-            changeGame(m_CurrentGameIndex + 1);
+            ChangeGame(currentGameIndex + 1);
         }
-        if (Input.GetKeyUp("down"))
+        if (Input.GetKeyUp(KeyCode.DownArrow))
         {
-            changeGame(m_CurrentGameIndex - 1);
+            ChangeGame(currentGameIndex - 1);
+        }
+        if (Input.GetKeyUp(KeyCode.P))
+        {
+            board.PrintField();
         }
     }
-    
-    public void changeGame(int index)
+
+    private void PlaceBoardAndUI()
     {
-        if(index < 0 || index > Library.m_Games.Count - 1)
+        board.transform.Translate(startPositionBoard, Space.World);
+        board.transform.Rotate(startRotationBoard, Space.World);
+        uiManager.transform.Translate(startPositionControllpanel, Space.World);
+        uiManager.transform.Rotate(startRotationControllpanel, Space.World);
+    }
+
+    public void ChangeGame(int index)
+    {
+        if(!IsValidGameIndex(index))
         {
-            Debug.Log("Could not load game with index " + index);
-            return;
+            throw new InvalidGameException($"Could not load game with index {index}");
         }
 
-        m_Board.Reset();
-        m_CurrentGame       = Library.m_Games[index];
-        m_CurrentGameIndex  = index;
-        m_CurrentMove       = 0;
-        Debug.Log("Changed game to " + m_CurrentGame.m_Name);
-    }
-    private int[] GetField(string field)
-    {
-        int[] res = new int[2];
-        res[0] = (char)field[0] - 97;
-        res[1] = (char)field[1] - 49;
-        return res;
+        board.Reset();
+        currentMoveIndex = 0;
+
+        currentGameIndex = index;
+        currentGame = Library.games[currentGameIndex];
+        
+        uiManager.GamesHasChanged(currentGame);
+        Debug.Log($"Changed game to {currentGame.name}");
     }
 
     public void DoNextMove()
     {
-        if(m_CurrentMove >= m_CurrentGame.GetMoveCount())
+        Move nextMove = currentGame.GetMove(currentMoveIndex);
+
+        if(nextMove == null)
         {
             Debug.Log("No moves left.");
+            return;
         }
 
-        Move nextMove = m_CurrentGame.GetMove(m_CurrentMove);
-        if (nextMove != null)
+        try
         {
-            int[] from      = nextMove.GetFromFieldCoordinates();
-            int[] to        = nextMove.GetToFieldCoordinates();
-            Piece toPiece   = m_Board.GetPiece(to[0], to[1]);
-            // Check if the move captures anything
-            if (toPiece != null)
+            ExecuteMove(nextMove);
+            ++currentMoveIndex;
+            uiManager.MoveDone(currentMoveIndex - 1, nextMove.ToString());
+            Debug.Log(currentGame.ToString(currentMoveIndex));
+        }
+        catch (Exception exception)
+        {
+            Debug.LogError($"Failed to execute move: {exception}");
+            Debug.LogError(exception.StackTrace);
+        }
+    }
+
+    private void ExecuteMove(Move move)
+    {
+        int[] from = move.GetFromField();
+        int[] to = move.GetToField();
+        Piece toPiece = board.GetPiece(to[0], to[1]);
+
+        try
+        {
+            board.ClearFieldWithoutDestroying(to[0], to[1]);
+            try
             {
-                // Guard case if the captured piece of the move is not the same as the board (error in move)
-                if (!toPiece.m_Symbol.Equals(nextMove.m_ToPiece))
+                board.Move(from[0], from[1], to[0], to[1]);
+                try
                 {
-                    Debug.Log(toPiece.ToString());
-                    Debug.Log("Pieces are not equal: " + nextMove.m_ToPiece + " (Move) and " + toPiece.m_Symbol + " (Piece).");
-                    return;
+                    TryMoveRookForCastle(move);
+                    if (toPiece != null)
+                    {
+                        Destroy(toPiece.gameObject);
+                    }
                 }
-                m_Board.ClearField(to[0], to[1]);
-                Destroy(toPiece.gameObject);
-                Debug.Log(m_Board.GetPiece(to[0], to[1]) == null);
+                catch (Exception exception)
+                {
+                    board.Move(to[0], to[1], from[0], from[1]);
+                    throw exception;
+                }
             }
-            bool res = m_Board.Move(from[0], from[1], to[0], to[1]);
-            if (res)
+            catch (Exception exception)
             {
-                ++m_CurrentMove;
-                if(toPiece != null)
-                {
-                    Destroy(toPiece.gameObject);
-                }
+                board.PlacePieceOnField(toPiece, to[0], to[1]);
+                throw new Exception($"Cannot move piece from ({from[0]}, {from[1]}) on field ({to[0]}, {to[1]}): {exception.Message}");
             }
-            else
+        }
+        catch (Exception exception)
+        {
+            throw new Exception($"Cannot not execute move:{exception.Message}");
+        }
+    }
+
+    private void TryMoveRookForCastle(Move move)
+    {
+        if (!move.IsCastle())
+        {
+            return;
+        }
+
+        try
+        {
+            if (IsWhiteMove() && move.IsShortCastle())
             {
-                Debug.Log("Something went wrong with move: " + nextMove.ToString());
-                if (toPiece != null)
-                {
-                    m_Board.PlacePieceOnField(toPiece, to[0], to[1]);
-                }
+                board.Move(7, 0, 3, 0);
             }
+            else if (IsWhiteMove() && move.IsLongCastle())
+            {
+                board.Move(0, 0, 3, 0);
+            }
+            else if (!IsWhiteMove() && move.IsShortCastle())
+            {
+                board.Move(7, 7, 5, 7);
+            }
+            else if (!IsWhiteMove() && move.IsLongCastle())
+            {
+                board.Move(7, 7, 5, 7);
+            }
+        }
+        catch (Exception exception)
+        {
+            throw new Exception($"Cannot move rooks to castle: {exception.Message}");
         }
     }
 
     public void UndoMove()
     {
-        if (m_CurrentMove <= 0)
+        if (currentMoveIndex <= 0)
         {
             Debug.Log("You are already at the start of the game.");
             return;
         }
         
-        Move previousMove   = m_CurrentGame.GetMove(m_CurrentMove - 1);
-        int[] from          = GetField(previousMove.m_FromField);
-        int[] to            = GetField(previousMove.m_ToField);
-        Piece toPiece       = null;
-        bool res;
+        Move previousMove   = currentGame.GetMove(currentMoveIndex - 1);
 
-        res = m_Board.Move(to[0], to[1], from[0], from[1]);
-        if (!res)
+        try
         {
-            Debug.Log("Something went wrong with undoing move: " + previousMove.ToString());
+            ReverseMove(previousMove);
+            --currentMoveIndex;
+            uiManager.MoveUnDone();
+        }
+        catch (Exception exception)
+        {
+            Debug.LogError($"Failed to undo move: {exception}");
+            Debug.LogError(exception.StackTrace);
+        }
+
+    }
+
+    private void ReverseMove(Move move)
+    {
+        int[] from = move.GetFromField();
+        int[] to = move.GetToField();
+        Piece toPiece = CreateCapturedPieceFromMove(move);
+
+        try
+        {
+            board.Move(to[0], to[1], from[0], from[1]);
+            try
+            {
+                TryMoveRookForCastleBack(move);
+                board.PlacePieceOnField(toPiece, to[0], to[1]);
+            }
+            catch (Exception exception)
+            {
+                board.Move(from[0], from[1], to[0], to[1]);
+                if (toPiece != null)
+                {
+                    Destroy(toPiece.gameObject);
+                }
+                throw exception;
+            }
+        }
+        catch (Exception exception)
+        {
+            throw new Exception($"Failed to move pieces back: {exception}");
+        }
+    }
+
+    private void TryMoveRookForCastleBack(Move move)
+    {
+        if (!move.IsCastle())
+        {
             return;
         }
 
-        // Check if the move captures anything
-        if (!previousMove.m_ToPiece.Equals(""))
+        try
         {
-            if ((m_CurrentMove - 1) % 2 == 0) // Check if move was by white
+            // The IsWhiteMove must be negated, because it returns the current moves color!
+            if (!IsWhiteMove() && move.IsShortCastle())
             {
-                switch (previousMove.m_ToPiece)
-                {
-                    case "K":
-                        toPiece = Instantiate(m_Board.m_BlackKingModel, m_Board.GetComponent<Transform>());
-                        break;
-                    case "Q":
-                        toPiece = Instantiate(m_Board.m_BlackQueenModel, m_Board.GetComponent<Transform>());
-                        break;
-                    case "R":
-                        toPiece = Instantiate(m_Board.m_BlackRookModel, m_Board.GetComponent<Transform>());
-                        break;
-                    case "B":
-                        toPiece = Instantiate(m_Board.m_BlackBishopModel, m_Board.GetComponent<Transform>());
-                        break;
-                    case "N":
-                        toPiece = Instantiate(m_Board.m_BlackKnightModel, m_Board.GetComponent<Transform>());
-                        break;
-                    case "P":
-                        toPiece = Instantiate(m_Board.m_BlackPawnModel, m_Board.GetComponent<Transform>());
-                        break;
-                    default:
-                        Debug.Log("Invalid piece type: " + previousMove.m_ToPiece);
-                        break;
-                }
+                board.Move(3, 0, 7, 0);
             }
-            else
+            else if (!IsWhiteMove() && move.IsLongCastle())
             {
-                switch (previousMove.m_ToPiece)
-                {
-                    case "K":
-                        toPiece = Instantiate(m_Board.m_WhiteKingModel, m_Board.GetComponent<Transform>());
-                        break;
-                    case "Q":
-                        toPiece = Instantiate(m_Board.m_WhiteQueenModel, m_Board.GetComponent<Transform>());
-                        break;
-                    case "R":
-                        toPiece = Instantiate(m_Board.m_WhiteRookModel, m_Board.GetComponent<Transform>());
-                        break;
-                    case "B":
-                        toPiece = Instantiate(m_Board.m_WhiteBishopModel, m_Board.GetComponent<Transform>());
-                        break;
-                    case "N":
-                        toPiece = Instantiate(m_Board.m_WhiteKnightModel, m_Board.GetComponent<Transform>());
-                        break;
-                    case "P":
-                        toPiece = Instantiate(m_Board.m_WhitePawnModel, m_Board.GetComponent<Transform>());
-                        break;
-                    default:
-                        Debug.Log("Invalid piece type: " + previousMove.m_ToPiece);
-                        break;
-                }
+                board.Move(3, 0, 0, 0);
             }
-            res = m_Board.PlacePieceOnField(toPiece, to[0], to[1]);
+            else if (IsWhiteMove() && move.IsShortCastle())
+            {
+                board.Move(5, 7, 7, 7);
+            }
+            else if (IsWhiteMove() && move.IsLongCastle())
+            {
+                board.Move(5, 7, 7, 7);
+            }
+        }
+        catch (Exception exception)
+        {
+            throw new Exception($"Failed to move the rook back: {exception.Message}");
         }
 
-        if (res)
+    }
+
+    private Piece CreateCapturedPieceFromMove(Move move)
+    {
+        Piece capturedPiece;
+        Transform boardTransform = board.GetComponent<Transform>();
+        
+        if (IsWhiteMove())
         {
-            --m_CurrentMove;
+            #region Instatiate white prefab
+            capturedPiece = move.GetToPiece() switch 
+            {
+                'K' => Instantiate(board.WhiteKingPrefab,   boardTransform),
+                'Q' => Instantiate(board.WhiteQueenPrefab,  boardTransform),
+                'R' => Instantiate(board.WhiteRookPrefab,   boardTransform),
+                'B' => Instantiate(board.WhiteBishopPrefab, boardTransform),
+                'N' => Instantiate(board.WhiteKnightPrefab, boardTransform),
+                'P' => Instantiate(board.WhitePawnPrefab,   boardTransform),
+                _   => null
+            };
+            #endregion
         }
         else
         {
-            Debug.Log("Failed to place captured piece.");
-            if(toPiece != null)
+            #region Instatiate black prefab
+            capturedPiece = move.GetToPiece() switch
             {
-                Destroy(toPiece.gameObject);
-            }
-            m_Board.Move(from[0], from[1], to[0], to[1]);
+                'K' => Instantiate(board.BlackKingPrefab,   boardTransform),
+                'Q' => Instantiate(board.BlackQueenPrefab,  boardTransform),
+                'R' => Instantiate(board.BlackRookPrefab,   boardTransform),
+                'B' => Instantiate(board.BlackBishopPrefab, boardTransform),
+                'N' => Instantiate(board.BlackKnightPrefab, boardTransform),
+                'P' => Instantiate(board.BlackPawnPrefab,   boardTransform),
+                _   => null
+            };
+            #endregion
         }
-        
+        return capturedPiece;
+    }
+
+    private bool IsValidGameIndex(int index)
+    {
+        return index >= 0 && index < Library.games.Count;
+    }
+
+    private bool IsWhiteMove()
+    {
+        return (currentMoveIndex % 2) == 0;
     }
 }

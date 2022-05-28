@@ -1,134 +1,275 @@
+using System.Text;
+
 public class Move
 {
-    public string   m_FromField;
-    public string   m_ToField;
-    public string   m_FromPiece;
-    public string   m_ToPiece;
-    public string   m_Promotion;
-    public bool     m_IsCheck;
-    public bool     m_IsMate;
+    private char    fromPiece;
+    private int[]   fromField;
+    private char    toPiece;
+    private int[]   toField;
+    private char    promotion;
+    private bool    check;
+    private bool    mate;
+    private string  shortAlgebraicNotation;
 
-    // Pawn move (no take, check, mate or promotion)
-    public Move(string fromField, string toField)
+    #region Object construction
+    private Move() 
+    { }
+
+    public static Move CreateSimplePawnMove(string fromField, string toField)
     {
-        this.m_FromField    = fromField;
-        this.m_ToField      = toField;
-        this.m_FromPiece    = "P";
-        this.m_ToPiece      = "";
-        this.m_Promotion    = "";
-        this.m_IsCheck      = false;
-        this.m_IsMate       = false;
+        return CreateFullQualifiedMove('P', fromField, ' ', toField, ' ', false, false, toField);
+    }
+
+    public static Move CreateSimplePieceMove(char fromPiece, string fromField, string toField)
+    {
+        Move newMove = CreateFullQualifiedMove(fromPiece, fromField, ' ', toField, ' ', false, false, "");
+
+        if (newMove == null)
+        {
+            return newMove;
+        }
+
+        newMove.shortAlgebraicNotation = $"{fromPiece}{toField}";
+        return newMove;
+    }
+
+    public static Move CreateSimplePieceCapture(char fromPiece, string fromField, char toPiece, string toField)
+    {
+        Move newMove = CreateFullQualifiedMove(fromPiece, fromField, toPiece, toField, ' ', false, false, "");
+
+        if (newMove == null)
+        {
+            return newMove;
+        }
+
+        newMove.shortAlgebraicNotation = $"{fromPiece}x{toField}";
+        return newMove;
+    }
+
+    public static Move CreateSimplePawnCapture(string fromField, char toPiece, string toField)
+    {
+        Move newMove = CreateFullQualifiedMove('P', fromField, toPiece, toField, ' ', false, false, "");
+
+        if(newMove == null)
+        {
+            return newMove;
+        }
+
+        newMove.shortAlgebraicNotation = $"{fromField[0]}x{toField}";
+        return newMove;
+    }
+
+    public static Move CreateNonCheckMove(char fromPiece, string fromField, char toPiece, string toField, char promotion, string shortAlgebraicNotation)
+    {
+        return CreateFullQualifiedMove(fromPiece, fromField, toPiece, toField, promotion, false, false, shortAlgebraicNotation);
+    }
+
+    public static Move CreateFullQualifiedMove(char fromPiece, string fromField, char toPiece, string toField, char promotion, bool isCheck, bool isMate, string shortAlgebraicNotation)
+    {
+        if (!IsValidMove(fromPiece, fromField, toPiece, toField, promotion))
+        {
+            return null;
+        }
+
+        Move newMove = new Move();
+        newMove.fromPiece = fromPiece;
+        newMove.fromField = StringToField(fromField);
+        newMove.toPiece = toPiece;
+        newMove.toField = StringToField(toField);
+        newMove.promotion = promotion;
+        newMove.check = isCheck;
+        newMove.mate = isMate;
+        newMove.shortAlgebraicNotation = shortAlgebraicNotation;
+
+        return newMove;
+    }
+    #endregion
+
+    private static bool IsValidMove(char fromPiece, string fromField, char toPiece, string toField, char promotion)
+    {
+        return IsAValidPiece(fromPiece) && IsAValidField(fromField) &&
+            (IsAValidPiece(toPiece) || char.IsWhiteSpace(toPiece)) && IsAValidField(toField) && 
+            IsAValidPromotion(promotion);
     }
     
-    // Any move (no take, check, mate or promotion)
-    public Move(string fromPiece, string fromField, string toField)
+    private static bool IsAValidPiece(char piece)
     {
-        this.m_FromField    = fromField;
-        this.m_ToField      = toField;
-        this.m_FromPiece    = fromPiece;
-        this.m_ToPiece      = "";
-        this.m_Promotion    = "";
-        this.m_IsCheck      = false;
-        this.m_IsMate       = false;
+        switch (piece)
+        {
+            case 'K':
+            case 'Q':
+            case 'R':
+            case 'B':
+            case 'N':
+            case 'P':
+                return true;
+            default:
+                return false;
+        }
     }
 
-    // Any move with take (no check, mate or poromotion)
-    public Move(string fromPiece, string fromField, string toPiece, string toField)
+    private static bool IsAValidField(string field)
     {
-        this.m_FromField    = fromField;
-        this.m_ToField      = toField;
-        this.m_FromPiece    = fromPiece;
-        this.m_ToPiece      = toPiece;
-        this.m_Promotion    = "";
-        this.m_IsCheck      = false;
-        this.m_IsMate       = false;
+        if(field.Length != 2)
+        {
+            return false;
+        }
+
+        return IsValidRank(field[0]) && IsValidFile(field[1]);
     }
 
-    // Any non promotion move
-    public Move(string fromPiece, string fromField, string toPiece, string toField, bool check, bool mate)
+    private static bool IsValidRank(char rank)
     {
-        this.m_FromField    = fromField;
-        this.m_ToField      = toField;
-        this.m_FromPiece    = fromPiece;
-        this.m_ToPiece      = toPiece;
-        this.m_Promotion    = "";
-        this.m_IsCheck      = check;
-        this.m_IsMate       = mate;
+        switch (rank)
+        {
+            case 'a':
+            case 'b':
+            case 'c':
+            case 'd':
+            case 'e':
+            case 'f':
+            case 'g':
+            case 'h':
+                return true;
+            default:
+                return false;
+        }
     }
 
-    // Complete move
-    public Move(string fromPiece, string fromField, string toPiece, string toField, string promotion, bool check, bool mate)
+    private static bool IsValidFile(char file)
     {
-        this.m_FromField    = fromField;
-        this.m_ToField      = toField;
-        this.m_FromPiece    = fromPiece;
-        this.m_ToPiece      = toPiece;
-        this.m_Promotion    = promotion;
-        this.m_IsCheck      = check;
-        this.m_IsMate       = mate;
+        switch (file)
+        {
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+                return true;
+            default:
+                return false;
+        }
     }
 
-    // TODO: Create a constructor with just one string as parameter
-    public static Move CreateMove(string move)
+    private static bool IsAValidPromotion(char promotion)
     {
-        // Check if move starts with letter ('K','Q','R,'B','N'), if not, the from piece is a pawn ('P') otherwise the piece is the letter and skip -> fromPiece
-        // If the next character is a ('a','b','c','d','e','f','g','h') save it and skip it
-        // If ('1','2','3','4','5','6','7','8') concat to the one before and skip it
-        // If we have 2 characters, we have the fromField -> fromField
-        // If we have 1 character we have to search the rank or file for the piece on it -> fromField
-        // If we have 0 characters, look all possible fields for the piece on it -> fromField
-        // Find the next 2 characters which contain a field -> toField
-        // If the string contains an 'x', take the piece from toField and save it under toPiece (skip 3 characters), otherwise toPiece is "" (skip 2 characters)-> toPiece
-        // If next character is '=' set promotion to the next character and skip these two characters, otherwise to "" -> promotion
-        // If next character is '+' set check to true
-        // If next character is '#' set mate to true
-
-        return null;
+        switch (promotion)
+        {
+            case 'Q':
+            case 'R':
+            case 'B':
+            case 'N':
+            case ' ':
+                return true;
+            default:
+                return false;
+        }
     }
 
-    private static int[] FieldAsStringToIntArray(string field)
+    private static int[] StringToField(string fieldString) 
     {
-        int[] coordinates = { (char)field[0] - 97, (char)field[1] - 48 - 1};
-        return coordinates;
+        int[] field = new int[2];
+        field[0] = (char)fieldString[0] - 97;
+        field[1] = (char)fieldString[1] - 49;
+
+        return field;
     }
-    public int[] GetFromFieldCoordinates()
+
+    public bool HasCapturedAPiece()
     {
-        return FieldAsStringToIntArray(m_FromField);
+        return !toPiece.Equals(' ');
     }
-    public int[] GetToFieldCoordinates()
+
+    public bool IsPawnMove()
     {
-        return FieldAsStringToIntArray(m_ToField);
+        return fromPiece.Equals('P');
+    }
+
+    public bool IsPromotion()
+    {
+        return !promotion.Equals(' ');
+    }
+
+    public bool IsCheck()
+    {
+        return check;
+    }
+
+    public bool IsMate()
+    {
+        return mate;
+    }
+
+    public char GetPromotion()
+    {
+        return promotion;
+    }
+
+    public int GetFromRank()
+    {
+        return GetFromField()[0];
+    }
+
+    public int GetFromFile()
+    {
+        return GetFromField()[1];
+    }
+
+    public int[] GetFromField()
+    {
+        return fromField;
+    }
+
+    public int GetToRank()
+    {
+        return GetToField()[0];
+    }
+
+    public int GetToFile()
+    {
+        return GetToField()[1];
+    }
+
+    public int[] GetToField()
+    {
+        return toField;
+    }
+
+    public char GetFromPiece()
+    {
+        return fromPiece;
+    }
+
+    public char GetToPiece()
+    {
+        return toPiece;
+    }
+
+    public bool IsShortCastle()
+    {
+        return GetSAN().Equals("O-O");
+    }
+
+    public bool IsLongCastle()
+    {
+        return GetSAN().Equals("O-O-O");
+    }
+    
+    public bool IsCastle()
+    {
+        return IsShortCastle() || IsLongCastle();
     }
 
     override public string ToString()
     {
-        string result = "";
+        return GetSAN();
+    }
 
-        if (!m_FromPiece.Equals("P"))
-        {
-            result += m_FromPiece;
-        }
-        if (!m_FromPiece.Equals("P"))
-        {
-            result += m_FromField;
-        }
-        if (m_ToPiece != "" || m_ToPiece == "P")
-        {
-            result += "x";
-        }
-        result += m_ToField;
-        if(m_Promotion != "")
-        {
-            result += "=" + m_Promotion;
-        }
-        if (m_IsCheck)
-        {
-            result += "+";
-        }
-        if (m_IsMate)
-        {
-            result += "#";
-        }
-        return result;
+    public string GetSAN()
+    {
+        return shortAlgebraicNotation;
     }
 }

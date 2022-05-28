@@ -1,38 +1,40 @@
+using System;
+using System.Text;
 using UnityEngine;
 
 public class Board : MonoBehaviour
 {
     // White pieces (prefabs)
-    public Piece m_WhitePawnModel;
-    public Piece m_WhiteKingModel;
-    public Piece m_WhiteQueenModel;
-    public Piece m_WhiteBishopModel;
-    public Piece m_WhiteKnightModel;
-    public Piece m_WhiteRookModel;
+    public Piece WhitePawnPrefab;
+    public Piece WhiteKingPrefab;
+    public Piece WhiteQueenPrefab;
+    public Piece WhiteBishopPrefab;
+    public Piece WhiteKnightPrefab;
+    public Piece WhiteRookPrefab;
     // Black pieces (prefabs)
-    public Piece m_BlackPawnModel;
-    public Piece m_BlackKingModel;
-    public Piece m_BlackQueenModel;
-    public Piece m_BlackBishopModel;
-    public Piece m_BlackKnightModel;
-    public Piece m_BlackRookModel;
+    public Piece BlackPawnPrefab;
+    public Piece BlackKingPrefab;
+    public Piece BlackQueenPrefab;
+    public Piece BlackBishopPrefab;
+    public Piece BlackKnightPrefab;
+    public Piece BlackRookPrefab;
 
-    public Piece   [,] m_Pieces         = new Piece[8,8];
+    public Piece[,] Pieces = new Piece[8,8];
 
-    private const float FIELD_SIZE      = 0.06f / 100f; // For correct movment of the pieces
+    public const float FIELD_SIZE = 0.06f / 100f; // For correct movment of the pieces
 
     public void Reset()
     {
-        // Clear current field
+        // Clear current fields
         for(int rank = 0; rank < 8; ++rank)
         {
             for(int file = 0; file < 8; ++file)
             {
-                if(m_Pieces[rank, file] != null)
+                if(Pieces[rank, file] != null)
                 {
-                    Destroy(m_Pieces[rank, file].gameObject);
+                    Destroy(Pieces[rank, file].gameObject);
+                    Pieces[rank, file] = null;
                 }
-                m_Pieces[rank, file] = null;
             }
         }
 
@@ -51,22 +53,20 @@ public class Board : MonoBehaviour
         {
             for (int file = 0; file < 8; ++file)
             {
-                Piece p = m_Pieces[rank, file];
-                if(p == null)
+                Piece currentPiece = Pieces[rank, file];
+                StringBuilder fieldString = new StringBuilder();
+
+                fieldString.Append($"{FieldToString(rank, file)} : ");
+
+                if (currentPiece == null)
                 {
-                    Debug.Log((char)(rank + 65) + "" + (file + 1) + ":");
+                    fieldString.Append($"-");
                 }
                 else
                 {
-                    if (p.m_IsWhite)
-                    {
-                        Debug.Log((char)(rank + 65) + "" + (file + 1) + ": White " + p.m_Type);
-                    }
-                    else
-                    {
-                        Debug.Log((char)(rank + 65) + "" + (file + 1) + ": Black " + p.m_Type);
-                    }
+                    fieldString.Append(currentPiece.ToString());
                 }
+                Debug.Log(fieldString.ToString());
             }
         }
     }
@@ -75,18 +75,23 @@ public class Board : MonoBehaviour
     {
         for (int i = 0; i < 8; ++i)
         {
-            Piece whitePawn = Instantiate(m_WhitePawnModel, this.transform);
-            Piece blackPawn = Instantiate(m_BlackPawnModel, this.transform);
+            Piece whitePawn = Instantiate(WhitePawnPrefab, this.transform);
+            Piece blackPawn = Instantiate(BlackPawnPrefab, this.transform);
 
             PlacePieceOnField(whitePawn, i, 1);
             PlacePieceOnField(blackPawn, i, 6);
         }
     }
 
+    internal static bool IsValidField(string fromField)
+    {
+        throw new NotImplementedException();
+    }
+
     private void SpawnKings()
     {
-        Piece whiteKing = Instantiate(m_WhiteKingModel, this.transform);
-        Piece blackKing = Instantiate(m_BlackKingModel, this.transform);
+        Piece whiteKing = Instantiate(WhiteKingPrefab, this.transform);
+        Piece blackKing = Instantiate(BlackKingPrefab, this.transform);
 
         PlacePieceOnField(whiteKing, 4 ,0);
         PlacePieceOnField(blackKing, 4 ,7);
@@ -94,8 +99,8 @@ public class Board : MonoBehaviour
 
     private void SpawnQueens()
     {
-        Piece whiteQueen = Instantiate(m_WhiteQueenModel, this.transform);
-        Piece blackQueen = Instantiate(m_BlackQueenModel, this.transform);
+        Piece whiteQueen = Instantiate(WhiteQueenPrefab, this.transform);
+        Piece blackQueen = Instantiate(BlackQueenPrefab, this.transform);
 
         PlacePieceOnField(whiteQueen, 3, 0);
         PlacePieceOnField(blackQueen, 3, 7);
@@ -103,10 +108,10 @@ public class Board : MonoBehaviour
 
     private void SpawnBishops()
     {
-        Piece whiteLeftBishop   = Instantiate(m_WhiteBishopModel, this.transform);
-        Piece whiteRightBishop  = Instantiate(m_WhiteBishopModel, this.transform);
-        Piece blackLeftBishop   = Instantiate(m_BlackBishopModel, this.transform);
-        Piece blackRightBishop  = Instantiate(m_BlackBishopModel, this.transform);
+        Piece whiteLeftBishop   = Instantiate(WhiteBishopPrefab, this.transform);
+        Piece whiteRightBishop  = Instantiate(WhiteBishopPrefab, this.transform);
+        Piece blackLeftBishop   = Instantiate(BlackBishopPrefab, this.transform);
+        Piece blackRightBishop  = Instantiate(BlackBishopPrefab, this.transform);
 
         PlacePieceOnField(whiteLeftBishop,  2, 0);
         PlacePieceOnField(whiteRightBishop, 5, 0);
@@ -116,10 +121,10 @@ public class Board : MonoBehaviour
 
     private void SpawnKnights()
     {
-        Piece whiteLeftKnight   = Instantiate(m_WhiteKnightModel, this.transform);
-        Piece whiteRightKnight  = Instantiate(m_WhiteKnightModel, this.transform);
-        Piece blackLeftKnight   = Instantiate(m_BlackKnightModel, this.transform);
-        Piece blackRightKnight  = Instantiate(m_BlackKnightModel, this.transform);
+        Piece whiteLeftKnight   = Instantiate(WhiteKnightPrefab, this.transform);
+        Piece whiteRightKnight  = Instantiate(WhiteKnightPrefab, this.transform);
+        Piece blackLeftKnight   = Instantiate(BlackKnightPrefab, this.transform);
+        Piece blackRightKnight  = Instantiate(BlackKnightPrefab, this.transform);
 
         PlacePieceOnField(whiteLeftKnight,  1, 0);
         PlacePieceOnField(whiteRightKnight, 6, 0);
@@ -129,10 +134,10 @@ public class Board : MonoBehaviour
 
     private void SpawnRooks()
     {
-        Piece whiteLeftRook     = Instantiate(m_WhiteRookModel, this.transform);
-        Piece whiteRightRook    = Instantiate(m_WhiteRookModel, this.transform);
-        Piece blackLeftRook     = Instantiate(m_BlackRookModel, this.transform);
-        Piece blackRightRook    = Instantiate(m_BlackRookModel, this.transform);
+        Piece whiteLeftRook     = Instantiate(WhiteRookPrefab, this.transform);
+        Piece whiteRightRook    = Instantiate(WhiteRookPrefab, this.transform);
+        Piece blackLeftRook     = Instantiate(BlackRookPrefab, this.transform);
+        Piece blackRightRook    = Instantiate(BlackRookPrefab, this.transform);
 
         PlacePieceOnField(whiteLeftRook,    0, 0);
         PlacePieceOnField(whiteRightRook,   7, 0);
@@ -140,31 +145,34 @@ public class Board : MonoBehaviour
         PlacePieceOnField(blackRightRook,   7, 7);
     }
 
-    public bool Move(int fromRank, int fromFile, int toRank, int toFile)
+    public void Move(int fromRank, int fromFile, int toRank, int toFile)
     {
-        Piece fromPiece = m_Pieces[fromRank, fromFile];
-        Piece toPiece   = m_Pieces[toRank, toFile];
+        if(!IsValidField(fromRank, fromFile) || !IsValidField(toRank, toFile))
+        {
+            throw new InvalidFieldException($"Cannot do move due invalid fields: from ({fromRank} ,{fromFile}) or to ({toRank} ,{toFile})");
+        }
+
+        Piece fromPiece = Pieces[fromRank, fromFile];
+        Piece toPiece   = Pieces[toRank, toFile];
 
         if(fromPiece == null)
         {
-            Debug.Log("There is no piece on " + FieldToString(fromRank, fromFile) + " to move to " + FieldToString(toRank, toFile));
-            return false;
+            throw new InvalidMoveException($"There is no piece on {FieldToString(fromRank, fromFile)} to move to {FieldToString(toRank, toFile)}");
         }
 
         if(toPiece != null)
         {
-            Debug.Log("There is a piece on " + FieldToString(fromRank, fromFile) + "(" + toPiece.ToString() + ")");
-            return false;
+            throw new FieldAlreadyOccupiedException($"There is a piece on {FieldToString(toRank, toFile)} ({toPiece.ToString()})");
         }
 
-        bool piecePlacedSuccessfully = PlacePieceOnField(fromPiece, toRank, toFile);
-
-        if (piecePlacedSuccessfully)
+        try
         {
-            m_Pieces[fromRank, fromFile] = null;
+            PlacePieceOnField(fromPiece, toRank, toFile);
+            Pieces[fromRank, fromFile] = null;
+        } catch (UnityException exception)
+        {
+            Debug.LogError(exception);
         }
-
-        return piecePlacedSuccessfully;
     }
 
     public Piece GetPiece(int rank, int file)
@@ -173,84 +181,77 @@ public class Board : MonoBehaviour
         {
             return null;
         }
-        return m_Pieces[rank, file];
+        return Pieces[rank, file];
     }
 
-    public bool PlacePieceOnField(Piece piece, int rank, int file)
+    public void PlacePieceOnField(Piece piece, int rank, int file)
     {
-        if (piece is null)
+        if (piece == null)
         {
-            Debug.Log("Cannot place a piece on field " + FieldToString(rank, file) + "(piece is null)");
-            return false;
+            return;
         }
         if (!IsValidField(rank, file))
         {
-            Debug.Log(FieldToString(rank, file) + "(" + rank + "," + file + ") is an invalid field for placing a piece");
-            return false;
+            throw new InvalidFieldException($"{FieldToString(rank, file)} ({rank} ,{file}) is an invalid field for placing a piece");
         }
-        if(m_Pieces[rank, file] != null)
+        if(Pieces[rank, file] != null)
         {
-            Debug.Log("Cannot place " + piece.ToString() + " on " + FieldToString(rank, file) + " because the field is occupied by a " + m_Pieces[rank, file].ToString());
-            return false;
+            throw new FieldAlreadyOccupiedException($"Cannot place {piece.ToString()} on {FieldToString(rank, file)} because the field is occupied by a {Pieces[rank, file].ToString()}");
         }
 
         // Calculate the position of the piece if the board is at origin with no rotation
         float positionX             = transform.localScale.x * FIELD_SIZE * (0.5f + (rank - 4.0f));
         float positionZ             = transform.localScale.z * FIELD_SIZE * (0.5f + (file - 4.0f));
         Vector3 newPosition         = new Vector3(positionX, 0.0f, positionZ);
-        // Apply parent transformatin so that the piece could be placed with world coordinates
+        // Apply parent transformation so that the piece could be placed with world coordinates
         newPosition                 = transform.rotation *  newPosition;
         newPosition                 = transform.position +  newPosition;
         piece.transform.position    = newPosition;
-        m_Pieces[rank, file]        = piece;
-        return true;
+        Pieces[rank, file]        = piece;
     }
-    public bool ClearField(int rank, int file)
+    public void ClearFieldWithoutDestroying(int rank, int file)
     {
         if(!IsValidField(rank, file))
         {
-            Debug.Log("Failed to clear field because [" + rank + ", " + file + "] is an invalid field.");
-            return false;
+            throw new InvalidFieldException($"Failed to clear field because [{rank}, {file}] is an invalid field.");
         }
 
-        Piece piece = GetPiece(rank, file);
-        if(piece == null)
-        {
-            Debug.Log("Failed to clear " + FieldToString(rank, file) + " is alreade empty.");
-            return false;
-        }
-
-        m_Pieces[rank, file] = null;
-        return true;
-    }
-
-    public static bool IsValidField(int[] position)
-    {
-        if(position.Length == 2)
-        {
-            return IsValidField(position[0], position[1]);
-        }
-        else
-        {
-            return false;
-        }
-       
+        Pieces[rank, file] = null;
     }
 
     public static bool IsValidField(int rank, int file)
     {
-        return (rank >= 0 && rank <= 7 && file >= 0 && file <= 7);
+        return rank >= 0 && rank <= 7 && file >= 0 && file <= 7;
     }
 
     public static string FieldToString(int rank, int file)
     {
-        string res = "";
+        StringBuilder fieldString = new StringBuilder();
         if (!IsValidField(rank, file))
         {
-            return res;
+            throw new InvalidFieldException($"({rank}, {file}) is not a valid field.");
         }
-        res += (char)(65 + rank);
-        res += (char)(48 + file + 1);
-        return res;
+        fieldString.Append((char)(65 + rank));
+        fieldString.Append((char)(48 + file + 1));
+        return fieldString.ToString();
+    }
+
+    public static int[] StringToField(string fieldString)
+    {
+        if(fieldString.Length < 2)
+        {
+            throw new InvalidFieldException($"Cannot get a field from string: {fieldString}");
+        }
+
+        int[] field = new int[2];
+        field[0] = (char)fieldString[0] - 97;
+        field[1] = (char)fieldString[1] - 49;
+
+        if(!IsValidField(field[0], field[1]))
+        {
+            throw new InvalidFieldException($"{fieldString} is not a valid field.");
+        }
+
+        return field;
     }
 }

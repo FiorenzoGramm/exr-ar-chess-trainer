@@ -1,23 +1,26 @@
+using System.Text;
 using UnityEngine;
 
 public class Piece : MonoBehaviour
 {
-    public string      m_Type;
-    public string      m_Symbol;
-    public bool        m_IsWhite;
+    public string      type;
+    public string      symbol;
+    public bool        isWhite;
 
     override public string ToString()
     {
-        string res = "";
-        if (m_IsWhite)
+        StringBuilder pieceString = new StringBuilder();
+        if (isWhite)
         {
-            res += "White ";
+            pieceString.Append("White ");
         }
         else
         {
-            res += "Black ";
+            pieceString.Append("Black ");
         }
-        res += m_Type;
-        return res;
+
+        pieceString.Append(type);
+        
+        return pieceString.ToString();
     }
 }

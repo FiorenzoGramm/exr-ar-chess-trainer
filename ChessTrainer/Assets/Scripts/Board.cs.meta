@@ -3,7 +3,18 @@ guid: 4fe24327c21337942a5a32c036930a1f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - WhiteKingPrefab: {fileID: 1325361359813994160, guid: 6c77b6f8bb50a1545b291bae2248f2c1, type: 3}
+  - WhiteQueenModel: {instanceID: 0}
+  - m_WhiteBishopModel: {instanceID: 0}
+  - m_WhiteKnightModel: {instanceID: 0}
+  - m_WhiteRookModel: {instanceID: 0}
+  - m_BlackPawnModel: {instanceID: 0}
+  - m_BlackKingModel: {instanceID: 0}
+  - m_BlackQueenModel: {instanceID: 0}
+  - m_BlackBishopModel: {instanceID: 0}
+  - m_BlackKnightModel: {instanceID: 0}
+  - m_BlackRookModel: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

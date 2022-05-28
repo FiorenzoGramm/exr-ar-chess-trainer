@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a111399e6f06bf48b9c0c903a6921b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Type: Knight
-  m_Symbol: N
-  m_IsWhite: 0
+  type: Knight
+  symbol: N
+  isWhite: 0
 --- !u!1 &2678904155620766736
 GameObject:
   m_ObjectHideFlags: 0
