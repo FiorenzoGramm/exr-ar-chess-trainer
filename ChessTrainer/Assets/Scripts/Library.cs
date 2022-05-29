@@ -88,6 +88,26 @@ public static class Library
         newGame.moves.Add(Move.CreateFullQualifiedMove('K', "e1", ' ', "c1", ' ', false, false, "O-O-O"));
         games.Add(newGame);
         #endregion
+
+        #region Italian Game: 1.e4 e5 2.Nf3 Nc6 3.Bc4
+        newGame = new Game("Italian Game");
+        newGame.moves.Add(Move.CreateSimplePawnMove("e2", "e4"));
+        newGame.moves.Add(Move.CreateSimplePawnMove("e7", "e5"));
+        newGame.moves.Add(Move.CreateSimplePieceMove('N', "g1", "f3"));
+        newGame.moves.Add(Move.CreateSimplePieceMove('N', "b8", "c6"));
+        newGame.moves.Add(Move.CreateSimplePieceMove('B', "f1", "c4"));
+        games.Add(newGame);
+        #endregion
+
+        #region Ruy López Opening (Spanish Game): 1.e4 e5 2.Nf3 Nc6 3.Bb5
+        newGame = new Game("Ruy López Opening (Spanish Game)");
+        newGame.moves.Add(Move.CreateSimplePawnMove("e2", "e4"));
+        newGame.moves.Add(Move.CreateSimplePawnMove("e7", "e5"));
+        newGame.moves.Add(Move.CreateSimplePieceMove('N', "g1", "f3"));
+        newGame.moves.Add(Move.CreateSimplePieceMove('N', "b8", "c6"));
+        newGame.moves.Add(Move.CreateSimplePieceMove('B', "f1", "b5"));
+        games.Add(newGame);
+        #endregion
     }
 
     public static Game GetGameByIndex(int index)

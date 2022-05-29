@@ -7,7 +7,6 @@ public class GameSelector : MonoBehaviour
     public UIManager uiManager;
     public GameSelectorTile selectorPrefab;
     public GridLayoutGroup contentObject;
-    public Board board;
     public Vector3 spawnOnEnableOffset;
 
     public void LoadGames(List<string> nameOfGames)
