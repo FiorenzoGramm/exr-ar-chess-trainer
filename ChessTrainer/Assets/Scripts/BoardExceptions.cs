@@ -4,7 +4,11 @@ using UnityEngine;
 public class InvalidFieldException : UnityException
 {
     public int[] Field { get; }
-    public InvalidFieldException(int[] field, string message = "", Exception innerException = null) : base(message, innerException)
+
+    public InvalidFieldException(int[] field, Exception innerException = null) : this("", field, innerException)
+    { }
+
+    public InvalidFieldException(string message, int[] field, Exception innerException = null) : base(message, innerException)
     {
         Field = field;
     }
@@ -12,8 +16,12 @@ public class InvalidFieldException : UnityException
 
 public class FailedToConvertFieldException : UnityException
 {
-    public string Field { get; }
-    public FailedToConvertFieldException(string field, string message = "", Exception innerException = null) : base(message, innerException)
+    public int[] Field { get; }
+
+    public FailedToConvertFieldException(int[] field, Exception innerException = null) : this("", field, innerException)
+    { }
+
+    public FailedToConvertFieldException(string message, int[] field, Exception innerException = null) : base(message, innerException)
     {
         Field = field;
     }
@@ -24,7 +32,11 @@ public class FieldAlreadyOccupiedException : UnityException
     public Piece FromPiece { get; }
     public int[] ToField { get; }
 
-    public FieldAlreadyOccupiedException(Piece fromPiece, int[] toField, string message = "", Exception innerException = null) 
+    public FieldAlreadyOccupiedException(Piece fromPiece, int[] toField, Exception innerException = null)
+        : this("", fromPiece, toField, innerException)
+    { }
+
+    public FieldAlreadyOccupiedException(string message, Piece fromPiece, int[] toField, Exception innerException = null) 
         : base(message, innerException)
     {
         FromPiece = fromPiece;
@@ -35,8 +47,11 @@ public class FieldAlreadyOccupiedException : UnityException
 public class ThereIsNoPieceException : UnityException
 {
     public int[] FromField { get; }
-    public ThereIsNoPieceException(int[] fromField, string message = "", Exception innerException = null) 
-        : base(message, innerException)
+
+    public ThereIsNoPieceException(int[] fromField, Exception innerException = null) : this("", fromField, innerException)
+    { }
+
+    public ThereIsNoPieceException(string message, int[] fromField, Exception innerException = null) : base(message, innerException)
     {
         FromField = fromField;
     }

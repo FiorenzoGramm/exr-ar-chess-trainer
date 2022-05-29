@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    #region Declaration
     public Board     board;
     public Game      currentGame;
     public UIManager uiManager;
@@ -16,7 +17,9 @@ public class GameManager : MonoBehaviour
 
     private int currentGameIndex;
     private int currentMoveIndex;
+    #endregion
 
+    #region Setup
     void Start()
     {
         Library.InitialiseLibrary();
@@ -35,6 +38,15 @@ public class GameManager : MonoBehaviour
             PlaceBoardAndUI(); // Prevents the spawning of the board and UI inside the player
         } 
     }
+
+    private void PlaceBoardAndUI()
+    {
+        board.transform.Translate(startPositionBoard, Space.World);
+        board.transform.Rotate(startRotationBoard, Space.World);
+        uiManager.transform.Translate(startPositionControllpanel, Space.World);
+        uiManager.transform.Rotate(startRotationControllpanel, Space.World);
+    }
+    #endregion
 
     public void Update()
     {
@@ -60,14 +72,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void PlaceBoardAndUI()
-    {
-        board.transform.Translate(startPositionBoard, Space.World);
-        board.transform.Rotate(startRotationBoard, Space.World);
-        uiManager.transform.Translate(startPositionControllpanel, Space.World);
-        uiManager.transform.Rotate(startRotationControllpanel, Space.World);
-    }
-
     public void ChangeGame(int index)
     {
         board.Reset();
@@ -75,14 +79,24 @@ public class GameManager : MonoBehaviour
 
         currentGameIndex = index;
         currentGame = Library.GetGameByIndex(currentGameIndex);
-        
+
         uiManager.GamesHasChanged(currentGame.name);
         Debug.Log($"Changed game to {currentGame.name}");
     }
 
+    #region Move execution
     public void DoNextMove()
     {
-        Move nextMove = currentGame.GetMove(currentMoveIndex);
+        Move nextMove;
+
+        try
+        {
+            nextMove = currentGame.GetMove(currentMoveIndex);
+        }
+        catch (Exception exception)
+        {
+            throw exception;
+        }
 
         if(nextMove == null)
         {
@@ -107,10 +121,11 @@ public class GameManager : MonoBehaviour
     {
         int[] from = move.GetFromField();
         int[] to = move.GetToField();
-        Piece toPiece = board.GetPiece(to);
+        Piece toPiece = null;
 
         try
         {
+            toPiece = board.GetPiece(to);
             TryToClearField(to);
             TryToMovePiece(from, to);
             TryMoveRookForCastle(move);
@@ -120,20 +135,24 @@ public class GameManager : MonoBehaviour
                 Destroy(toPiece.gameObject);
             }
         }
+        catch(InvalidFieldException exception)
+        {
+            throw new MoveExecutionFailureException("Failed to execute move due to getting the piece.", move, exception);
+        }
         catch (FailedToClearFieldException exception)
         {
-            throw new MoveExecutionFailureException(move, $"Failed to execute move due to failure in clearing a field.", exception);
+            throw new MoveExecutionFailureException("Failed to execute move due to failure in clearing a field.", move, exception);
         }
         catch (FailedToMovePieceException exception)
         {
             board.PlacePieceOnField(toPiece, to);
-            throw new MoveExecutionFailureException(move, $"Failed to execute move due to failure in moving the piece.", exception);
+            throw new MoveExecutionFailureException("Failed to execute move due to failure in moving the piece.", move, exception);
         }
         catch (FailedToMoveRookForCastleException exception)
         {
             board.Move(to, from);
             board.PlacePieceOnField(toPiece, to);
-            throw new MoveExecutionFailureException(move, $"Failed to execute move due to failure moving the rook for castle.", exception);
+            throw new MoveExecutionFailureException("Failed to execute move due to failure moving the rook for castle.", move, exception);
         }
     }
 
@@ -143,17 +162,9 @@ public class GameManager : MonoBehaviour
         {
             board.Move(from, to);
         }
-        catch(InvalidFieldException exception)
+        catch (Exception exception)
         {
-            throw new FailedToMovePieceException(from, to, $"Failed to move a piece due to invalid fields in arguments.", exception);
-        }
-        catch(ThereIsNoPieceException exception)
-        {
-            throw new FailedToMovePieceException(from, to, $"Failed to move a piece due missing piece on the field.", exception);
-        }
-        catch(FieldAlreadyOccupiedException exception)
-        {
-            throw new FailedToMovePieceException(from, to, $"Failed to move a piece due an exisiting piece on the field.", exception);
+            throw new FailedToMovePieceException("Failed to move a piece due an exisiting piece on the field.", from, to, exception);
         }
     }
 
@@ -163,9 +174,9 @@ public class GameManager : MonoBehaviour
         {
             board.ClearFieldWithoutDestroying(to);
         }
-        catch (InvalidFieldException exception)
+        catch (Exception exception)
         {
-            throw new FailedToClearFieldException(to, $"Failed to execute move due to failure in moving the piece.", exception);
+            throw new FailedToClearFieldException("Failed to execute move due to failure in moving the piece.", to, exception);
         }
     }
 
@@ -211,12 +222,14 @@ public class GameManager : MonoBehaviour
         {
             TryToMovePiece(from, to);
         }
-        catch (FailedToMovePieceException exception)
+        catch (Exception exception)
         {
-            throw new FailedToMoveRookForCastleException(from, to,$"Cannot move rooks to castle: {exception.Message}");
+            throw new FailedToMoveRookForCastleException("Failed to move the rook for castle.", from, to, exception);
         }
     }
+    #endregion
 
+    #region Move reversal
     public void UndoMove()
     {
         if (currentMoveIndex <= 0)
@@ -232,23 +245,12 @@ public class GameManager : MonoBehaviour
             ReverseMove(previousMove);
             --currentMoveIndex;
             uiManager.MoveUnDone();
+            Debug.Log(currentGame.ToString(currentMoveIndex));
         }
         catch (MoveExecutionFailureException exception)
         {
             Debug.LogError($"Failed to undo move {previousMove}: {GetMoveExcecutionFailureToConsoleMessage(exception)}");
         }
-    }
-
-    private string GetMoveExcecutionFailureToConsoleMessage(MoveExecutionFailureException exception)
-    {
-        StringBuilder message = new StringBuilder();
-        message.Append($"Caught error: {exception.Message}:");
-        Exception innerException = exception.InnerException;
-        if (innerException != null)
-        {
-            message.Append(innerException);
-        }
-        return message.ToString();
     }
 
     private void ReverseMove(Move move)
@@ -269,7 +271,7 @@ public class GameManager : MonoBehaviour
             {
                 Destroy(toPiece.gameObject);
             }
-            throw new FailedToUndoMoveException(move, $"Failed undo a move due a failure in moving the piece.", exception);
+            throw new FailedToUndoMoveException("Failed undo a move due a failure in moving the piece.", move, exception);
         }
         catch (FailedToPlacePieceException exception)
         {
@@ -278,7 +280,7 @@ public class GameManager : MonoBehaviour
                 Destroy(toPiece.gameObject);
             }
             board.Move(from, to);
-            throw new FailedToUndoMoveException(move, $"Failed undo a move due a failure in placing the captured piece back.", exception);
+            throw new FailedToUndoMoveException("Failed undo a move due a failure in placing the captured piece back.", move, exception);
         }
         catch (FailedToMoveRookForCastleException exception)
         {
@@ -287,7 +289,7 @@ public class GameManager : MonoBehaviour
                 Destroy(toPiece.gameObject);
             }
             board.Move(from, to);
-            throw new FailedToUndoMoveException(move, $"Failed undo a move due a failure in the rook for reversing the castle.", exception);
+            throw new FailedToUndoMoveException("Failed undo a move due a failure in the rook for reversing the castle.", move, exception);
         }
     }
 
@@ -297,13 +299,9 @@ public class GameManager : MonoBehaviour
         {
             board.PlacePieceOnField(toPiece, to);
         }
-        catch(InvalidFieldException exception)
+        catch(Exception exception)
         {
-            throw new FailedToPlacePieceException(toPiece, to, $"Failed to place the piece due an invalid field.", exception);
-        }
-        catch(FieldAlreadyOccupiedException exception)
-        {
-            throw new FailedToPlacePieceException(toPiece, to, $"Failed to place the piece due an already existing piece on the field.", exception);
+            throw new FailedToPlacePieceException("Failed to place the piece.", toPiece, to, exception);
         }
     }
 
@@ -351,10 +349,24 @@ public class GameManager : MonoBehaviour
         {
             TryToMovePiece(from, to);
         }
-        catch (FailedToMovePieceException exception)
+        catch (Exception exception)
         {
-            throw new FailedToMoveRookForCastleException(from, to, $"Cannot move rooks to reverse castle.", exception);
+            throw new FailedToMoveRookForCastleException("Failed to move rook to reverse castle.", from, to, exception);
         }
+    }
+    #endregion
+
+    #region Helper methods
+    private string GetMoveExcecutionFailureToConsoleMessage(MoveExecutionFailureException exception)
+    {
+        StringBuilder message = new StringBuilder();
+        message.Append($"Caught error: {exception.Message}:");
+        Exception innerException = exception.InnerException;
+        if (innerException != null)
+        {
+            message.Append(innerException);
+        }
+        return message.ToString();
     }
 
     private Piece CreateCapturedPieceFromMove(Move move)
@@ -399,4 +411,5 @@ public class GameManager : MonoBehaviour
     {
         return (currentMoveIndex % 2) == 0;
     }
+    #endregion
 }

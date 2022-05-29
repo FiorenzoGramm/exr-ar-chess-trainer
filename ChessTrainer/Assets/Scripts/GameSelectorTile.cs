@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Windows;
 
 public class GameSelectorTile : MonoBehaviour
 {
@@ -14,32 +13,24 @@ public class GameSelectorTile : MonoBehaviour
 
     public void InitialiseTile(GameSelector gameSelector, string gameName, int index)
     {
-        if (tileText is null)
-        {
-            throw new MissingComponentException("GameSelectorTile could not be created, because there is a missing component (Test)");
-        }
-
-        if (image is null)
-        {
-            throw new MissingComponentException("GameSelectorTile could not be created, because there is a missing component (Image)");
-        }
-
-        string fileName = gameName.Replace(":", "");
-        Texture2D newImage = Resources.Load($"{directoryOfOpenings}/{fileName}") as Texture2D;
-        if(newImage != null)
-        {
-            image.texture = newImage;
-        }
-
-        if (rectangularTransform is null)
-        {
-            throw new MissingComponentException("GameSelectorTile could not be created, because there is a missing component (RectTransform)");
-        }
+        LoadThumbnail(gameName);
 
         this.gameSelector = gameSelector;
         gameIndex = index;
         tileText.text = gameName;
     }
+
+    private void LoadThumbnail(string gameName)
+    {
+        string fileName = gameName.Replace(":", "");
+        Texture2D newImage = Resources.Load($"{directoryOfOpenings}/{fileName}") as Texture2D;
+        if (newImage != null)
+        {
+            image.texture = newImage;
+        }
+        // If no image was found, the default image will be used which is defined in the prefab
+    }
+
     public void ChangeGame()
     {
         gameSelector.ChangeGame(gameIndex);

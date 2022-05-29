@@ -1,4 +1,3 @@
-using System;
 using System.Text;
 using UnityEngine;
 
@@ -19,9 +18,9 @@ public class Board : MonoBehaviour
     public Piece BlackKnightPrefab;
     public Piece BlackRookPrefab;
 
-    public Piece[,] Pieces = new Piece[8,8];
+    private Piece[,] Pieces = new Piece[8,8];
 
-    public const float FIELD_SIZE = 0.06f / 100f; // For correct movment of the pieces
+    public const float FIELD_SIZE = 0.06f / 100f; // Length of a square in units
 
     public void Reset()
     {
@@ -49,12 +48,14 @@ public class Board : MonoBehaviour
 
     public void PrintField()
     {
-        for (int rank = 0; rank < 8; ++rank)
+        Piece currentPiece;
+        StringBuilder fieldString = new StringBuilder();
+
+        for (int file = 7; file >= 0; --file)
         {
-            for (int file = 0; file < 8; ++file)
+            for (int rank = 0; rank < 8; ++rank)
             {
-                Piece currentPiece = Pieces[rank, file];
-                StringBuilder fieldString = new StringBuilder();
+                currentPiece = Pieces[rank, file];
 
                 fieldString.Append($"{FieldToString(rank, file)} : ");
 
@@ -66,11 +67,14 @@ public class Board : MonoBehaviour
                 {
                     fieldString.Append(currentPiece.ToString());
                 }
-                Debug.Log(fieldString.ToString());
+                fieldString.Append(", ");
             }
+            fieldString.Append("\n\r");
         }
+        Debug.Log(fieldString.ToString());
     }
 
+    #region Initial creation of pieces
     private void SpawnPawns()
     {
         for (int i = 0; i < 8; ++i)
@@ -139,23 +143,17 @@ public class Board : MonoBehaviour
         PlacePieceOnField(blackLeftRook,    0, 7);
         PlacePieceOnField(blackRightRook,   7, 7);
     }
-
-    public void Move(int fromRank, int fromFile, int toRank, int toFile)
-    {
-        int[] from = { fromRank, fromFile };
-        int[] to = { toRank, toFile };
-        Move(from, to);
-    }
+    #endregion
 
     public void Move(int[] from, int[] to)
     {
         if(!IsValidField(from))
         {
-            throw new InvalidFieldException(from, $"({from[0]}, {from[1]}) is not a valid (from) field.");
+            throw new InvalidFieldException($"({from[0]}, {from[1]}) is not a valid (from) field.", from);
         }
         if (!IsValidField(to))
         {
-            throw new InvalidFieldException(to, $"({to[0]}, {to[1]}) is not a valid (to) field.");
+            throw new InvalidFieldException($"({to[0]}, {to[1]}) is not a valid (to) field.", to);
         }
 
         Piece fromPiece = Pieces[from[0], from[1]];
@@ -163,12 +161,12 @@ public class Board : MonoBehaviour
 
         if(fromPiece == null)
         {
-            throw new ThereIsNoPieceException(from, $"There is no piece on {FieldToString(from[0], from[1])}.");
+            throw new ThereIsNoPieceException($"There is no piece on {FieldToString(from)}.", from);
         }
 
         if(toPiece != null)
         {
-            throw new FieldAlreadyOccupiedException(fromPiece, to, $"There is a piece on {FieldToString(to[0], to[1])} ({toPiece.ToString()})");
+            throw new FieldAlreadyOccupiedException($"There is a piece on {FieldToString(to)} ({toPiece.ToString()})", fromPiece, to);
         }
 
         PlacePieceOnField(fromPiece, to);
@@ -179,7 +177,7 @@ public class Board : MonoBehaviour
     {
         if (!IsValidField(field))
         {
-            return null;
+            throw new InvalidFieldException($"Failed to get a piece.", field);
         }
         return Pieces[field[0], field[1]];
     }
@@ -198,11 +196,11 @@ public class Board : MonoBehaviour
         }
         if (!IsValidField(field))
         {
-            throw new InvalidFieldException(field, $"Failed to place piece due invalid field.");
+            throw new InvalidFieldException("Failed to place piece due invalid field.", field);
         }
         if(Pieces[field[0], field[1]] != null)
         {
-            throw new FieldAlreadyOccupiedException(piece, field, $"Cannot place {piece.ToString()} on {FieldToString(field)} because the field is occupied by a {Pieces[field[0], field[1]].ToString()}");
+            throw new FieldAlreadyOccupiedException($"Cannot place {piece.ToString()} on {FieldToString(field)} because the field is occupied by a {Pieces[field[0], field[1]].ToString()}", piece, field);
         }
 
         // Calculate the position of the piece if the board is at origin with no rotation
@@ -220,7 +218,7 @@ public class Board : MonoBehaviour
     {
         if (!IsValidField(field))
         {
-            throw new InvalidFieldException(field, $"Failed to clear field because {field.ToString()} is an invalid field.");
+            throw new InvalidFieldException($"Failed to clear field due to invalid field.", field);
         }
 
         Pieces[field[0], field[1]] = null;
@@ -228,7 +226,7 @@ public class Board : MonoBehaviour
 
     public static bool IsValidField(int rank, int file)
     {
-        int[] field = { rank, file};
+        int[] field = { rank, file };
         return IsValidField(field);
     }
 
@@ -241,7 +239,7 @@ public class Board : MonoBehaviour
         return field[0] >= 0 && field[0] <= 7 && field[1] >= 0 && field[1] <= 7;
     }
 
-    public static string FieldToString(int rank, int file)
+    private static string FieldToString(int rank, int file)
     {
         int[] field = { rank, file };
         return FieldToString(field);
@@ -253,7 +251,14 @@ public class Board : MonoBehaviour
 
         if (!IsValidField(field))
         {
-            throw new InvalidFieldException(field, $"({field[0]}, {field[1]}) is not a valid field.");
+            fieldString.Append("(");
+            foreach(int element in field)
+            {
+                fieldString.Append($"{element}, ");
+            }
+            fieldString.Remove(fieldString.Length - 3, 1); // Remove ending ", "
+            fieldString.Append(")");
+            throw new FailedToConvertFieldException($"Failed to convert field {fieldString.ToString()} to string.", field);
         }
 
         fieldString.Append((char)(65 + field[0]));
