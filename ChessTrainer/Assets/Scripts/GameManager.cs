@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
@@ -6,9 +7,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     #region Declaration
-    public Board     board;
-    public Game      currentGame;
-    public UIManager uiManager;
+    public Board        board;
+    public List<Board>  boards;
+    public Game         currentGame;
+    public UIManager    uiManager;
 
     public Vector3 startPositionBoard;
     public Vector3 startRotationBoard;
@@ -17,12 +19,14 @@ public class GameManager : MonoBehaviour
 
     private int currentGameIndex;
     private int currentMoveIndex;
+    private int currentBoardIndex;
     #endregion
 
     #region Setup
     void Start()
     {
         Library.InitialiseLibrary();
+        currentBoardIndex = boards.IndexOf(board);
         try
         {
             ChangeGame(0);
@@ -82,6 +86,47 @@ public class GameManager : MonoBehaviour
 
         uiManager.GamesHasChanged(currentGame.name);
         Debug.Log($"Changed game to {currentGame.name}");
+    }
+
+    public void ChangeThemeOfBoard()
+    {
+        int moveIndexBeforeThemeChange = currentMoveIndex;
+        if(currentBoardIndex == boards.Count - 1)
+        {
+            currentBoardIndex = 0;
+        }
+        else
+        {
+            ++currentBoardIndex;
+        }
+        Board oldBoard = board;
+        board = Instantiate(boards[currentBoardIndex]);
+        board.transform.position = oldBoard.transform.position;
+        board.transform.rotation = oldBoard.transform.rotation;
+        board.transform.localScale = oldBoard.transform.localScale;
+        board.Reset();
+        uiManager.InitialiseUI(Library.GetGamesAsList().Select(game => game.name).ToList());
+        currentMoveIndex = 0;
+        try
+        {
+            for (int i = 0; i < moveIndexBeforeThemeChange; ++i)
+            {
+                DoNextMove();
+            }
+            Destroy(oldBoard.gameObject);
+        }
+        catch (Exception exception)
+        {
+            currentMoveIndex = 0;
+            Destroy(board.gameObject);
+            board = oldBoard;
+            board.Reset();
+            for (int i = 0; i < moveIndexBeforeThemeChange; ++i)
+            {
+                DoNextMove();
+            }
+            Debug.LogError($"Failed to change theme due failure in move execution: {exception}");
+        }
     }
 
     #region Move execution

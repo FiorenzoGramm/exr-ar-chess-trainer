@@ -8,15 +8,22 @@ public class UIManager : MonoBehaviour
     public GameSelector gameSelectionMenu;
     public TextMeshPro gameInfoName;
     public GameHistoryController gameHistoryController;
-    public List<Material> Themes;
+    public List<Material> Designs;
     public Material MaterialToReplace;
     public Material CurrentTheme;
     public MeshRenderer Backplate;
-    private int CurrentThemeIndex;
+    private int CurrentDesignIndex;
+
+    public void Reset()
+    {
+        gameSelectionMenu.Reset();
+        gameHistoryController.Reset();
+    }
     public void InitialiseUI(List<string> games)
     {
+        Reset();
         gameSelectionMenu.LoadGames(games);
-        CurrentThemeIndex = Themes.IndexOf(CurrentTheme);
+        CurrentDesignIndex = Designs.IndexOf(CurrentTheme);
         gameInfoName.text = gameMangager.currentGame.name;
     }
 
@@ -41,17 +48,15 @@ public class UIManager : MonoBehaviour
         gameHistoryController.RemoveMove();
     }
 
-    public void ChangeTheme()
+    public void ChangeDesign()
     {
-        Debug.LogWarning("Triggered");
-
-        if (CurrentThemeIndex == Themes.Count - 1)
+        if (CurrentDesignIndex == Designs.Count - 1)
         {
-            CurrentThemeIndex = 0;
+            CurrentDesignIndex = 0;
         }
         else
         {
-            ++CurrentThemeIndex;
+            ++CurrentDesignIndex;
         }
 
         Renderer[] allMeshes = GetComponentsInChildren<Renderer>();
@@ -60,8 +65,7 @@ public class UIManager : MonoBehaviour
         {
             if (CurrentTheme.Equals(currentMesh.sharedMaterials[0]))
             {
-                Debug.LogWarning(currentMesh.name);
-                currentMesh.material = Themes[CurrentThemeIndex];
+                currentMesh.material = Designs[CurrentDesignIndex];
             }
         }
 
@@ -71,11 +75,15 @@ public class UIManager : MonoBehaviour
         {
             if (CurrentTheme.Equals(currentMesh.sharedMaterials[0]))
             {
-                Debug.LogWarning(currentMesh.name);
-                currentMesh.material = Themes[CurrentThemeIndex];
+                currentMesh.material = Designs[CurrentDesignIndex];
             }
         }
 
-        CurrentTheme = Themes[CurrentThemeIndex];
+        CurrentTheme = Designs[CurrentDesignIndex];
+    }
+
+    public void ChangeThemeOfBoard()
+    {
+        gameMangager.ChangeThemeOfBoard();
     }
 }

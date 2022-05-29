@@ -20,7 +20,7 @@ public class Board : MonoBehaviour
 
     private Piece[,] Pieces = new Piece[8,8];
 
-    public const float FIELD_SIZE = 0.06f / 100f; // Length of a square in units
+    public float FIELD_SIZE = 0.06f / 100f; // Length of a square in units
 
     public void Reset()
     {

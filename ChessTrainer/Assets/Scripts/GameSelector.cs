@@ -9,6 +9,11 @@ public class GameSelector : MonoBehaviour
     public GridLayoutGroup contentObject;
     public Vector3 spawnOnEnableOffset;
 
+    public void Reset()
+    {
+        DeleteGamesFromSelectionGrid();
+    }
+
     public void LoadGames(List<string> nameOfGames)
     {
         DeleteGamesFromSelectionGrid();
@@ -27,9 +32,9 @@ public class GameSelector : MonoBehaviour
 
     public void DeleteGamesFromSelectionGrid()
     {
-        foreach (GameSelectorTile currentTile in contentObject.transform)
+        foreach (Transform currentTile in contentObject.transform)
         {
-            Destroy(currentTile);
+            Destroy(currentTile.gameObject);
         }
     }
 
