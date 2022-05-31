@@ -157,6 +157,12 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: -3494772731613101028, guid: 44a097cfa7a744f40b84adfe9e12c943, type: 2}
   - {fileID: -948622306361809122, guid: 62d38147a159f0e42a84edf90553e075, type: 2}
   - {fileID: 0}
@@ -651,7 +657,19 @@ PlayerSettings:
   metroCertificateIssuer: GG_EZ
   metroCertificateNotAfter: 001e0cf1987fd901
   metroApplicationDescription: Template_3D
-  wsaImages: {}
+  wsaImages:
+    65636: Assets/Resources/ARChessTrainerLogo/IconRounded50x50.png
+    131272: Assets/Resources/ARChessTrainerLogo/Icon1240x600.png
+    2031640: 
+    2031716: 
+    2031816: 
+    2097252: 
+    2097352: 
+    2162788: 
+    2162888: 
+    2228324: 
+    2293860: 
+    2293960: 
   metroTileShortName: ChessTrainer
   metroTileShowName: 0
   metroMediumTileShowName: 0
