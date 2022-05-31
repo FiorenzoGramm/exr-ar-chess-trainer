@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2108914120613159137}
   - component: {fileID: 5117125399424283218}
   m_Layer: 0
-  m_Name: TinyBoard
+  m_Name: TinyChess
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

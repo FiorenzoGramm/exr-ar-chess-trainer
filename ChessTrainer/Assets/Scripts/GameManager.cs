@@ -19,14 +19,12 @@ public class GameManager : MonoBehaviour
 
     private int currentGameIndex;
     private int currentMoveIndex;
-    private int currentBoardIndex;
     #endregion
 
     #region Setup
     void Start()
     {
         Library.InitialiseLibrary();
-        currentBoardIndex = boards.IndexOf(board);
         try
         {
             ChangeGame(0);
@@ -38,9 +36,15 @@ public class GameManager : MonoBehaviour
         }
         finally
         {
-            uiManager.InitialiseUI(Library.GetGamesAsList().Select(game => game.name).ToList());
+            InitialiseUI();
             PlaceBoardAndUI(); // Prevents the spawning of the board and UI inside the player
         } 
+    }
+
+    private void InitialiseUI()
+    {
+        uiManager.InitialiseUI(Library.GetGamesAsList().Select(game => game.name).ToList(),
+                boards.Select(board => board.name).ToList());
     }
 
     private void PlaceBoardAndUI()
@@ -88,24 +92,16 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Changed game to {currentGame.name}");
     }
 
-    public void ChangeThemeOfBoard()
+    public void ChangeTheme(int index)
     {
         int moveIndexBeforeThemeChange = currentMoveIndex;
-        if(currentBoardIndex == boards.Count - 1)
-        {
-            currentBoardIndex = 0;
-        }
-        else
-        {
-            ++currentBoardIndex;
-        }
         Board oldBoard = board;
-        board = Instantiate(boards[currentBoardIndex]);
+        board = Instantiate(boards[index]);
         board.transform.position = oldBoard.transform.position;
         board.transform.rotation = oldBoard.transform.rotation;
         board.transform.localScale = oldBoard.transform.localScale;
         board.Reset();
-        uiManager.InitialiseUI(Library.GetGamesAsList().Select(game => game.name).ToList());
+        InitialiseUI();
         currentMoveIndex = 0;
         try
         {
