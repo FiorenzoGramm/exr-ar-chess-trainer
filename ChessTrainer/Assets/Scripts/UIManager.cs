@@ -43,21 +43,17 @@ public class UIManager : MonoBehaviour
         gameHistoryController.Reset();
     }
 
-    public void InitialiseUI(List<string> games, List<string> themes)
+    public void InitialiseUI(string currentGameName, List<string> games, List<string> themes)
     {
         Reset();
         ResetSelectionMenu(ref gameSelection,   "Openings", games, directoryOfGamesThumbnail);
         ResetSelectionMenu(ref designSelection, "Designs",  designs.Select(material => material.name).ToList(), directoryOfDesignThumbnail);
         ResetSelectionMenu(ref themeSelection,  "Themes",   themes, directoryOfThemeThumbnail);
-        gameInfoName.text = gameMangager.currentGame.name;
+        gameInfoName.text = currentGameName;
     }
 
     private void ResetSelectionMenu(ref SelectionMenu menu, string title, List<string> namesOfElements, string directory)
     {
-        foreach(string s in namesOfElements)
-        {
-            Debug.Log(s);
-        }
         if (menu != null)
         {
             Destroy(menu.gameObject);

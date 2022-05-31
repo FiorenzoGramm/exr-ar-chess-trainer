@@ -1,15 +1,16 @@
 using System.Text;
+using UnityEngine;
 
 public class Move
 {
-    private char    fromPiece;
-    private int[]   fromField;
-    private char    toPiece;
-    private int[]   toField;
-    private char    promotion;
-    private bool    check;
-    private bool    mate;
-    private string  shortAlgebraicNotation;
+    private char        fromPiece;
+    private Vector2Int  fromField;
+    private char        toPiece;
+    private Vector2Int  toField;
+    private char        promotion;
+    private bool        check;
+    private bool        mate;
+    private string      shortAlgebraicNotation;
 
     #region Object construction
     private Move() 
@@ -169,13 +170,9 @@ public class Move
         }
     }
 
-    private static int[] StringToField(string fieldString) 
+    private static Vector2Int StringToField(string fieldString) 
     {
-        int[] field = new int[2];
-        field[0] = (char)fieldString[0] - 97;
-        field[1] = (char)fieldString[1] - 49;
-
-        return field;
+        return new Vector2Int((char)fieldString[0] - 97, (char)fieldString[1] - 49);
     }
 
     public bool HasCapturedAPiece()
@@ -218,7 +215,7 @@ public class Move
         return GetFromField()[1];
     }
 
-    public int[] GetFromField()
+    public Vector2Int GetFromField()
     {
         return fromField;
     }
@@ -233,7 +230,7 @@ public class Move
         return GetToField()[1];
     }
 
-    public int[] GetToField()
+    public Vector2Int GetToField()
     {
         return toField;
     }

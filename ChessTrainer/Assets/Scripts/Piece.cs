@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Piece : MonoBehaviour
 {
-    public string      type;
-    public string      symbol;
-    public bool        isWhite;
+    public string   type;
+    public char     symbol;
+    public bool     isWhite;
 
     override public string ToString()
     {
