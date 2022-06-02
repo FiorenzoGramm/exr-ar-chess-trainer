@@ -8,6 +8,7 @@ TagManager:
   - Undefined
   - Piece
   - Board
+  - Field
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,4 @@
-using System.Text;
+using System;
 using UnityEngine;
 
 public class Move
@@ -14,7 +14,16 @@ public class Move
 
     #region Object construction
     private Move() 
-    { }
+    {
+        fromPiece = '\0';
+        fromField = new Vector2Int(-1, -1);
+        toPiece = '\0';
+        toField = new Vector2Int(-1, -1);
+        promotion = '\0';
+        check = false;
+        mate = false;
+        shortAlgebraicNotation = "NULL_MOVE";
+    }
 
     public static Move CreateSimplePawnMove(string fromField, string toField)
     {
@@ -205,29 +214,9 @@ public class Move
         return promotion;
     }
 
-    public int GetFromRank()
-    {
-        return GetFromField()[0];
-    }
-
-    public int GetFromFile()
-    {
-        return GetFromField()[1];
-    }
-
     public Vector2Int GetFromField()
     {
         return fromField;
-    }
-
-    public int GetToRank()
-    {
-        return GetToField()[0];
-    }
-
-    public int GetToFile()
-    {
-        return GetToField()[1];
     }
 
     public Vector2Int GetToField()

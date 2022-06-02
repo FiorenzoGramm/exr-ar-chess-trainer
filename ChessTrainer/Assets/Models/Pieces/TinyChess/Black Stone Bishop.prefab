@@ -258,7 +258,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4964487031023218}
-  - component: {fileID: -6304233338448800304}
   m_Layer: 0
   m_Name: Black Stone Bishop
   m_TagString: Model
@@ -289,21 +288,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &-6304233338448800304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1239270685352430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a111399e6f06bf48b9c0c903a6921b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: Bishop
-  symbol: 66
-  isWhite: 0
 --- !u!1 &1474080326116580
 GameObject:
   m_ObjectHideFlags: 0

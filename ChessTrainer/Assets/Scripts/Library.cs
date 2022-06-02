@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 public static class Library
 {
@@ -115,9 +116,9 @@ public static class Library
         return games[index];
     }
 
-    public static List<Game> GetGamesAsList()
+    public static List<string> GetListOfGameNames()
     {
-        return games;
+        return games.Select(game => game.name).ToList();
     }
 
     public static int GamesCount()

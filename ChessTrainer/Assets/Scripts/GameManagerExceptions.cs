@@ -76,15 +76,17 @@ public class FailedToMoveRookForCastleException : UnityException
 
 public class FailedToPlacePieceException : UnityException
 {
-    public Piece Piece { get; }
+    public bool IsWhite{ get; }
+    public char Symbol { get; }
     public Vector2Int Field { get; }
 
-    public FailedToPlacePieceException(Piece piece, Vector2Int field, Exception innerException = null) : this("", piece, field, innerException)
+    public FailedToPlacePieceException(bool isWhite, char symbol, Vector2Int field, Exception innerException = null) : this("", isWhite, symbol, field, innerException)
     { }
 
-    public FailedToPlacePieceException(string message, Piece piece, Vector2Int field, Exception innerException = null) : base(message, innerException)
+    public FailedToPlacePieceException(string message, bool isWhite, char symbol, Vector2Int field, Exception innerException = null) : base(message, innerException)
     {
-        Piece = piece;
+        IsWhite = isWhite;
+        Symbol = symbol;
         Field = field;
     }
 }

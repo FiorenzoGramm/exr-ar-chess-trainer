@@ -7,14 +7,6 @@ public class Game
     public string       name;
     public List<Move>   moves;
 
-    public Game() 
-        : this(new List<Move>())
-    {}
-
-    public Game(List<Move> moves) 
-        : this("Untitled opening", moves)
-    {}
-
     public Game(string name) 
         : this(name, new List<Move>())
     {}
@@ -32,7 +24,7 @@ public class Game
 
     public Move GetMove(int move)
     {
-        if(move < GetMoveCount())
+        if(move >= 0 && move < GetMoveCount())
         {
             return moves[move];
         }

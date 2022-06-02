@@ -3,20 +3,20 @@ using UnityEngine;
 public class ChessSet : MonoBehaviour
 {
     #region Prefabs
-    public GameObject Board;
-    // White pieces (prefabs)
-    public GameObject WhitePawnPrefab;
-    public GameObject WhiteKingPrefab;
-    public GameObject WhiteQueenPrefab;
-    public GameObject WhiteBishopPrefab;
-    public GameObject WhiteKnightPrefab;
-    public GameObject WhiteRookPrefab;
-    // Black pieces (prefabs)
-    public GameObject BlackPawnPrefab;
-    public GameObject BlackKingPrefab;
-    public GameObject BlackQueenPrefab;
-    public GameObject BlackBishopPrefab;
-    public GameObject BlackKnightPrefab;
-    public GameObject BlackRookPrefab;
+    public GameObject board;
+   
+    public GameObject whitePawnModel;
+    public GameObject whiteKingModel;
+    public GameObject whiteQueenModel;
+    public GameObject whiteBishopModel;
+    public GameObject whiteKnightModel;
+    public GameObject whiteRookModel;
+
+    public GameObject blackPawnModel;
+    public GameObject blackKingModel;
+    public GameObject blackQueenModel;
+    public GameObject blackBishopModel;
+    public GameObject blackKnightModel;
+    public GameObject blackRookModel;
     #endregion
 }

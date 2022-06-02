@@ -92,7 +92,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4880704381491394}
-  - component: {fileID: -3213649134445652658}
   m_Layer: 0
   m_Name: White Stone Pawn
   m_TagString: Model
@@ -122,21 +121,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3213649134445652658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1109215888586288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a111399e6f06bf48b9c0c903a6921b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: Pawn
-  symbol: 80
-  isWhite: 1
 --- !u!1 &1304837620327310
 GameObject:
   m_ObjectHideFlags: 0

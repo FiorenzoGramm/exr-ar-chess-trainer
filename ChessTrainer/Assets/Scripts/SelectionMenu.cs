@@ -23,16 +23,16 @@ public class SelectionMenu : MonoBehaviour
         uiManager = manager;
         titleText.text = title;
         LoadElements(namesOfElements, directoryOfThumbnails);
+        gameObject.SetActive(false);
     }
 
     public void OnEnable()
     {
-        if(uiManager != null)
+        if(uiManager != null) // If prefab is enabled on instatiation, uiManager is null
         {
-            // On instatiation it is null
             transform.position = uiManager.transform.position;
+            transform.Translate(spawnOnEnableOffset, Space.Self);
         }
-        transform.Translate(spawnOnEnableOffset, Space.Self);
     }
 
     private void LoadElements(List<string> names, string directoryOfThumbnails)

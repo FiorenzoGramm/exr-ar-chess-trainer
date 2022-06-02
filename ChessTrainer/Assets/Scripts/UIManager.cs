@@ -62,7 +62,6 @@ public class UIManager : MonoBehaviour
         menu = Instantiate(selectionMenuPrefab, transform);
         menu.name = title;
         menu.Initialise(this, title, namesOfElements, directory);
-        menu.gameObject.SetActive(false);
     }
 
     public void OnClickOnTile(SelectionMenu menu, int index)
@@ -84,7 +83,7 @@ public class UIManager : MonoBehaviour
     private void ChangeDesign(int index)
     {
         Material newDesign = designs[index];
-        UpdateDesign(this.transform, newDesign);
+        UpdateDesign(transform, newDesign);
         UpdateDesign(gameSelection.transform, newDesign);
         UpdateDesign(designSelection.transform, newDesign);
         UpdateDesign(themeSelection.transform, newDesign);
@@ -93,11 +92,13 @@ public class UIManager : MonoBehaviour
 
     private void UpdateDesign(Transform objTransform, Material newDesign)
     {
-        Renderer[] allMeshes = objTransform.GetComponentsInChildren<Renderer>();
+        MeshRenderer[] allMeshes = objTransform.GetComponentsInChildren<MeshRenderer>(true);
 
-        foreach (Renderer currentMesh in allMeshes)
+        foreach (MeshRenderer currentMesh in allMeshes)
         {
-            if (currentMesh.sharedMaterials[0].Equals(currentDesign))
+            if (currentMesh != null &&
+                currentMesh.sharedMaterials[0] != null &&
+                currentMesh.sharedMaterials[0].Equals(currentDesign))
             {
                 currentMesh.material = newDesign;
             }

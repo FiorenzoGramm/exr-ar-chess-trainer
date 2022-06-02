@@ -3,15 +3,15 @@ using UnityEngine;
 
 public class MoveHistoryEntry : MonoBehaviour
 {
-    public TextMeshProUGUI m_NumberText;
-    public TextMeshProUGUI m_WhitesMoveText;
-    public TextMeshProUGUI m_BlacksMoveText;
+    public TextMeshProUGUI numberText;
+    public TextMeshProUGUI whitesMoveText;
+    public TextMeshProUGUI blacksMoveText;
  
     public void RemoveMove()
     {
-        if(!m_BlacksMoveText.text.Equals(""))
+        if(!blacksMoveText.text.Equals(""))
         {
-            m_BlacksMoveText.text = "";
+            blacksMoveText.text = "";
         }
         else
         {   
@@ -21,19 +21,19 @@ public class MoveHistoryEntry : MonoBehaviour
 
     public void AddBlacksMove(string move)
     {
-        m_BlacksMoveText.text = move;
+        blacksMoveText.text = move;
     }
 
     public bool IsEmtpyEntry()
     {
-        return m_NumberText.text.Equals("");
+        return numberText.text.Equals("");
     }
 
     public void InitialiseEntry(int index, string move)
     {
-        m_NumberText.text = (index / 2.0f + 1).ToString() + ".";
-        m_WhitesMoveText.text = move;
-        m_BlacksMoveText.text = "";
-        gameObject.name = m_NumberText.text;
+        numberText.text = (index / 2.0f + 1).ToString() + ".";
+        whitesMoveText.text = move;
+        blacksMoveText.text = "";
+        gameObject.name = numberText.text;
     }
 }

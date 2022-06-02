@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using UnityEngine;
 
@@ -27,24 +25,19 @@ public class GameManager : MonoBehaviour
         try
         {
             ChangeGame(0);
-        }
-        catch (IndexOutOfRangeException exception)
-        {
-            board.Reset();
-            Debug.LogError($"Failed to load game: {exception}");
-        }
-        finally
-        {
             InitialiseUI();
             PlaceBoardAndUI(); // Prevents the spawning of the board and UI inside the player
-        } 
+        }
+        catch (Exception exception)
+        {
+            Debug.LogError($"Failed to load game: {exception}");
+            board.Reset();
+        }
     }
 
     private void InitialiseUI()
     {
-        uiManager.InitialiseUI(currentGame.name, 
-            Library.GetGamesAsList().Select(game => game.name).ToList(), 
-            board.GetListOfThemeNames());
+        uiManager.InitialiseUI(currentGame.name, Library.GetListOfGameNames(), board.GetListOfThemeNames());
     }
 
     private void PlaceBoardAndUI()
@@ -95,18 +88,9 @@ public class GameManager : MonoBehaviour
     #region Move execution
     public void DoNextMove()
     {
-        Move nextMove;
+        Move nextMove = currentGame.GetMove(currentMoveIndex);
 
-        try
-        {
-            nextMove = currentGame.GetMove(currentMoveIndex);
-        }
-        catch (Exception exception)
-        {
-            throw exception;
-        }
-
-        if(nextMove == null)
+        if (nextMove == null)
         {
             Debug.Log("No moves left.");
             return;
@@ -129,23 +113,12 @@ public class GameManager : MonoBehaviour
     {
         Vector2Int from = move.GetFromField();
         Vector2Int to = move.GetToField();
-        Piece toPiece = null;
 
         try
         {
-            toPiece = TryToGetPiece(to);
             TryToClearField(to);
             TryToMovePiece(from, to);
             TryMoveRookForCastle(move);
-
-            if (toPiece != null)
-            {
-                Destroy(toPiece.gameObject);
-            }
-        }
-        catch (InvalidFieldException exception)
-        {
-            throw new MoveExecutionFailureException("Failed to execute move due to getting the piece.", move, exception);
         }
         catch (FailedToClearFieldException exception)
         {
@@ -153,26 +126,14 @@ public class GameManager : MonoBehaviour
         }
         catch (FailedToMovePieceException exception)
         {
-            board.PlacePieceOnField(toPiece, to);
+            TryToPlacePiece(!IsWhiteMove(), move.GetFromPiece(), to);
             throw new MoveExecutionFailureException("Failed to execute move due to failure in moving the piece.", move, exception);
         }
         catch (FailedToMoveRookForCastleException exception)
         {
-            board.Move(to, from);
-            board.PlacePieceOnField(toPiece, to);
+            board.MoveByPosition(to, from);
+            TryToPlacePiece(!IsWhiteMove(), move.GetFromPiece(), to);
             throw new MoveExecutionFailureException("Failed to execute move due to failure moving the rook for castle.", move, exception);
-        }
-    }
-
-    private Piece TryToGetPiece(Vector2Int to)
-    {
-        try
-        {
-            return board.GetPiece(to);
-        }
-        catch(InvalidFieldException exception)
-        {
-            throw new FailedToGetPieceException($"Failed to get the piece.", to, exception);
         }
     }
 
@@ -180,7 +141,7 @@ public class GameManager : MonoBehaviour
     {
         try
         {
-            board.Move(from, to);
+            board.MoveByPosition(from, to);
         }
         catch (Exception exception)
         {
@@ -192,7 +153,7 @@ public class GameManager : MonoBehaviour
     {
         try
         {
-            board.ClearFieldWithoutDestroying(to);
+            board.ClearFieldWithDestroying(to);
         }
         catch (Exception exception)
         {
@@ -213,22 +174,22 @@ public class GameManager : MonoBehaviour
         if (IsWhiteMove() && move.IsShortCastle())
         {
             from = new Vector2Int(7, 0);
-            to = new Vector2Int(3, 0);
+            to   = new Vector2Int(3, 0);
         }
         else if (IsWhiteMove() && move.IsLongCastle())
         {
             from = new Vector2Int(0, 0);
-            to = new Vector2Int(3, 0);
+            to   = new Vector2Int(3, 0);
         }
         else if (!IsWhiteMove() && move.IsShortCastle())
         {
             from = new Vector2Int(7, 7);
-            to = new Vector2Int(5, 7);
+            to   = new Vector2Int(5, 7);
         }
         else if (!IsWhiteMove() && move.IsLongCastle())
         {
             from = new Vector2Int(0, 7);
-            to = new Vector2Int(3, 7);
+            to   = new Vector2Int(3, 7);
         }
         try
         {
@@ -268,52 +229,45 @@ public class GameManager : MonoBehaviour
     private void ReverseMove(Move move)
     {
         Vector2Int from = move.GetFromField();
-        Vector2Int to = move.GetToField();
-        Piece toPiece = CreateCapturedPieceFromMove(move);
+        Vector2Int to   = move.GetToField();
 
         try
         {
             TryToMovePiece(to, from);
-            TryToPlacePiece(toPiece, to);
+            TryToPlacePiece(IsWhiteMove(), move.GetToPiece(), to);
             TryMoveRookForCastleBack(move);
         }
         catch(FailedToMovePieceException exception)
         {
-            if (toPiece != null)
-            {
-                Destroy(toPiece.gameObject);
-            }
             throw new FailedToUndoMoveException("Failed undo a move due a failure in moving the piece.", move, exception);
         }
         catch (FailedToPlacePieceException exception)
         {
-            if (toPiece != null)
-            {
-                Destroy(toPiece.gameObject);
-            }
-            board.Move(from, to);
+            board.ClearFieldWithDestroying(to);
+            board.MoveByPosition(from, to);
             throw new FailedToUndoMoveException("Failed undo a move due a failure in placing the captured piece back.", move, exception);
         }
         catch (FailedToMoveRookForCastleException exception)
         {
-            if (toPiece != null)
-            {
-                Destroy(toPiece.gameObject);
-            }
-            board.Move(from, to);
+            board.ClearFieldWithDestroying(to);
+            board.MoveByPosition(from, to);
             throw new FailedToUndoMoveException("Failed undo a move due a failure in the rook for reversing the castle.", move, exception);
         }
     }
 
-    private void TryToPlacePiece(Piece toPiece, Vector2Int to)
+    private void TryToPlacePiece(bool isWhite, char symbol, Vector2Int to)
     {
+        if (symbol == ' '){
+            return; // No capture
+        }
+
         try
         {
-            board.PlacePieceOnField(toPiece, to);
+            board.CreatePieceOnPosition(isWhite, symbol, to);
         }
         catch(Exception exception)
         {
-            throw new FailedToPlacePieceException("Failed to place the piece.", toPiece, to, exception);
+            throw new FailedToPlacePieceException("Failed to place the piece.", isWhite, symbol, to, exception);
         }
     }
 
@@ -325,28 +279,28 @@ public class GameManager : MonoBehaviour
         }
 
         Vector2Int from = new Vector2Int();
-        Vector2Int to = new Vector2Int();
+        Vector2Int to   = new Vector2Int();
 
         // The IsWhiteMove must be negated, because it returns the current moves color
         if (!IsWhiteMove() && move.IsShortCastle())
         {
             from = new Vector2Int(3, 0);
-            to = new Vector2Int(7, 0);
+            to   = new Vector2Int(7, 0);
         }
         else if (!IsWhiteMove() && move.IsLongCastle())
         {
             from = new Vector2Int(3, 0);
-            to = new Vector2Int(0, 0);
+            to   = new Vector2Int(0, 0);
         }
         else if (IsWhiteMove() && move.IsShortCastle())
         {
             from = new Vector2Int(5, 7);
-            to = new Vector2Int(7, 7);
+            to   = new Vector2Int(7, 7);
         }
         else if (IsWhiteMove() && move.IsLongCastle())
         {
-            from = new Vector2Int(5, 7);
-            to = new Vector2Int(7, 7);
+            from = new Vector2Int(3, 7);
+            to   = new Vector2Int(0, 7);
         }
 
         try
@@ -359,6 +313,41 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
+
+    public void TryNewMove(Piece piece, Field fromField, Field toField)
+    {
+        char fromPiece  = piece.symbol;
+        Vector2Int from = fromField.GetPosition();
+        Vector2Int to   = toField.GetPosition();
+
+        if(IsNextMove(fromPiece, from, to))
+        {
+            DoNextMove();
+        }
+        else if(IsPreviousMove(fromPiece, from, to))
+        {
+            UndoMove();
+        }
+    }
+
+    private bool IsPreviousMove(char fromPiece, Vector2Int from, Vector2Int to)
+    {
+        Move previousMove = currentGame.GetMove(currentMoveIndex - 1);
+
+        return previousMove != null &&
+               fromPiece.Equals(previousMove.GetFromPiece()) &&
+               from.Equals(previousMove.GetToField()) &&
+               to.Equals(previousMove.GetFromField());
+    }
+
+    private bool IsNextMove(char fromPiece, Vector2Int from, Vector2Int to)
+    {
+        Move currentMove = currentGame.GetMove(currentMoveIndex);
+        return currentMove != null &&
+               fromPiece.Equals(currentMove.GetFromPiece()) &&
+               from.Equals(currentMove.GetFromField()) &&
+               to.Equals(currentMove.GetToField());
+    }
 
     public void ChangeTheme(int index)
     {
@@ -376,44 +365,6 @@ public class GameManager : MonoBehaviour
             message.Append(innerException);
         }
         return message.ToString();
-    }
-
-    private Piece CreateCapturedPieceFromMove(Move move)
-    {
-        Piece capturedPiece;
-        Transform boardTransform = board.GetComponent<Transform>();
-        
-        if (IsWhiteMove())
-        {
-            #region Instatiate white prefab
-            capturedPiece = move.GetToPiece() switch 
-            {
-                'K' => Instantiate(board.whiteKingPrefab,   boardTransform),
-                'Q' => Instantiate(board.whiteQueenPrefab,  boardTransform),
-                'R' => Instantiate(board.whiteRookPrefab,   boardTransform),
-                'B' => Instantiate(board.whiteBishopPrefab, boardTransform),
-                'N' => Instantiate(board.whiteKnightPrefab, boardTransform),
-                'P' => Instantiate(board.whitePawnPrefab,   boardTransform),
-                _   => null
-            };
-            #endregion
-        }
-        else
-        {
-            #region Instatiate black prefab
-            capturedPiece = move.GetToPiece() switch
-            {
-                'K' => Instantiate(board.blackKingPrefab,   boardTransform),
-                'Q' => Instantiate(board.blackQueenPrefab,  boardTransform),
-                'R' => Instantiate(board.blackRookPrefab,   boardTransform),
-                'B' => Instantiate(board.blackBishopPrefab, boardTransform),
-                'N' => Instantiate(board.blackKnightPrefab, boardTransform),
-                'P' => Instantiate(board.blackPawnPrefab,   boardTransform),
-                _   => null
-            };
-            #endregion
-        }
-        return capturedPiece;
     }
 
     private bool IsWhiteMove()
