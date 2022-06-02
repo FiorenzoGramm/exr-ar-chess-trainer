@@ -105,7 +105,6 @@ public class Piece : MonoBehaviour
         isCurrentlyGrabbed = true;
         preGrabPosition = transform.localPosition;
         preGrabRotation = transform.localRotation;
-        boardController.DisablePieceMoveable();
     }
 
     public void OnRealease()
@@ -113,7 +112,6 @@ public class Piece : MonoBehaviour
         isCurrentlyGrabbed = false;
         transform.localPosition = preGrabPosition;
         transform.localRotation = preGrabRotation;
-        boardController.EnablePieceMoveable();
         if (lastTouchedField != null)
         {
             lastTouchedField.DisableVisualizer();

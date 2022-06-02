@@ -414,27 +414,6 @@ public class BoardController : MonoBehaviour
         }
     }
 
-    public void DisableBoardMoveable()
-    {
-        board.DisableMoveable();
-    }
-
-    public void EnableBoardMoveable()
-    {
-        board.EnableMoveable();
-    }
-
-    public void DisablePieceMoveable()
-    {
-        board.DisableMoveableOnPieces();
-    }
-
-    public void EnablePieceMoveable()
-    {
-        board.EnableMoveableOnPieces();
-    }
-
-
     public void PrintField()
     {
         StringBuilder fieldString = new StringBuilder();
