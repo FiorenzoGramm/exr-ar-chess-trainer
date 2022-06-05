@@ -138,9 +138,13 @@ public class BoardController : MonoBehaviour
 
     private void SpawnPieceOn(Piece prefab, int rank, int file)
     {
-        Piece pawn = Instantiate(prefab, transform);
-        pawn.boardController = this;
-        PlacePieceOnPosition(pawn, new Vector2Int(rank, file));
+        Piece piece = Instantiate(prefab, transform);
+        piece.boardController = this;
+        if (!piece.isWhite)
+        {
+            piece.transform.Rotate(Vector3.up, 180f, Space.Self);
+        }
+        PlacePieceOnPosition(piece, new Vector2Int(rank, file));
     }
     #endregion
 
@@ -288,7 +292,10 @@ public class BoardController : MonoBehaviour
         // Apply parent transformation so that the piece could be placed with world coordinates
         newPosition = transform.rotation * newPosition;
         newPosition = transform.position + newPosition;
-        piece.transform.position = newPosition;
+        //piece.transform.position = newPosition;
+        
+
+        piece.GoToPosition(newPosition);
         board.fields[position.x, position.y].piece = piece;
     }
 
@@ -385,6 +392,7 @@ public class BoardController : MonoBehaviour
             };
             #endregion
         }
+        piece.Initialise();
     }
 
     private void UpdateThemeOfBoard()

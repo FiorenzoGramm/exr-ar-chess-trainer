@@ -44,16 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75433db298dbd674a96a1d377d470f2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  board: {fileID: 6722853552775678960, guid: d527d78c7b015b24bb80b374824bf81c, type: 3}
-  whitePawnModel: {fileID: 1109215888586288, guid: 81a381e11bea9944c9b04d8d526e1149, type: 3}
-  whiteKingModel: {fileID: 1233361812545480, guid: e561e2fcc8bb28e44836196a1c8cac72, type: 3}
-  whiteQueenModel: {fileID: 1633224609000294, guid: 275ad35939688944ca741d3408a9448b, type: 3}
-  whiteBishopModel: {fileID: 1353652469814562, guid: 266a474a823e31f4190ee1d86b658b62, type: 3}
-  whiteKnightModel: {fileID: 1140620360365506, guid: 4c34a87cd711fbc4699aede91a5079fc, type: 3}
-  whiteRookModel: {fileID: 1716085140368864, guid: 54efdcc52fb08fe478d2a70fccb1ec69, type: 3}
-  blackPawnModel: {fileID: 1335334207052556, guid: 43a3ba21e2bade84dbcf1846930c44ca, type: 3}
-  blackKingModel: {fileID: 1538407554156714, guid: bc80a2d340e0155429265f9e462a922b, type: 3}
-  blackQueenModel: {fileID: 1335334207052556, guid: 43a3ba21e2bade84dbcf1846930c44ca, type: 3}
-  blackBishopModel: {fileID: 1239270685352430, guid: 89af98694f94e5244a0c34ae340b46bd, type: 3}
-  blackKnightModel: {fileID: 1564033256009494, guid: 1858e8fb1e9a53445b9d8295c130a27b, type: 3}
-  blackRookModel: {fileID: 1562622190837322, guid: 4943be26192e06348a78b3cbde8c3ba2, type: 3}
+  board: {fileID: 6809993583976544842, guid: c2fe2afd5e2430749ab0e7b96c7bc0c2, type: 3}
+  whitePawnModel: {fileID: 1054443145016762, guid: f7118f496df0737438339acc21f7f224, type: 3}
+  whiteKingModel: {fileID: 1189892643870634, guid: e928aa32286340f4c991367132d3d238, type: 3}
+  whiteQueenModel: {fileID: 1044751971961674, guid: e7251e75860370b4ba6e01ee9b85fdde, type: 3}
+  whiteBishopModel: {fileID: 1778680020080926, guid: 8a676a8d12bdeb2439abc9ab8bd6f428, type: 3}
+  whiteKnightModel: {fileID: 1985964522049728, guid: 1994b7c0fbb81e348be47a3e88ae1842, type: 3}
+  whiteRookModel: {fileID: 1145061619818354, guid: 3c04176fe31dd2343b01ea7d3fbaf913, type: 3}
+  blackPawnModel: {fileID: 1635253307245532, guid: 4e6df7cbbcafef74bb3d1e08fb1b2ed8, type: 3}
+  blackKingModel: {fileID: 1491099858962454, guid: 635ed8be112f5724ba8d4b32844b7557, type: 3}
+  blackQueenModel: {fileID: 1587134886509290, guid: c9fbf680cbbc1394890d117da10079ee, type: 3}
+  blackBishopModel: {fileID: 1966521353940116, guid: c9a0c8d14495d174887ba19ab4536029, type: 3}
+  blackKnightModel: {fileID: 1245213012106632, guid: 29f2368d4a191e44aa1d3ef930229d4d, type: 3}
+  blackRookModel: {fileID: 1699609104537690, guid: 790e203b43244e2488d95192da02de8e, type: 3}

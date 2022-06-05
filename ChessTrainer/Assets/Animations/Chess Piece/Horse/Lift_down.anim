@@ -1,0 +1,1463 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!74 &7400000
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Lift_down
+  serializedVersion: 6
+  m_Legacy: 0
+  m_Compressed: 0
+  m_UseHighQualityCurve: 1
+  m_RotationCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 0, y: -0, z: -0.7060597, w: 0.7081524}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 0, y: -0, z: -0.7060597, w: 0.7081524}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.0000019073486
+        value: {x: 0, y: 0, z: 0.7060597, w: 0.7081524}
+        inSlope: {x: 0, y: 0, z: 0.014184519, w: -0.014118002}
+        outSlope: {x: 0, y: 0, z: 0.014184519, w: -0.014118002}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 0, y: 0, z: 0.7090751, w: 0.7051512}
+        inSlope: {x: 0, y: 0, z: 0.0014473927, w: -0.0014406081}
+        outSlope: {x: 0, y: 0, z: 0.0014473927, w: -0.0014406081}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_Leg_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 0.092513956, y: 0.092074946, z: 0.69937855, w: 0.7027132}
+        inSlope: {x: -0.003831461, y: 0.003968619, z: 0.030144572, w: -0.029102921}
+        outSlope: {x: -0.003831461, y: 0.003968619, z: 0.030144572, w: -0.029102921}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.04166794
+        value: {x: 0.09243245, y: 0.092159286, z: 0.70001924, w: 0.7020941}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.20833397
+        value: {x: 0.09243245, y: 0.092159286, z: 0.70001924, w: 0.7020941}
+        inSlope: {x: -0.07420105, y: -0.07398165, z: 0.009408902, w: 0.009436796}
+        outSlope: {x: -0.07420105, y: -0.07398165, z: 0.009408902, w: 0.009436796}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: -0.0000003622663, y: -0.0000003183649, z: 0.7060597, w: 0.7081524}
+        inSlope: {x: -0.5703357, y: -0.49983704, z: -0.022849195, w: 0.023989327}
+        outSlope: {x: -0.5703357, y: -0.49983704, z: -0.022849195, w: 0.023989327}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 0.0036489582, y: 0, z: 0, w: 1.0000031}
+        inSlope: {x: 0.0004609447, y: 0, z: 0, w: 0.00000039462364}
+        outSlope: {x: 0.0004609447, y: 0, z: 0, w: 0.00000039462364}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: -0.000000012970823, y: 0, z: -0, w: 1}
+        inSlope: {x: -0.020401865, y: 0, z: 0, w: -0.0000171664}
+        outSlope: {x: -0.020401865, y: 0, z: 0, w: -0.0000171664}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 0, y: -0, z: -0, w: 1}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 0, y: -0, z: -0, w: 1}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.0000019073486
+        value: {x: -0.17738484, y: 0.11436679, z: 0.66866803, w: 0.7129782}
+        inSlope: {x: 0.5119721, y: 1.0593767, z: 0.4314361, w: -0.5574417}
+        outSlope: {x: 0.5119721, y: 1.0593767, z: 0.4314361, w: -0.5574417}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.04166794
+        value: {x: -0.13469943, y: 0.20264709, z: 0.7048525, w: 0.6663131}
+        inSlope: {x: 0.9921926, y: 3.643671, z: 0.6040956, w: -1.990411}
+        outSlope: {x: 0.9921926, y: 3.643671, z: 0.6040956, w: -1.990411}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.08333397
+        value: {x: -0.094703384, y: 0.4180014, z: 0.71900856, w: 0.5471131}
+        inSlope: {x: -0.081555456, y: 5.112163, z: -0.9799721, w: -2.6776862}
+        outSlope: {x: -0.081555456, y: 5.112163, z: -0.9799721, w: -2.6776862}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.1250019
+        value: {x: -0.14149776, y: 0.62866384, z: 0.62318504, w: 0.44317123}
+        inSlope: {x: -1.4871184, y: 3.7437944, z: -2.7366104, w: -1.4985642}
+        outSlope: {x: -1.4871184, y: 3.7437944, z: -2.7366104, w: -1.4985642}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.16666794
+        value: {x: -0.21863016, y: 0.7299892, z: 0.49095678, w: 0.42222992}
+        inSlope: {x: -1.3020465, y: 1.4560562, z: -2.2821035, w: -0.12190361}
+        outSlope: {x: -1.3020465, y: 1.4560562, z: -2.2821035, w: -0.12190361}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.20833397
+        value: {x: -0.24999999, y: 0.75, z: 0.43301263, w: 0.43301275}
+        inSlope: {x: -0.44690397, y: 0.16856158, z: -0.57329965, w: 0.08807376}
+        outSlope: {x: -0.44690397, y: 0.16856158, z: -0.57329965, w: 0.08807376}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.2500019
+        value: {x: -0.25587186, y: 0.7440355, z: 0.443183, w: 0.42956913}
+        inSlope: {x: -0.23615691, y: -0.24889308, z: 0.40903574, w: -0.14369875}
+        outSlope: {x: -0.23615691, y: -0.24889308, z: 0.40903574, w: -0.14369875}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.3750019
+        value: {x: -0.29895282, y: 0.694177, z: 0.5178014, w: 0.4007833}
+        inSlope: {x: -0.22312734, y: -0.28264362, z: 0.38646787, w: -0.16318466}
+        outSlope: {x: -0.22312734, y: -0.28264362, z: 0.38646787, w: -0.16318466}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: -0.30449203, y: 0.68709886, z: 0.5273956, w: 0.39669675}
+        inSlope: {x: -0.05790019, y: -0.075871944, z: 0.10028553, w: -0.043804646}
+        outSlope: {x: -0.05790019, y: -0.075871944, z: 0.10028553, w: -0.043804646}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_L_Hand_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 0, y: -0, z: -0, w: 1}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 0, y: -0, z: -0, w: 1}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_L_Hand_Joint/Horse_Rider_L_Hand_Shield_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.0000019073486
+        value: {x: 0.0000000018842685, y: -0.0000000032283787, z: -0.6087608, w: 0.79335386}
+        inSlope: {x: 0.0014842311, y: -0.0025376552, z: 0.47543028, w: 0.34597695}
+        outSlope: {x: 0.0014842311, y: -0.0025376552, z: 0.47543028, w: 0.34597695}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.04166794
+        value: {x: 0, y: -0, z: -0.5684174, w: 0.82274044}
+        inSlope: {x: -0.000000022611568, y: 0.000000038741135, z: 1.7048101, w: 1.092788}
+        outSlope: {x: -0.000000022611568, y: 0.000000038741135, z: 1.7048101, w: 1.092788}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.08333397
+        value: {x: 0, y: -0, z: -0.46669543, w: 0.88441813}
+        inSlope: {x: 0, y: 0, z: 2.779825, w: 1.4261795}
+        outSlope: {x: 0, y: 0, z: 2.779825, w: 1.4261795}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.1250019
+        value: {x: 0, y: -0, z: -0.33676288, w: 0.94158953}
+        inSlope: {x: 0, y: 0, z: 2.9294991, w: 1.085973}
+        outSlope: {x: 0, y: 0, z: 2.9294991, w: 1.085973}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.16666794
+        value: {x: 0, y: -0, z: -0.22256827, w: 0.9749171}
+        inSlope: {x: 0, y: 0, z: 1.957406, w: 0.518627}
+        outSlope: {x: 0, y: 0, z: 1.957406, w: 0.518627}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.20833397
+        value: {x: 0, y: -0, z: -0.1736482, w: 0.9848078}
+        inSlope: {x: 0, y: 0, z: 0.3194691, w: 0.068371065}
+        outSlope: {x: 0, y: 0, z: 0.3194691, w: 0.068371065}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.29166794
+        value: {x: 0, y: -0, z: -0.24869077, w: 0.9685829}
+        inSlope: {x: 0, y: 0, z: -1.3767707, w: -0.36118963}
+        outSlope: {x: 0, y: 0, z: -1.3767707, w: -0.36118963}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.3750019
+        value: {x: 4.489298e-12, y: -1.7412901e-12, z: -0.36162573, w: 0.9323234}
+        inSlope: {x: -0.00000087469186, y: 0.00000036230944, z: -0.86407137, w: -0.3196305}
+        outSlope: {x: -0.00000087469186, y: 0.00000036230944, z: -0.86407137, w: -0.3196305}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: -0.001927515, y: 0.00079840305, z: -0.3831541, w: 0.92437893}
+        inSlope: {x: -0.117538005, y: 0.04868585, z: -0.22667336, w: -0.08511925}
+        outSlope: {x: -0.117538005, y: 0.04868585, z: -0.22667336, w: -0.08511925}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_R_Hand_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 0, y: -0, z: -0, w: 1}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 0, y: -0, z: -0, w: 1}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_R_Hand_Joint/Horse_Rider_R_Hand_Weapons_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 0.25687125, y: 0, z: 0, w: 0.966805}
+        inSlope: {x: -0.20509265, y: 0, z: 0, w: 0.061226856}
+        outSlope: {x: -0.20509265, y: 0, z: 0, w: 0.061226856}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.04166794
+        value: {x: 0.2324263, y: -0, z: -0, w: 0.97261405}
+        inSlope: {x: -1.0798391, y: 0, z: 0, w: 0.23662809}
+        outSlope: {x: -1.0798391, y: 0, z: 0, w: 0.23662809}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.1250019
+        value: {x: 0.09202085, y: -0, z: -0, w: 0.9957571}
+        inSlope: {x: -1.6993084, y: 0, z: 0, w: 0.16781388}
+        outSlope: {x: -1.6993084, y: 0, z: 0, w: 0.16781388}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.16666794
+        value: {x: 0.02722307, y: -0, z: -0, w: 0.9996294}
+        inSlope: {x: -1.104267, y: 0, z: 0, w: 0.05091554}
+        outSlope: {x: -1.104267, y: 0, z: 0, w: 0.05091554}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.29166794
+        value: {x: 0, y: -0, z: -0, w: 1}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: -0.0026277471, y: 0, z: 0, w: 1.0002904}
+        inSlope: {x: -0.096403, y: 0, z: 0, w: 0.00090265274}
+        outSlope: {x: -0.096403, y: 0, z: 0, w: 0.00090265274}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_C_Head_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 0, y: -0, z: -0, w: 1}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 0, y: -0, z: -0, w: 1}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_C_Head_Joint/Horse_Rider_R_Eye_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 0, y: -0, z: -0, w: 1}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 0, y: -0, z: -0, w: 1}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_C_Head_Joint/Horse_Rider_Helmet_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 0, y: -0, z: -0, w: 1}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 0, y: -0, z: -0, w: 1}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_C_Head_Joint/Horse_Rider_L_Eye_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 0.08523676, y: 0.0001573172, z: 0.00011725654, w: 0.9966351}
+        inSlope: {x: -0.26532367, y: -0.004542847, z: -0.0033102646, w: 0.020348072}
+        outSlope: {x: -0.26532367, y: -0.004542847, z: -0.0033102646, w: 0.020348072}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.08333397
+        value: {x: 0.051944893, y: -0, z: -0, w: 0.99864995}
+        inSlope: {x: -0.5566892, y: 0, z: 0, w: 0.028354784}
+        outSlope: {x: -0.5566892, y: 0, z: 0, w: 0.028354784}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.20833397
+        value: {x: 0, y: -0, z: -0, w: 1}
+        inSlope: {x: -0.09669209, y: 0, z: 0, w: 0.00038910506}
+        outSlope: {x: -0.09669209, y: 0, z: 0, w: 0.00038910506}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: -0.0016444385, y: 0, z: 0, w: 1.0000067}
+        inSlope: {x: 0.03157295, y: 0, z: 0, w: -0.0001271106}
+        outSlope: {x: 0.03157295, y: 0, z: 0, w: -0.0001271106}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_C_Spine_1_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 0.085236594, y: 0.00017528678, z: 0.000088155386, w: 0.99663514}
+        inSlope: {x: -0.26530576, y: -0.0050486, z: -0.0024710777, w: 0.020346642}
+        outSlope: {x: -0.26530576, y: -0.0050486, z: -0.0024710777, w: 0.020346642}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.08333397
+        value: {x: 0.051945493, y: -0, z: -0, w: 0.9986499}
+        inSlope: {x: -0.5566908, y: 0, z: 0, w: 0.0283555}
+        outSlope: {x: -0.5566908, y: 0, z: 0, w: 0.0283555}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.20833397
+        value: {x: 0, y: -0, z: -0, w: 1}
+        inSlope: {x: -0.096693695, y: 0, z: 0, w: 0.00038910506}
+        outSlope: {x: -0.096693695, y: 0, z: 0, w: 0.00038910506}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: -0.0016444656, y: 0, z: 0, w: 1.0000067}
+        inSlope: {x: 0.03157347, y: 0, z: 0, w: -0.0001271106}
+        outSlope: {x: 0.03157347, y: 0, z: 0, w: -0.0001271106}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_C_Spine_1_Joint/Horse_C_Spine_1_Joint
+      1
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 0.08523626, y: 0.00018793001, z: 0.0000563691, w: 0.9966352}
+        inSlope: {x: -0.26526925, y: -0.0054009417, z: -0.0015566496, w: 0.02034378}
+        outSlope: {x: -0.26526925, y: -0.0054009417, z: -0.0015566496, w: 0.02034378}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.08333397
+        value: {x: 0.051946707, y: -0, z: -0, w: 0.99864984}
+        inSlope: {x: -0.5566939, y: 0, z: 0, w: 0.028356215}
+        outSlope: {x: -0.5566939, y: 0, z: 0, w: 0.028356215}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.20833397
+        value: {x: 0, y: -0, z: -0, w: 1}
+        inSlope: {x: -0.09669694, y: 0, z: 0, w: 0.00038910506}
+        outSlope: {x: -0.09669694, y: 0, z: 0, w: 0.00038910506}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: -0.0016445209, y: 0, z: 0, w: 1.0000067}
+        inSlope: {x: 0.031574532, y: 0, z: 0, w: -0.0001271106}
+        outSlope: {x: 0.031574532, y: 0, z: 0, w: -0.0001271106}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_C_Spine_1_Joint/Horse_C_Spine_1_Joint
+      1/Horse_C_Head_1_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 5.0901278e-26, y: 1.7894956e-13, z: -1.7894956e-13, w: 1}
+        inSlope: {x: 6.140487e-26, y: 2.1587621e-13, z: -2.1587621e-13, w: 0}
+        outSlope: {x: 6.140487e-26, y: 2.1587621e-13, z: -2.1587621e-13, w: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 7.282928e-26, y: 2.5604006e-13, z: -2.5604006e-13, w: 1}
+        inSlope: {x: 3.9859305e-26, y: 1.4013018e-13, z: -1.4013018e-13, w: 0}
+        outSlope: {x: 3.9859305e-26, y: 1.4013018e-13, z: -1.4013018e-13, w: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_C_Spine_1_Joint/Horse_C_Spine_1_Joint
+      1/Horse_C_Head_1_Joint/Horse_C_Nose_2_Joint
+  m_CompressedRotationCurves: []
+  m_EulerCurves: []
+  m_PositionCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: -0, y: 0.00025145695, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: -0, y: 0.00025145695, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: -1.3643055, y: 0.0036995169, z: 0}
+        inSlope: {x: 1.5631073, y: 0.03797148, z: -0}
+        outSlope: {x: 1.5631638, y: 0.037968226, z: -0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.04166794
+        value: {x: -1.2342005, y: 0.003314767, z: 0}
+        inSlope: {x: 5.2813582, y: -0.015626954, z: -0}
+        outSlope: {x: 5.2839723, y: -0.015634397, z: -0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.08333397
+        value: {x: -0.9241887, y: 0.002397287, z: 0}
+        inSlope: {x: 8.161858, y: -0.024157006, z: -0}
+        outSlope: {x: 8.160763, y: -0.024153728, z: -0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.125
+        value: {x: -0.55422986, y: 0.0013022299, z: 0}
+        inSlope: {x: 8.158644, y: -0.024149843, z: -0}
+        outSlope: {x: 8.158895, y: -0.024150554, z: -0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.16666794
+        value: {x: -0.24428396, y: 0.00038474976, z: 0}
+        inSlope: {x: 5.279133, y: -0.015627068, z: -0}
+        outSlope: {x: 5.2803164, y: -0.015630573, z: -0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.20833397
+        value: {x: -0.11431091, y: 0, z: 0}
+        inSlope: {x: 1.5605065, y: -0.0046194466, z: -0}
+        outSlope: {x: 1.5597396, y: -0.004617183, z: -0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.25
+        value: {x: -0.11431091, y: 0, z: 0}
+        inSlope: {x: 0.000059013408, y: -0.00000017608853, z: -0}
+        outSlope: {x: -2.0816046e-15, y: -0, z: -0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: -0.11431091, y: 0, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_Leg_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: -1.9014715, y: 0.00023069802, z: -0.0025296472}
+        inSlope: {x: 1.6865255, y: 0.018808182, z: -0}
+        outSlope: {x: 1.686596, y: 0.01880622, z: -0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.04166794
+        value: {x: -1.7610132, y: -0.00018483172, z: -0.0025296472}
+        inSlope: {x: 5.7031317, y: -0.016876953, z: -0}
+        outSlope: {x: 5.705974, y: -0.016885174, z: -0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.08333397
+        value: {x: -1.4262072, y: -0.0011757103, z: -0.0025296472}
+        inSlope: {x: 8.814986, y: -0.026089573, z: -0}
+        outSlope: {x: 8.813787, y: -0.026086066, z: -0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.125
+        value: {x: -1.0266311, y: -0.0023583719, z: -0.0025296472}
+        inSlope: {x: 8.811907, y: -0.026081875, z: -0}
+        outSlope: {x: 8.812181, y: -0.026082622, z: -0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.16666794
+        value: {x: -0.69186205, y: -0.0033492504, z: -0.0025296472}
+        inSlope: {x: 5.7019563, y: -0.016877258, z: -0}
+        outSlope: {x: 5.7032456, y: -0.016881038, z: -0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.20833397
+        value: {x: -0.5514774, y: -0.0037647802, z: -0.0025296472}
+        inSlope: {x: 1.6182559, y: -0.0049606184, z: -0}
+        outSlope: {x: 1.6174327, y: -0.0049581714, z: -0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.25
+        value: {x: -0.5570821, y: -0.0037624126, z: -0.0025296472}
+        inSlope: {x: -0.2496925, y: 0.0002271127, z: -0}
+        outSlope: {x: -0.24978286, y: 0.00022733152, z: -0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.375
+        value: {x: -0.621896, y: -0.003613248, z: -0.0025296472}
+        inSlope: {x: -0.68132913, y: 0.0027843346, z: -0}
+        outSlope: {x: -0.68134063, y: 0.00278427, z: -0.0000007156465}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: -0.651477, y: -0.0034688187, z: -0.0025296472}
+        inSlope: {x: -0.7637288, y: 0.02725437, z: 0.09329697}
+        outSlope: {x: -0.76402175, y: 0.027269274, z: 0.09335164}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: -0, y: 0.5226732, z: -0.14235923}
+        inSlope: {x: -0, y: -0.13874981, z: 0.18082069}
+        outSlope: {x: -0, y: -0.13875262, z: 0.18082933}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.04166794
+        value: {x: -0, y: 0.5111108, z: -0.12729079}
+        inSlope: {x: -0, y: -0.46961302, z: 0.6120047}
+        outSlope: {x: -0, y: -0.46984258, z: 0.6123096}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.08333397
+        value: {x: -0, y: 0.48353884, z: -0.09135834}
+        inSlope: {x: -0, y: -0.7259591, z: 0.9460921}
+        outSlope: {x: -0, y: -0.7258603, z: 0.94596446}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.125
+        value: {x: -0, y: 0.4506304, z: -0.048471235}
+        inSlope: {x: -0, y: -0.7257411, z: 0.94581074}
+        outSlope: {x: -0, y: -0.725765, z: 0.9458383}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.16666794
+        value: {x: -0, y: 0.42305845, z: -0.012538795}
+        inSlope: {x: -0, y: -0.46961588, z: 0.6120225}
+        outSlope: {x: -0, y: -0.4697435, z: 0.6121601}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.20833397
+        value: {x: -0, y: 0.41149604, z: 0.0025296472}
+        inSlope: {x: -0, y: 0.048375223, z: 0.18091728}
+        outSlope: {x: -0, y: 0.048472177, z: 0.1808286}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.25
+        value: {x: -0, y: 0.42709604, z: 0.0025296472}
+        inSlope: {x: -0, y: 0.6335773, z: 0.0000068773243}
+        outSlope: {x: -0, y: 0.6336128, z: -0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.375
+        value: {x: -0, y: 0.54589605, z: 0.0025296472}
+        inSlope: {x: -0, y: 0.63359827, z: -0}
+        outSlope: {x: -0, y: 0.6335953, z: -0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 0, y: 0.56167394, z: 0.0025296472}
+        inSlope: {x: 0, y: 0.16638947, z: 0}
+        outSlope: {x: 0, y: 0.16638947, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 0, y: 0.25237295, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 0, y: 0.25237295, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: -0.349021, y: -0.4161547, z: 0.34058666}
+        inSlope: {x: -0.00856862, y: 0.48072118, z: -0.1288092}
+        outSlope: {x: -0.008570035, y: 0.48074934, z: -0.12881516}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.04166794
+        value: {x: -0.349021, y: -0.3759722, z: 0.3298198}
+        inSlope: {x: -0.0000042576003, y: 1.632017, z: -0.43729895}
+        outSlope: {x: -8.3268e-15, y: 1.6328292, z: -0.4375176}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.08333397
+        value: {x: -0.349021, y: -0.28015235, z: 0.30414495}
+        inSlope: {x: -3.5686286e-15, y: 2.5229104, z: -0.6760148}
+        outSlope: {x: -8.3268e-15, y: 2.5225692, z: -0.6759195}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.125
+        value: {x: -0.349021, y: -0.16578674, z: 0.27350077}
+        inSlope: {x: -3.5686286e-15, y: 2.5221603, z: -0.6758139}
+        outSlope: {x: -8.3264186e-15, y: 2.5222356, z: -0.6758365}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.16666794
+        value: {x: -0.349021, y: -0.069966905, z: 0.24782592}
+        inSlope: {x: -3.5684655e-15, y: 1.6320605, z: -0.43731284}
+        outSlope: {x: -8.3268e-15, y: 1.6324319, z: -0.43740574}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.20833397
+        value: {x: -0.349021, y: -0.02978439, z: 0.23705904}
+        inSlope: {x: -3.5686286e-15, y: 0.4221732, z: -0.12802568}
+        outSlope: {x: -8.3268e-15, y: 0.4219278, z: -0.12796533}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.25
+        value: {x: -0.349021, y: -0.034807205, z: 0.23716258}
+        inSlope: {x: -3.5686286e-15, y: -0.20397925, z: 0.009931269}
+        outSlope: {x: -8.3264186e-15, y: -0.20400725, z: 0.009939075}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.33333397
+        value: {x: -0.349021, y: -0.06108039, z: 0.23985429}
+        inSlope: {x: -3.5686286e-15, y: -0.3153786, z: 0.06958403}
+        outSlope: {x: -8.3268e-15, y: -0.31531963, z: 0.06958056}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.375
+        value: {x: -0.349021, y: -0.07305787, z: 0.24368481}
+        inSlope: {x: -3.5686286e-15, y: -0.20400031, z: 0.121745646}
+        outSlope: {x: -8.3264186e-15, y: -0.20400232, z: 0.12175204}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: -0.349021, y: -0.078080684, z: 0.25}
+        inSlope: {x: -3.5684655e-15, y: -0.021223452, z: 0.2500684}
+        outSlope: {x: -8.3268e-15, y: -0.021198673, z: 0.25018442}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_L_Hand_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: -0, y: 0.11664952, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: -0, y: 0.11664952, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_L_Hand_Joint/Horse_Rider_L_Hand_Shield_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 0.39902145, y: -0.4256285, z: 0.2484165}
+        inSlope: {x: -0.0042816876, y: 0.4935353, z: -0.32604322}
+        outSlope: {x: -0.0042820373, y: 0.49355504, z: -0.3260603}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.04166794
+        value: {x: 0.39902145, y: -0.38446078, z: 0.22123532}
+        inSlope: {x: -0.00000085159655, y: 1.6720324, z: -1.1039674}
+        outSlope: {x: 2.7756e-15, y: 1.6728652, z: -1.1045139}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.08333397
+        value: {x: 0.39902145, y: -0.2862915, z: 0.15641867}
+        inSlope: {x: 1.1895429e-15, y: 2.5847757, z: -1.706605}
+        outSlope: {x: 2.7756e-15, y: 2.5844212, z: -1.7063731}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.125
+        value: {x: 0.39902145, y: -0.16912176, z: 0.07905687}
+        inSlope: {x: 1.1895429e-15, y: 2.5840023, z: -1.7060989}
+        outSlope: {x: 2.7754729e-15, y: 2.584078, z: -1.7061487}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.16666794
+        value: {x: 0.39902145, y: -0.070952505, z: 0.014240222}
+        inSlope: {x: 1.1894885e-15, y: 1.6720774, z: -1.1039964}
+        outSlope: {x: 2.7756e-15, y: 1.6724559, z: -1.1042448}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.20833397
+        value: {x: 0.39902145, y: -0.029784754, z: -0.012940953}
+        inSlope: {x: 1.1895429e-15, y: 0.45252562, z: -0.3101971}
+        outSlope: {x: 2.7756e-15, y: 0.45227736, z: -0.31003487}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.25
+        value: {x: 0.39902145, y: -0.033263948, z: -0.011595094}
+        inSlope: {x: 1.1895429e-15, y: -0.14841017, z: 0.054648384}
+        outSlope: {x: 2.7754729e-15, y: -0.1484355, z: 0.0546636}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.29166794
+        value: {x: 0.39902145, y: -0.042154185, z: -0.008385737}
+        inSlope: {x: 1.1894885e-15, y: -0.25044617, z: 0.08447874}
+        outSlope: {x: 2.7756e-15, y: -0.25054863, z: 0.084512286}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.33333397
+        value: {x: 0.39902145, y: -0.05413446, z: -0.004555215}
+        inSlope: {x: 1.1895429e-15, y: -0.29683915, z: 0.084505476}
+        outSlope: {x: 2.7756e-15, y: -0.29679337, z: 0.08448958}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.375
+        value: {x: 0.39902145, y: -0.06688375, z: -0.001345859}
+        inSlope: {x: 1.1895429e-15, y: -0.28735226, z: 0.05466151}
+        outSlope: {x: -0.0000034055854, y: -0.28735986, z: 0.054662365}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 0.39902145, y: -0.07808104, z: 0}
+        inSlope: {x: 0.00974421, y: -0.26054117, z: -0.010401151}
+        outSlope: {x: 0.0097499, y: -0.26062724, z: -0.010416947}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_R_Hand_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: -0, y: 0, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: -0, y: 0, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_R_Hand_Joint/Horse_Rider_R_Hand_Weapons_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: -0, y: 0.5572035, z: 0.31565964}
+        inSlope: {x: -0, y: -0.03663017, z: -0.36288032}
+        outSlope: {x: -0, y: -0.03663427, z: -0.36290023}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.04166794
+        value: {x: -0, y: 0.5541511, z: 0.28541923}
+        inSlope: {x: -0, y: -0.12397455, z: -1.2339495}
+        outSlope: {x: -0, y: -0.124043286, z: -1.2345625}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.08333397
+        value: {x: -0, y: 0.54687244, z: 0.21282966}
+        inSlope: {x: -0, y: -0.19165982, z: -1.9244883}
+        outSlope: {x: -0, y: -0.19162303, z: -1.9242325}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.125
+        value: {x: -0, y: 0.538185, z: 0.12508842}
+        inSlope: {x: -0, y: -0.19158217, z: -1.9611896}
+        outSlope: {x: -0, y: -0.19158661, z: -1.9612495}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.16666794
+        value: {x: -0, y: 0.5309064, z: 0.049393024}
+        inSlope: {x: -0, y: -0.12397317, z: -1.3457946}
+        outSlope: {x: -0, y: -0.12400236, z: -1.346124}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.20833397
+        value: {x: -0, y: 0.527854, z: 0.012940953}
+        inSlope: {x: -0, y: 0.02362186, z: -0.49853584}
+        outSlope: {x: -0, y: 0.0236514, z: -0.49833167}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.25
+        value: {x: -0, y: 0.53287685, z: 0.007868099}
+        inSlope: {x: -0, y: 0.20398715, z: -0.07703675}
+        outSlope: {x: -0, y: 0.20400368, z: -0.07702337}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.29166794
+        value: {x: -0, y: 0.54485434, z: 0.00652224}
+        inSlope: {x: -0, y: 0.31527364, z: -0.017392986}
+        outSlope: {x: -0, y: 0.31540918, z: -0.017392397}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.33333397
+        value: {x: -0, y: 0.55915004, z: 0.0064187124}
+        inSlope: {x: -0, y: 0.31537512, z: -0.017392503}
+        outSlope: {x: -0, y: 0.3153241, z: -0.017393645}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.375
+        value: {x: -0, y: 0.5711275, z: 0.005072853}
+        inSlope: {x: -0, y: 0.20400137, z: -0.077022724}
+        outSlope: {x: -5.0345715e-23, y: 0.20399654, z: -0.07702625}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: -0, y: 0.5761503, z: 0}
+        inSlope: {x: 6.628371e-18, y: 0.027871901, z: -0.17495379}
+        outSlope: {x: 6.6322787e-18, y: 0.02786455, z: -0.17503299}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_C_Head_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 0.09923867, y: 0.00003820032, z: 0.30014017}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 0.09923867, y: 0.00003820032, z: 0.30014017}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_C_Head_Joint/Horse_Rider_R_Eye_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: -0.0021131134, y: 0.26201552, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: -0.0021131134, y: 0.26201552, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_C_Head_Joint/Horse_Rider_Helmet_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: -0.0992387, y: 0.00004, z: 0.30014017}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: -0.0992387, y: 0.00004, z: 0.30014017}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_C_Head_Joint/Horse_Rider_L_Eye_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: -0, y: 0.21900018, z: 0.4429479}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: -0, y: 0.21900018, z: 0.4429479}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_C_Spine_1_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: -0, y: 0.35186952, z: 0.37670738}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: -0, y: 0.35186952, z: 0.37670738}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_C_Spine_1_Joint/Horse_C_Spine_1_Joint
+      1
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 5.5463823e-17, y: 0.2607974, z: 0.13246852}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 5.5463823e-17, y: 0.2607974, z: 0.13246852}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_C_Spine_1_Joint/Horse_C_Spine_1_Joint
+      1/Horse_C_Head_1_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: -8.326673e-17, y: -0.30808434, z: 0.31904438}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: -8.326673e-17, y: -0.30808434, z: 0.31904438}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_C_Spine_1_Joint/Horse_C_Spine_1_Joint
+      1/Horse_C_Head_1_Joint/Horse_C_Nose_2_Joint
+  m_ScaleCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_Leg_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_L_Hand_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_L_Hand_Joint/Horse_Rider_L_Hand_Shield_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_R_Hand_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_R_Hand_Joint/Horse_Rider_R_Hand_Weapons_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_C_Head_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_C_Head_Joint/Horse_Rider_R_Eye_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_C_Head_Joint/Horse_Rider_Helmet_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_Rider_C_DownBody_Joint/Horse_Rider_C_UpBody_Joint/Horse_Rider_C_Head_Joint/Horse_Rider_L_Eye_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_C_Spine_1_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_C_Spine_1_Joint/Horse_C_Spine_1_Joint
+      1
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_C_Spine_1_Joint/Horse_C_Spine_1_Joint
+      1/Horse_C_Head_1_Joint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.41666794
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Horse_Global_Ctrl/Horse_Rider_C_Root_Joint/Horse_C_Root_Joint/Horse_C_Spine_1_Joint/Horse_C_Spine_1_Joint
+      1/Horse_C_Head_1_Joint/Horse_C_Nose_2_Joint
+  m_FloatCurves: []
+  m_PPtrCurves: []
+  m_SampleRate: 24
+  m_WrapMode: 0
+  m_Bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_ClipBindingConstant:
+    genericBindings: []
+    pptrCurveMapping: []
+  m_AnimationClipSettings:
+    serializedVersion: 2
+    m_AdditiveReferencePoseClip: {fileID: 0}
+    m_AdditiveReferencePoseTime: 0
+    m_StartTime: 0
+    m_StopTime: 0.41666794
+    m_OrientationOffsetY: 0
+    m_Level: 0
+    m_CycleOffset: 0
+    m_HasAdditiveReferencePose: 0
+    m_LoopTime: 0
+    m_LoopBlend: 0
+    m_LoopBlendOrientation: 0
+    m_LoopBlendPositionY: 0
+    m_LoopBlendPositionXZ: 0
+    m_KeepOriginalOrientation: 0
+    m_KeepOriginalPositionY: 1
+    m_KeepOriginalPositionXZ: 0
+    m_HeightFromFeet: 0
+    m_Mirror: 0
+  m_EditorCurves: []
+  m_EulerEditorCurves: []
+  m_HasGenericRootTransform: 0
+  m_HasMotionFloatCurves: 0
+  m_GenerateMotionCurves: 0
+  m_Events: []

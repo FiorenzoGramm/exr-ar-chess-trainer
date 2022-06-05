@@ -1,0 +1,137 @@
+fileFormatVersion: 2
+guid: 6a486027e0aadf04787b9d6e2f263738
+timeCreated: 1517204057
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Bishop_C_DownBody_Joint
+    100002: Bishop_C_Head_Joint
+    100004: Bishop_C_Leg_Joint
+    100006: Bishop_C_Mantle_joint
+    100008: Bishop_C_Root_Joint
+    100010: Bishop_C_UpBody_Joint
+    100012: Bishop_Global_Ctrl
+    100014: Bishop_Helmet_Joint
+    100016: Bishop_L_Eye_Joint
+    100018: Bishop_L_Hand_Joint
+    100020: Bishop_R_Eye_Joint
+    100022: Bishop_R_Hand_Joint
+    100024: Bishop_R_Hand_Weapons_Joint
+    100026: Geo
+    100028: //RootNode
+    100030: White_Bishop
+    100032: White_Bishop_Body
+    100034: White_Bishop_Cap
+    100036: White_Bishop_Leg
+    100038: White_Bishop_Staff
+    400000: Bishop_C_DownBody_Joint
+    400002: Bishop_C_Head_Joint
+    400004: Bishop_C_Leg_Joint
+    400006: Bishop_C_Mantle_joint
+    400008: Bishop_C_Root_Joint
+    400010: Bishop_C_UpBody_Joint
+    400012: Bishop_Global_Ctrl
+    400014: Bishop_Helmet_Joint
+    400016: Bishop_L_Eye_Joint
+    400018: Bishop_L_Hand_Joint
+    400020: Bishop_R_Eye_Joint
+    400022: Bishop_R_Hand_Joint
+    400024: Bishop_R_Hand_Weapons_Joint
+    400026: Geo
+    400028: //RootNode
+    400030: White_Bishop
+    400032: White_Bishop_Body
+    400034: White_Bishop_Cap
+    400036: White_Bishop_Leg
+    400038: White_Bishop_Staff
+    2100000: Char_All
+    4300000: White_Bishop_Cap
+    4300002: White_Bishop_Staff
+    4300004: White_Bishop_Leg
+    4300006: White_Bishop_Body
+    9500000: //RootNode
+    13700000: White_Bishop_Body
+    13700002: White_Bishop_Cap
+    13700004: White_Bishop_Leg
+    13700006: White_Bishop_Staff
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

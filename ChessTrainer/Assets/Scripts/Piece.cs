@@ -1,4 +1,5 @@
 using Microsoft.MixedReality.Toolkit.UI;
+using System.Collections;
 using System.Text;
 using UnityEngine;
 
@@ -8,22 +9,27 @@ public class Piece : MonoBehaviour
     public char     symbol;
     public bool     isWhite;
 
+    public Animator modelAnimator;
     public BoardController boardController;
 
     public bool isCurrentlyGrabbed;
+    private bool isInAnimation;
     private Vector3 preGrabPosition;
     private Quaternion preGrabRotation;
     private Field lastTouchedField = null;
 
-    private Piece()
+    public void Initialise()
     {
-        type = "";
-        symbol = '\0';
-        isWhite = false;
-        boardController = null;
         isCurrentlyGrabbed = false;
-        preGrabPosition = Vector3.zero;
-        preGrabRotation = Quaternion.identity;
+        isInAnimation = false;
+
+        foreach (Transform currentChild in transform)
+        {
+            if (currentChild.CompareTag("Model"))
+            {
+                modelAnimator = currentChild.GetComponent<Animator>();
+            }
+        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -97,6 +103,78 @@ public class Piece : MonoBehaviour
             symbol.Equals('B') ||
             symbol.Equals('N') ||
             symbol.Equals('R');
+    }
+
+    public bool IsAnimated()
+    {
+        return modelAnimator != null;
+    }
+
+    public void GoToPosition(Vector3 position)
+    {
+        if (IsAnimated())
+        {
+            StartCoroutine(MovePieceTo(position));
+        }
+        else
+        {
+            transform.position = position;
+        }
+    }
+
+    IEnumerator MovePieceTo(Vector3 targetPosition)
+    {
+        while (isInAnimation)
+        {
+            yield return null;
+        }
+        isInAnimation = true;
+
+        float timeElapsed = 0;
+        Vector3 startPosition = transform.position;
+        float duration = 0.0f;
+
+        Quaternion oldRotation = transform.rotation;
+        float maxDegreesPerSecond = 180f;
+        float angleToRotate = Vector3.SignedAngle(transform.forward, targetPosition - transform.position, Vector3.up);
+        float currentAngle = angleToRotate;
+
+        foreach (AnimationClip clip in modelAnimator.runtimeAnimatorController.animationClips)
+        {
+            if (clip.name == "Walk")
+            {
+                duration = clip.length;
+            }
+        }
+
+        while (Mathf.Sign(currentAngle) * currentAngle > maxDegreesPerSecond * Time.deltaTime)
+        {
+            float tempAngle = maxDegreesPerSecond * Time.deltaTime * Mathf.Sign(currentAngle);
+            transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), tempAngle);
+            currentAngle -= tempAngle;
+            yield return null;
+        }
+        currentAngle = -angleToRotate;
+        transform.LookAt(targetPosition);
+
+        modelAnimator.Play("Move");
+        while (timeElapsed < duration)
+        {
+            transform.position = Vector3.Lerp(startPosition, targetPosition, timeElapsed / duration);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        while (Mathf.Sign(currentAngle) * currentAngle > maxDegreesPerSecond * Time.deltaTime)
+        {
+            float tempAngle = maxDegreesPerSecond * Time.deltaTime * Mathf.Sign(currentAngle);
+            transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), tempAngle);
+            currentAngle -= tempAngle;
+            yield return null;
+        }
+        transform.rotation = oldRotation;
+
+        isInAnimation = false;
     }
 
     #region Method for listener

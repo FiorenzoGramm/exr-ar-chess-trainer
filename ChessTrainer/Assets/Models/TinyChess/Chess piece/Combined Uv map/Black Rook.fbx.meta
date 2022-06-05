@@ -1,0 +1,141 @@
+fileFormatVersion: 2
+guid: 86230179aad3ac34ea5f6234dbdaf755
+timeCreated: 1517204057
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Black_Rook
+    100004: Black_Rook_Helmet
+    100006: Black_Rook_Shield
+    100008: Black_Rook_Spear
+    100010: Geo
+    100012: Rook_Body
+    100014: Rook_C_DownBody_Joint
+    100016: Rook_C_Head_Joint
+    100018: Rook_C_Leg_Joint
+    100020: Rook_C_Root_Joint
+    100022: Rook_C_UpBody_Joint
+    100024: Rook_Global_Ctrl
+    100026: Rook_Helmet_Joint
+    100028: Rook_L_Eye_Joint
+    100030: Rook_L_Hand_Joint
+    100032: Rook_L_Hand_Shield_Joint
+    100034: Rook_Leg
+    100036: Rook_R_Eye_Joint
+    100038: Rook_R_Hand_Joint
+    100040: Rook_R_Hand_Weapons_Joint
+    400000: //RootNode
+    400002: Black_Rook
+    400004: Black_Rook_Helmet
+    400006: Black_Rook_Shield
+    400008: Black_Rook_Spear
+    400010: Geo
+    400012: Rook_Body
+    400014: Rook_C_DownBody_Joint
+    400016: Rook_C_Head_Joint
+    400018: Rook_C_Leg_Joint
+    400020: Rook_C_Root_Joint
+    400022: Rook_C_UpBody_Joint
+    400024: Rook_Global_Ctrl
+    400026: Rook_Helmet_Joint
+    400028: Rook_L_Eye_Joint
+    400030: Rook_L_Hand_Joint
+    400032: Rook_L_Hand_Shield_Joint
+    400034: Rook_Leg
+    400036: Rook_R_Eye_Joint
+    400038: Rook_R_Hand_Joint
+    400040: Rook_R_Hand_Weapons_Joint
+    2100000: Char_All
+    4300000: Rook_Leg
+    4300002: Black_Rook_Helmet
+    4300004: Black_Rook_Shield
+    4300006: Black_Rook_Spear
+    4300008: Rook_Body
+    9500000: //RootNode
+    13700000: Black_Rook_Helmet
+    13700002: Black_Rook_Shield
+    13700004: Black_Rook_Spear
+    13700006: Rook_Body
+    13700008: Rook_Leg
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

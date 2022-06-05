@@ -61,5 +61,6 @@ MonoBehaviour:
   chessSets:
   - {fileID: 1234064604412451785, guid: 363369bd87cb48244905011405db2e4e, type: 3}
   - {fileID: 7897289927867764123, guid: dc199689357a21f47818eb5b358c7eef, type: 3}
+  - {fileID: 7897289927867764123, guid: 581ef07874b964f48bddcc2932112b41, type: 3}
   gameManager: {fileID: 0}
   FIELD_SIZE: 0.06

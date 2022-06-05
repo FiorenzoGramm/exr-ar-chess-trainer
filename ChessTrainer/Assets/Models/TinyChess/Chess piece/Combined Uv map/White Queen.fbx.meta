@@ -1,0 +1,137 @@
+fileFormatVersion: 2
+guid: 7e993dbeb8cc1fb4d8c7486022ee7e64
+timeCreated: 1517204057
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Geo
+    100002: Queen_C_DownBody_Joint
+    100004: Queen_C_Head_Joint
+    100006: Queen_C_Leg_Joint
+    100008: Queen_C_Mantle_joint
+    100010: Queen_C_Root_Joint
+    100012: Queen_C_UpBody_Joint
+    100014: Queen_Global_Ctrl
+    100016: Queen_Helmet_Joint
+    100018: Queen_L_Eye_Joint
+    100020: Queen_L_Hand_Joint
+    100022: Queen_R_Eye_Joint
+    100024: Queen_R_Hand_Joint
+    100026: Queen_R_Hand_Weapons_Joint
+    100028: //RootNode
+    100030: White_Queen
+    100032: White_Queen_Body
+    100034: White_Queen_Crown
+    100036: White_Queen_Leg
+    100038: White_Queen_Needle
+    400000: Geo
+    400002: Queen_C_DownBody_Joint
+    400004: Queen_C_Head_Joint
+    400006: Queen_C_Leg_Joint
+    400008: Queen_C_Mantle_joint
+    400010: Queen_C_Root_Joint
+    400012: Queen_C_UpBody_Joint
+    400014: Queen_Global_Ctrl
+    400016: Queen_Helmet_Joint
+    400018: Queen_L_Eye_Joint
+    400020: Queen_L_Hand_Joint
+    400022: Queen_R_Eye_Joint
+    400024: Queen_R_Hand_Joint
+    400026: Queen_R_Hand_Weapons_Joint
+    400028: //RootNode
+    400030: White_Queen
+    400032: White_Queen_Body
+    400034: White_Queen_Crown
+    400036: White_Queen_Leg
+    400038: White_Queen_Needle
+    2100000: Char_All
+    4300000: White_Queen_Needle
+    4300002: White_Queen_Crown
+    4300004: White_Queen_Leg
+    4300006: White_Queen_Body
+    9500000: //RootNode
+    13700000: White_Queen_Body
+    13700002: White_Queen_Crown
+    13700004: White_Queen_Leg
+    13700006: White_Queen_Needle
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

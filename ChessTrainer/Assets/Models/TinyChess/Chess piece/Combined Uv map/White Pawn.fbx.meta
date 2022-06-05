@@ -1,0 +1,141 @@
+fileFormatVersion: 2
+guid: 54f1ec846c897354c9a34efcbbb5e6af
+timeCreated: 1517204056
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Geo
+    100002: Pawn_Body
+    100004: Pawn_C_DownBody_Joint
+    100006: Pawn_C_Head_Joint
+    100008: Pawn_C_Leg_Joint
+    100010: Pawn_C_Root_Joint
+    100012: Pawn_C_UpBody_Joint
+    100014: Pawn_Global_Ctrl
+    100016: Pawn_Helmet
+    100018: Pawn_Helmet_Joint
+    100020: Pawn_L_Eye_Joint
+    100022: Pawn_L_Hand_Joint
+    100024: Pawn_L_Hand_Shield_Joint
+    100026: Pawn_Leg
+    100028: Pawn_R_Eye_Joint
+    100030: Pawn_R_Hand_Joint
+    100032: Pawn_R_Hand_Weapons_Joint
+    100034: Pawn_Shield
+    100036: Pawn_Sword
+    100038: //RootNode
+    100040: White_Pawn
+    400000: Geo
+    400002: Pawn_Body
+    400004: Pawn_C_DownBody_Joint
+    400006: Pawn_C_Head_Joint
+    400008: Pawn_C_Leg_Joint
+    400010: Pawn_C_Root_Joint
+    400012: Pawn_C_UpBody_Joint
+    400014: Pawn_Global_Ctrl
+    400016: Pawn_Helmet
+    400018: Pawn_Helmet_Joint
+    400020: Pawn_L_Eye_Joint
+    400022: Pawn_L_Hand_Joint
+    400024: Pawn_L_Hand_Shield_Joint
+    400026: Pawn_Leg
+    400028: Pawn_R_Eye_Joint
+    400030: Pawn_R_Hand_Joint
+    400032: Pawn_R_Hand_Weapons_Joint
+    400034: Pawn_Shield
+    400036: Pawn_Sword
+    400038: //RootNode
+    400040: White_Pawn
+    2100000: Char_All
+    4300000: Pawn_Body
+    4300002: Pawn_Leg
+    4300004: Pawn_Helmet
+    4300006: Pawn_Shield
+    4300008: Pawn_Sword
+    9500000: //RootNode
+    13700000: Pawn_Body
+    13700002: Pawn_Helmet
+    13700004: Pawn_Leg
+    13700006: Pawn_Shield
+    13700008: Pawn_Sword
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
