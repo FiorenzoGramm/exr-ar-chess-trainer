@@ -80,21 +80,6 @@ public class Piece : MonoBehaviour
         return null;
     }
 
-    public void DisableMoveable()
-    {
-        SetMoveable(false);
-    }
-
-    public void EnableMoveable()
-    {
-        SetMoveable(true);
-    }
-
-    public void SetMoveable(bool active)
-    {
-        GetComponent<ObjectManipulator>().enabled = active;
-    }
-
     public static bool IsValidSymbol(char symbol)
     {
         return symbol.Equals('P') ||
@@ -120,6 +105,41 @@ public class Piece : MonoBehaviour
         {
             transform.position = position;
         }
+    }
+
+    public void DisableGrabbable()
+    {
+        GetObjectManipulator().enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
+    }
+
+    public void DisableGrabbableWhenNotGrabbed()
+    {
+        if (!isCurrentlyGrabbed)
+        {
+            DisableGrabbable();
+        }
+    }
+
+    public void EnableGrabbable()
+    {
+        if (!isCurrentlyGrabbed)
+        {
+            GetObjectManipulator().enabled = true;
+            GetComponent<CapsuleCollider>().enabled = true;
+        }
+    }
+
+    private ObjectManipulator GetObjectManipulator()
+    {
+        ObjectManipulator objManipulator = GetComponent<ObjectManipulator>();
+
+        if (objManipulator == null)
+        {
+            throw new MissingComponentException($"Piece {gameObject.name} is missing the {typeof(ObjectManipulator)} component.");
+        }
+
+        return objManipulator;
     }
 
     IEnumerator MovePieceTo(Vector3 targetPosition)
@@ -183,6 +203,9 @@ public class Piece : MonoBehaviour
         isCurrentlyGrabbed = true;
         preGrabPosition = transform.localPosition;
         preGrabRotation = transform.localRotation;
+        boardController.DisableGrabbableOfNonGrabbedPieces();
+        boardController.EnableFieldCollider();
+        boardController.DisableGrabbableOfBoard();
     }
 
     public void OnRealease()
@@ -195,6 +218,9 @@ public class Piece : MonoBehaviour
             lastTouchedField.DisableVisualizer();
             boardController.TryNewMovePiece(this, lastTouchedField);
         }
+        boardController.EnableGrabbableOfPieces();
+        boardController.DisableFieldCollider();
+        boardController.EnableGrabbableOfBoard();
     }
     #endregion
 }

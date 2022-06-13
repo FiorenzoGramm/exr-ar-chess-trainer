@@ -51,4 +51,14 @@ public class Field : MonoBehaviour
             visualizer.SetActive(active);
         }
     }
+
+    public void EnableCollider()
+    {
+        GetComponent<CapsuleCollider>().enabled = true;
+    }
+
+    public void DisableColldier()
+    {
+        GetComponent<CapsuleCollider>().enabled = false;
+    }
 }

@@ -693,6 +693,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4331155490235458084, guid: 92e3db66c90122b4eb73255bb074d99c, type: 3}
+      propertyPath: onManipulationStarted.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331155490235458084, guid: 92e3db66c90122b4eb73255bb074d99c, type: 3}
+      propertyPath: onManipulationStarted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331155490235458084, guid: 92e3db66c90122b4eb73255bb074d99c, type: 3}
+      propertyPath: onManipulationStarted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4153678453784836983}
+    - target: {fileID: 4331155490235458084, guid: 92e3db66c90122b4eb73255bb074d99c, type: 3}
+      propertyPath: onManipulationStarted.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6293637020087011337, guid: 92e3db66c90122b4eb73255bb074d99c, type: 3}
     - {fileID: -6336852064493499783, guid: 92e3db66c90122b4eb73255bb074d99c, type: 3}

@@ -74,8 +74,9 @@ public class BoardController : MonoBehaviour
     {
         board = Instantiate(boardPrefab, transform);
         board.name = "Chessboard";
-        board.InitialiseBoard();
+        board.InitialiseBoard(this);
         SetManipulationTransformOfBoard();
+        SetListenersToBoard();
     }
 
     private void SpawnPawns()
@@ -406,20 +407,70 @@ public class BoardController : MonoBehaviour
         }
         GameObject newBoard = Instantiate(currentChessSet.board, board.transform);
         newBoard.name = "Model of Board";
-        Debug.Log("Set Transform from update");
         SetManipulationTransformOfBoard();
+        SetListenersToBoard();
         board.UpdateBoxCollider();
     }
 
     private void SetManipulationTransformOfBoard()
     {
-        foreach(Transform currentChild in board.transform)
+        GetObjectManipulatorFromBoard().HostTransform = transform;
+    }
+
+    private void SetListenersToBoard()
+    {
+        ObjectManipulator objectManipulator = GetObjectManipulatorFromBoard();
+        objectManipulator.OnManipulationStarted.AddListener(board.OnGrab);
+        objectManipulator.OnManipulationEnded.AddListener(board.OnRelease);
+    }
+
+    private ObjectManipulator GetObjectManipulatorFromBoard()
+    {
+        ObjectManipulator objectManipulator = null;
+
+        foreach (Transform currentChild in board.transform)
         {
             if (currentChild.CompareTag("Model"))
             {
-                currentChild.GetComponent<ObjectManipulator>().HostTransform = transform;
+                objectManipulator = currentChild.GetComponent<ObjectManipulator>();
             }
         }
+
+        if (objectManipulator == null)
+        {
+            throw new MissingComponentException($"Board {gameObject.name} is missing the {typeof(ObjectManipulator)} component.");
+        }
+        return objectManipulator;
+    }
+
+    public void DisableGrabbableOfNonGrabbedPieces()
+    {
+        board.DisableGrabbableOfNonGrabbedPieces();
+    }
+
+    public void EnableGrabbableOfPieces()
+    {
+        board.EnableGrabbableOfPieces();
+    }
+
+    public void DisableGrabbableOfBoard()
+    {
+        board.DisableGrabbable();
+    }
+
+    public void EnableGrabbableOfBoard()
+    {
+        board.EnableGrabbable();
+    }
+
+    public void EnableFieldCollider()
+    {
+        board.EnableFieldCollider();
+    }
+
+    public void DisableFieldCollider()
+    {
+        board.DisableFieldCollider();
     }
 
     public void PrintField()

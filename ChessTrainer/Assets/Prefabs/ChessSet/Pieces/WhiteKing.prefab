@@ -53,6 +53,7 @@ MonoBehaviour:
   type: King
   symbol: 75
   isWhite: 1
+  modelAnimator: {fileID: 0}
   boardController: {fileID: 0}
   isCurrentlyGrabbed: 0
 --- !u!114 &-8947016945541330708

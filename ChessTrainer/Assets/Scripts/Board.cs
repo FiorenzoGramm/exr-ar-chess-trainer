@@ -1,5 +1,6 @@
 using Microsoft.MixedReality.Toolkit.UI;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Board : MonoBehaviour
 {
@@ -7,14 +8,19 @@ public class Board : MonoBehaviour
 
     public Field[,] fields = new Field[8, 8];
 
-    public void InitialiseBoard()
+    private BoardController boardController;
+
+    public void InitialiseBoard(BoardController controller)
     {
+        boardController = controller;
+
         Field[] allFields = GetComponentsInChildren<Field>();
 
         foreach (Field currentField in allFields)
         {
             fields[currentField.GetRank(), currentField.GetFile()] = currentField;
             currentField.piece = null;
+            currentField.DisableColldier();
         }
 
         UpdateBoxCollider();
@@ -72,45 +78,76 @@ public class Board : MonoBehaviour
         return fields[position.x, position.y].piece == null;
     }
 
-    public void DisableMoveable()
+    public void DisableGrabbableOfNonGrabbedPieces()
     {
-        SetMoveable(false);
-    }
-
-    public void EnableMoveable()
-    {
-        SetMoveable(true);
-    }
-
-    public void SetMoveable(bool active) 
-    {
-        foreach(Transform currentChild in transform)
+        foreach (Field currentField in fields)
         {
-            if (currentChild.CompareTag("Model"))
+            Piece currentPiece = currentField.piece;
+            if (currentPiece != null)
             {
-                currentChild.GetComponent<ObjectManipulator>().enabled = active;
+                currentPiece.DisableGrabbableWhenNotGrabbed();
             }
         }
     }
 
-    public void DisableMoveableOnPieces()
+    public void EnableGrabbable()
     {
-        SetMoveableOnPieces(false);
+        GetObjectManipulator().enabled      = true;
+        GetModelBoxCollider().enabled       = true;
+        GetComponent<BoxCollider>().enabled = true;
     }
 
-    public void EnableMoveableOnPieces()
+    public void DisableGrabbable()
     {
-        SetMoveableOnPieces(true);
+        GetObjectManipulator().enabled      = false;
+        GetModelBoxCollider().enabled       = false;
+        GetComponent<BoxCollider>().enabled = false;
     }
 
-    public void SetMoveableOnPieces(bool active)
+    public void DisableFieldCollider()
     {
         foreach(Field currentField in fields)
         {
-            Piece currentPiece = currentField.piece;
-            if (currentPiece != null && !currentPiece.isCurrentlyGrabbed)
+            currentField.DisableColldier();
+        }
+    }
+
+    public void EnableFieldCollider()
+    {
+        foreach (Field currentField in fields)
+        {
+            currentField.EnableCollider();
+        }
+    }
+
+    private ObjectManipulator GetObjectManipulator()
+    {
+        ObjectManipulator objManipulator = null;
+
+        foreach(Transform currentChild in transform)
+        {
+            if (currentChild.CompareTag("Model"))
             {
-                currentField.piece.SetMoveable(active);
+                objManipulator = currentChild.GetComponent<ObjectManipulator>();
+            }
+        }
+
+        if (objManipulator == null)
+        {
+            throw new MissingComponentException($"Board {gameObject.name} is missing the {typeof(ObjectManipulator)} component.");
+        }
+
+        return objManipulator;
+    }
+
+    public void EnableGrabbableOfPieces()
+    {
+        foreach (Field currentField in fields)
+        {
+            Piece currentPiece = currentField.piece;
+            if (currentPiece != null)
+            {
+                currentPiece.EnableGrabbable();
             }
         }
     }
@@ -123,10 +160,10 @@ public class Board : MonoBehaviour
             Piece currentPiece = currentField.piece;
             if (currentPiece != null)
             {
-                Debug.Log(currentPiece);
-                currentPiece.DisableMoveable();
+                currentPiece.DisableGrabbable();
             }
         }
+        
     }
 
     public void OnRelease<T>(T eventData)
@@ -135,7 +172,7 @@ public class Board : MonoBehaviour
         {
             if (currentField.piece != null)
             {
-                currentField.piece.EnableMoveable();
+                currentField.piece.EnableGrabbable();
             }
         }
     }
